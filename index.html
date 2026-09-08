@@ -21,16 +21,37 @@
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://www.russlaggan.com/#person",
+      "@id": "https://russlaggan.com/#person",
       "name": "Russ Laggan",
       "url": "https://www.russlaggan.com/",
       "jobTitle": "VP of Training",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "eXp Realty",
-        "url": "https://exprealty.com"
-      },
-      "description": "VP of Training at eXp Realty, author of Be Followable, and creator of the Spheramid System.",
+      "worksFor": [
+        {
+          "@type": "Organization",
+          "@id": "https://bestknownbrand.com/#organization",
+          "name": "Best Known Brand",
+          "url": "https://bestknownbrand.com/",
+          "founder": { "@id": "https://russlaggan.com/#person" }
+        },
+        {
+          "@type": "Organization",
+          "name": "eXp Realty",
+          "url": "https://exprealty.com"
+        }
+      ],
+      "hasOccupation": [
+        {
+          "@type": "OrganizationRole",
+          "roleName": "Founder and Chief Revenue Officer",
+          "worksFor": { "@id": "https://bestknownbrand.com/#organization" }
+        },
+        {
+          "@type": "OrganizationRole",
+          "roleName": "VP of Training",
+          "worksFor": { "@type": "Organization", "name": "eXp Realty" }
+        }
+      ],
+      "description": "Founder and Chief Revenue Officer of Best Known Brand, VP of Training at eXp Realty, author of Be Followable, and creator of the Spheramid System.",
       "sameAs": [
         "https://facebook.com/rlaggan",
         "https://instagram.com/russ_laggan",
@@ -46,13 +67,13 @@
       "@id": "https://www.russlaggan.com/#website",
       "url": "https://www.russlaggan.com/",
       "name": "Russ Laggan",
-      "publisher": { "@id": "https://www.russlaggan.com/#person" }
+      "publisher": { "@id": "https://russlaggan.com/#person" }
     },
     {
       "@type": "Book",
       "name": "Be Followable",
       "url": "https://www.amazon.com/Be-Followable-Russ-Laggan/dp/B0F716F6W9",
-      "author": { "@id": "https://www.russlaggan.com/#person" }
+      "author": { "@id": "https://russlaggan.com/#person" }
     }
   ]
 }
@@ -477,6 +498,7 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
       <div class="float-card c1">
         <div class="float-label">Current Role</div>
         <div class="float-value">VP of Training, <span>eXp Realty</span></div>
+        <div class="float-value">Founder and Chief Revenue Officer, <span><a href="https://bestknownbrand.com" target="_blank" rel="noopener noreferrer">Best Known Brand</a></span></div>
       </div>
       <div class="float-card c2">
         <div class="float-label">Signature System</div>
