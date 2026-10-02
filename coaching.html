@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coaching | Russ Laggan</title>
+<meta name="description" content="Coaching with Russ Laggan. $2,500 a month for six months, or $13,500 up front, which is 10% off the $15,000 total. For operators and leaders.">
+<link rel="canonical" href="https://www.russlaggan.com/coaching.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Coaching | Russ Laggan">
+<meta property="og:description" content="$2,500 a month for six months, or $13,500 paid up front. Ten percent off the $15,000 total.">
+<meta property="og:url" content="https://www.russlaggan.com/coaching.html">
+<meta property="og:image" content="https://m.media-amazon.com/images/I/613DDHiXrLL._SL1500_.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/pages.css">
+</head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><svg class="logo-stick" viewBox="0 0 22 30" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="5" r="4"/><line x1="11" y1="9" x2="11" y2="19"/><line x1="11" y1="13" x2="4" y2="17"/><line x1="11" y1="13" x2="18" y2="10"/><line x1="11" y1="19" x2="5" y2="27"/><line x1="11" y1="19" x2="17" y2="27"/></svg>RUSS<span>LAGGAN</span></a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="index.html#maker">About</a>
+      <a href="speaking.html">Speaking</a>
+      <a href="coaching.html" aria-current="page">Coaching</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="book.html">Book</a>
+      <a href="index.html#podcast">Podcast</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="pentatype-assessment.html" class="nav-cta">Take the Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-label">Coaching</div>
+    <h1>Six months. Two ways to <em>pay</em>.</h1>
+    <p class="lede">For operators and leaders. The work is not limited to real estate. The same three questions he puts on the whiteboard: where you are, where you want to be, and the system that gets you there.</p>
+  </div>
+</header>
+
+<main>
+  <section class="wrap">
+    <div class="grid-2">
+      <article class="card price-card">
+        <h3>Monthly</h3>
+        <div class="amount">$2,500 <span>a month</span></div>
+        <p>Six payments. $15,000 across the engagement. The subscription is set to stop after the sixth payment.</p>
+      </article>
+      <article class="card price-card featured">
+        <h3>Up front</h3>
+        <div class="amount">$13,500 <span>once</span></div>
+        <p>Ten percent off the $15,000 six-month total. $15,000 minus $1,500.</p>
+        <p class="math">$2,500 × 6 = $15,000. Pay it once and the price is $13,500.</p>
+      </article>
+    </div>
+    <div class="prose" style="margin-top:2rem">
+      <p>Coaching uses what is already on this site. <a href="book.html">Be Followable</a>. The Spheramid System™. The three whiteboard questions. It is not a new named program, and it is not an agent-only track.</p>
+      <p>The fee is what you pay Russ.</p>
+    </div>
+    <p class="proof-label">Past record</p>
+    <div class="proof">
+      <div><strong>1,692</strong><span>Agents in 12 months</span></div>
+      <div><strong>28</strong><span>Offices</span></div>
+      <div><strong>$970M</strong><span>Volume managed</span></div>
+    </div>
+
+    <h2 style="margin-top:3rem">Sign up and pay</h2>
+    <p class="prose">Your name and email, then Stripe Checkout. This page never sees the card.</p>
+    <form class="pay-form" id="pay">
+      <label for="name">Name</label>
+      <input id="name" name="name" autocomplete="name" required>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
+      <div class="pay-actions">
+        <button class="btn-primary" type="submit" data-plan="coaching-monthly" id="btn-monthly">Pay $2,500 a month</button>
+        <button class="btn-primary" type="submit" data-plan="coaching-upfront" id="btn-upfront">Pay $13,500 up front</button>
+      </div>
+      <p id="pay-status" class="form-note" role="status"></p>
+    </form>
+    <p class="form-note">If a button is off, email <a href="mailto:info@russlaggan.com?subject=Coaching">info@russlaggan.com</a> and say which way you want to pay. A company that wants him a few hours a month, on growth, is the <a href="consulting.html">fractional chief revenue officer</a> offer, not this one.</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Russ Laggan. Spheramid System™ is a registered trademark.</p>
+</footer>
+<script>
+(function () {
+  const form = document.getElementById("pay");
+  const status = document.getElementById("pay-status");
+  const monthly = document.getElementById("btn-monthly");
+  const upfront = document.getElementById("btn-upfront");
+  let plan = "coaching-upfront";
+
+  function say(text, bad) {
+    status.textContent = text;
+    status.classList.toggle("form-error", Boolean(bad));
+  }
+
+  const params = new URLSearchParams(location.search);
+  if (params.get("canceled") === "1") say("Checkout was canceled. Nothing was charged.");
+
+  fetch("/api/checkout")
+    .then((res) => res.ok ? res.json() : null)
+    .then((data) => {
+      if (!data) {
+        say("Email info@russlaggan.com and say which way you want to pay.");
+        monthly.disabled = true;
+        upfront.disabled = true;
+        return;
+      }
+      if (!data.upfront) {
+        upfront.disabled = true;
+        say("Email info@russlaggan.com and say which way you want to pay.");
+      }
+      if (!data.monthly) {
+        monthly.disabled = true;
+        if (data.upfront) say("The monthly plan stays off until the six-month stop is connected. Up front is open.");
+      }
+    })
+    .catch(() => {
+      monthly.disabled = true;
+      upfront.disabled = true;
+      say("Email info@russlaggan.com and say which way you want to pay.");
+    });
+
+  const sessionId = params.get("session_id");
+  if (sessionId) {
+    fetch("/api/checkout?session_id=" + encodeURIComponent(sessionId))
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.payment_status === "paid" || data.status === "complete") {
+          say("You are signed up. Stripe will email the receipt.");
+        } else if (data.error) {
+          say(data.error, true);
+        } else {
+          say("Checkout is not paid yet. If you closed the window, start it again.");
+        }
+      })
+      .catch(() => say("Could not confirm that checkout from here. Check your email for a Stripe receipt.", true));
+  }
+
+  form.querySelectorAll("button[data-plan]").forEach((button) => {
+    button.addEventListener("click", () => { plan = button.dataset.plan; });
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const button = form.querySelector('button[data-plan="' + plan + '"]');
+    if (button && button.disabled) return;
+    monthly.disabled = true;
+    upfront.disabled = true;
+    say("Opening Stripe…");
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          plan: plan,
+          name: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+        }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        location.href = data.url;
+        return;
+      }
+      say(data.error || "Payments could not be started.", true);
+    } catch (err) {
+      say("Payments could not be started.", true);
+    }
+    monthly.disabled = false;
+    upfront.disabled = false;
+    if (!monthly.dataset.keep) {
+      fetch("/api/checkout").then((res) => res.json()).then((data) => {
+        if (!data.monthly) monthly.disabled = true;
+        if (!data.upfront) upfront.disabled = true;
+      }).catch(() => {});
+    }
+  });
+})();
+</script>
+</body>
+</html>

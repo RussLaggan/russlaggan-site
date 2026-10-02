@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Russ Laggan | The Architect of Growth</title>
-<meta name="description" content="Russ Laggan | The Architect of Growth. VP of Training at eXp Realty, author of Be Followable, designer of the Spheramid System™. Keynote speaker, trainer, and coach.">
+<meta name="description" content="Russ Laggan, co-founder of Best Known Brand and fractional chief revenue officer. Author of Be Followable and designer of the Spheramid System™. Keynote speaker.">
 <link rel="canonical" href="https://www.russlaggan.com/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Russ Laggan | The Architect of Growth">
-<meta property="og:description" content="VP of Training at eXp Realty, author of Be Followable, designer of the Spheramid System™. Keynote speaker, trainer, and coach.">
+<meta property="og:description" content="Co-founder of Best Known Brand and fractional chief revenue officer. Author of Be Followable and designer of the Spheramid System™.">
 <meta property="og:url" content="https://www.russlaggan.com/">
 <meta property="og:image" content="https://m.media-amazon.com/images/I/613DDHiXrLL._SL1500_.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Russ Laggan | The Architect of Growth">
-<meta name="twitter:description" content="VP of Training at eXp Realty, author of Be Followable, designer of the Spheramid System™. Keynote speaker, trainer, and coach.">
+<meta name="twitter:description" content="Co-founder of Best Known Brand and fractional chief revenue officer. Author of Be Followable and designer of the Spheramid System™.">
 <meta name="twitter:image" content="https://m.media-amazon.com/images/I/613DDHiXrLL._SL1500_.jpg">
 <script type="application/ld+json">
 {
@@ -24,34 +24,25 @@
       "@id": "https://russlaggan.com/#person",
       "name": "Russ Laggan",
       "url": "https://www.russlaggan.com/",
-      "jobTitle": "VP of Training",
-      "worksFor": [
-        {
-          "@type": "Organization",
-          "@id": "https://bestknownbrand.com/#organization",
-          "name": "Best Known Brand",
-          "url": "https://bestknownbrand.com/",
-          "founder": { "@id": "https://russlaggan.com/#person" }
-        },
-        {
-          "@type": "Organization",
-          "name": "eXp Realty",
-          "url": "https://exprealty.com"
-        }
-      ],
+      "jobTitle": ["Co-founder, Best Known Brand", "Fractional Chief Revenue Officer"],
+      "worksFor": {
+        "@type": "Organization",
+        "@id": "https://bestknownbrand.com/#organization",
+        "name": "Best Known Brand",
+        "url": "https://bestknownbrand.com/"
+      },
       "hasOccupation": [
         {
           "@type": "OrganizationRole",
-          "roleName": "Founder and Chief Revenue Officer",
+          "roleName": "Co-founder",
           "worksFor": { "@id": "https://bestknownbrand.com/#organization" }
         },
         {
           "@type": "OrganizationRole",
-          "roleName": "VP of Training",
-          "worksFor": { "@type": "Organization", "name": "eXp Realty" }
+          "roleName": "Fractional Chief Revenue Officer"
         }
       ],
-      "description": "Founder and Chief Revenue Officer of Best Known Brand, VP of Training at eXp Realty, author of Be Followable, and creator of the Spheramid System.",
+      "description": "Co-founder of Best Known Brand and fractional chief revenue officer. Author of Be Followable and creator of the Spheramid System.",
       "sameAs": [
         "https://facebook.com/rlaggan",
         "https://instagram.com/russ_laggan",
@@ -72,6 +63,7 @@
     {
       "@type": "Book",
       "name": "Be Followable",
+      "isbn": "9798305089226",
       "url": "https://www.amazon.com/Be-Followable-Russ-Laggan/dp/B0F716F6W9",
       "author": { "@id": "https://russlaggan.com/#person" }
     }
@@ -106,8 +98,8 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
 .nav-logo span{color:var(--orange)}
 .nav-logo .logo-stick{display:inline-block;width:22px;height:30px;vertical-align:middle;flex-shrink:0;position:relative;top:-1px}
 .nav-logo:hover .logo-stick{animation:logoWave .5s ease-in-out}
-.nav-links{display:flex;gap:1.8rem;align-items:center}
-.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.02em;transition:color .2s}
+.nav-links{display:flex;gap:1.05rem;align-items:center}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.02em;transition:color .2s}
 .nav-links a:hover{color:var(--orange)}
 .nav-cta{background:var(--orange)!important;color:var(--white)!important;padding:.55rem 1.3rem;border-radius:6px;font-weight:600!important;transition:background .2s!important}
 .nav-cta:hover{background:var(--orange-light)!important}
@@ -387,11 +379,13 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
   .steps-container{grid-template-columns:1fr;max-width:400px;margin:2rem auto 0}
   .section-title{font-size:2rem}
   .nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--blue-deep);padding:1.5rem 2rem;gap:1rem}
-  .nav-toggle{display:block}
+  .nav-toggle{display:block;position:absolute;right:.35rem;top:.7rem;z-index:3}
+  .nav-inner{position:relative}
+  .hero-inner>div{min-width:0}
   .life-tiles{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:600px){
-  .hero h1{font-size:2rem}
+  .hero h1{font-size:1.7rem;max-width:100%}
   .hero-stats{flex-direction:column;gap:1rem}
   .pillar-grid{grid-template-columns:1fr}
   .stat-row{flex-direction:column}
@@ -422,6 +416,12 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
 
 @media(max-width:968px){.flipbook{left:8px}.flipbook-inner{width:220px;height:90px}.flipbook-svg{width:220px;height:90px}}
 @media(max-width:600px){.flipbook{display:none}}
+.speak-card h3 a{color:inherit;text-decoration:none}
+.speak-card h3 a:hover{color:var(--orange)}
+.page-link{display:inline-block;margin-top:2rem;color:var(--orange);font-weight:600;text-decoration:none}
+.page-link:hover{color:var(--orange-light)}
+.offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+@media(max-width:968px){.offer-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -458,12 +458,11 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
     <div class="nav-links">
       <a href="#maker">About</a>
-      <a href="#philosophy">Philosophy</a>
-      <a href="#book">Book</a>
-      <a href="pentatype-assessment.html">Assessment</a>
-      <a href="#speaking">Speaking</a>
+      <a href="speaking.html">Speaking</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="book.html">Book</a>
       <a href="#podcast">Podcast</a>
-      <a href="#training">Training</a>
       <a href="#contact">Contact</a>
       <a href="pentatype-assessment.html" class="nav-cta">Take the Assessment</a>
     </div>
@@ -476,13 +475,13 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
     <div>
       <div class="hero-badge">The Architect of Growth</div>
       <h1>Influence is cheap.<br><em>Followability</em> is priceless.</h1>
-      <p class="hero-sub">Russ Laggan is an all out builder. Whether he's forging knives, crafting bass guitars, racing motorcycles, running triathlons, or building as VP of Training at eXp Realty, he brings excellence (and intensity) to everything he touches.</p>
+      <p class="hero-sub">Russ Laggan is an all out builder. Whether he's forging knives, crafting bass guitars, racing motorcycles, running triathlons, or building as co-founder of Best Known Brand and as a fractional chief revenue officer, he brings excellence (and intensity) to everything he touches.</p>
       <div class="hero-buttons">
         <a href="pentatype-assessment.html" class="btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
           Discover Your Agent Style
         </a>
-        <a href="#speaking" class="btn-outline">Book Russ to Speak</a>
+        <a href="speaking.html" class="btn-outline">Bring Russ to Your Stage</a>
       </div>
       <div class="hero-stats">
         <div><div class="hero-stat-num">1,692</div><div class="hero-stat-label">Agents in 12 Months</div></div>
@@ -497,8 +496,8 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
       </div>
       <div class="float-card c1">
         <div class="float-label">Current Role</div>
-        <div class="float-value">VP of Training, <span>eXp Realty</span></div>
-        <div class="float-value">Founder and Chief Revenue Officer, <span><a href="https://bestknownbrand.com" target="_blank" rel="noopener noreferrer">Best Known Brand</a></span></div>
+        <div class="float-value">Co-founder, <span><a href="https://bestknownbrand.com" target="_blank" rel="noopener noreferrer">Best Known Brand</a></span></div>
+        <div class="float-value">Fractional Chief Revenue Officer</div>
       </div>
       <div class="float-card c2">
         <div class="float-label">Signature System</div>
@@ -527,9 +526,9 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
       <div class="maker-content fade-up">
         <p>Russ Laggan forges custom steel knives in his workshop, builds bass guitars from raw wood, races motorcycles, flies a WWII-era P-51 Mustang, and competes in triathlons. He knows that if you overheat the steel, it becomes brittle. If you rush the sanding, the finish never shines. He brings this same craftsman's precision to corporate growth.</p>
 
-        <p>In real estate, that philosophy produced results nobody expected. A guy who sold concrete countertops walked into the industry in 2005, and within two and a half years was running his first office at age 34. Not because of connections. Because of results. He then led a team of 15 to recruit 1,692 agents in a single year, shattering industry benchmarks.</p>
+        <p>In real estate, that philosophy produced results nobody expected. A guy who sold concrete countertops walked into the industry in 2005, and within two and a half years was running his first office at age 34. Not because of connections. Because of results. He then led a team of 15 to recruit 1,692 agents in a single year, shattering industry benchmarks. He later served as VP of Training at eXp Realty. He does not work there now.</p>
 
-        <p>Today, as VP of Training at eXp Realty, author of <em>Be Followable</em>, and creator of the Spheramid System™, Russ helps leaders escape what he calls the "death loop" of business, where success leads to burnout, by building systems that attract talent rather than chase it.</p>
+        <p>Today, as co-founder of Best Known Brand and a fractional chief revenue officer, author of <em>Be Followable</em>, and creator of the Spheramid System™, Russ helps leaders escape what he calls the "death loop" of business, where success leads to burnout, by building systems that attract talent rather than chase it.</p>
 
         <div class="life-tiles">
           <div class="life-tile"><div class="life-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#EF5D17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></div><div class="life-tile-num">27</div><div class="life-tile-name">Barrel Rolls</div><div class="life-tile-desc">Times inverted in an airplane</div></div>
@@ -665,7 +664,7 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
         <h3>From Milking the Cow to Creating Cash Cows</h3>
         <p>Russ's signature distinction: stop extracting from relationships and start building them. The book shows you how to make the shift from short-term transactions to sustainable empires, packed with real-world frameworks and powerful questions from two decades of building teams that produce.</p>
         <a href="https://www.amazon.com/Be-Followable-Russ-Laggan/dp/B0F716F6W9" class="book-cta" target="_blank" rel="noopener">Get the Book</a>
-        <a href="https://www.amazon.com/Be-Followable-Russ-Laggan/dp/B0F716F6W9" class="book-cta" style="background:var(--orange);margin-left:.5rem" target="_blank" rel="noopener">Explore the Book &rarr;</a>
+        <a href="book.html" class="book-cta" style="background:var(--orange);margin-left:.5rem">Explore the Book &rarr;</a>
       </div>
     </div>
   </div>
@@ -707,22 +706,45 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
     <p class="section-desc">High-energy talks built from the trenches, not theory. Russ uses his hands for visual storytelling (no handheld mics).</p>
     <div class="speaking-grid">
       <div class="speak-card fade-up">
-        <h3>The Attraction Advantage</h3>
+        <h3><a href="speaking.html#attraction">The Attraction Advantage</a></h3>
         <div class="tagline">Why the Best Recruiters Don't Recruit. They Produce.</div>
         <p>Russ debunks the myth of the "silver-tongued recruiter." Learn the "Lighthouse Principle" of personal branding that causes talent to naturally gravitate toward your organization.</p>
         <div class="audience">Perfect for: Brokerage Owners, Sales Leaders, Recruiters</div>
       </div>
       <div class="speak-card fade-up">
-        <h3>The Coffee Mug Test</h3>
+        <h3><a href="speaking.html#coffee-mug">The Coffee Mug Test</a></h3>
         <div class="tagline">Are You Sabotaging Success by Overflowing Your Capacity?</div>
         <p>A visceral live demonstration of why businesses break. Russ shows how leaders pour "more volume" into "limited vessels," creating a mess instead of momentum.</p>
         <div class="audience">Perfect for: Entrepreneurs, C-Suite, High-Growth Teams</div>
       </div>
       <div class="speak-card fade-up">
-        <h3>The Jellyfish Method</h3>
+        <h3><a href="speaking.html#jellyfish">The Jellyfish Method</a></h3>
         <div class="tagline">Decentralized Growth for the Modern Era.</div>
-        <p>How to build an organization that is fluid, resilient, and capable of massive scale without a rigid, brittle hierarchy. Based on managing decentralized teams at eXp.</p>
+        <p>How to build an organization that is fluid, resilient, and capable of massive scale without a rigid, brittle hierarchy. Tentacles out, so people swim into the work instead of being chased.</p>
         <div class="audience">Perfect for: Corporate Strategy, Franchise Operators</div>
+      </div>
+    </div>
+    <a class="page-link" href="speaking.html">Bring Russ to your stage</a>
+  </div>
+</section>
+
+<section class="speaking" id="work">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-label">Work with Russ</div>
+    <div class="section-title">Coaching and <em>consulting</em></div>
+    <p class="section-desc">Neither one is a real-estate-only offer.</p>
+    <div class="offer-grid">
+      <div class="speak-card">
+        <h3><a href="coaching.html">Coaching</a></h3>
+        <div class="tagline">Six months. Two ways to pay.</div>
+        <p>$2,500 a month for six months, or $13,500 up front. That up-front price is 10% off the $15,000 total.</p>
+        <div class="audience">Operators and leaders. Pay on the coaching page.</div>
+      </div>
+      <div class="speak-card">
+        <h3><a href="consulting.html">Fractional chief revenue officer</a></h3>
+        <div class="tagline">Growth, not accounting.</div>
+        <p>About four to five hours a month. About $10,000 a month. A conversation, not a cart.</p>
+        <div class="audience">Companies that need revenue leadership without a full-time hire.</div>
       </div>
     </div>
   </div>
@@ -819,7 +841,7 @@ body{font-family:var(--font-body);color:var(--gray-900);background:var(--white);
   <div class="contact-inner">
     <div class="section-label">Let's Build Something</div>
     <div class="section-title" style="color:var(--white)">Ready to <em>Connect</em>?</div>
-    <p style="color:rgba(255,255,255,.55);margin-bottom:2rem">Speaking inquiries, training partnerships, or bringing the Spheramid System™ to your organization.</p>
+    <p style="color:rgba(255,255,255,.55);margin-bottom:2rem">Speaking, coaching, a fractional chief revenue officer engagement, or bringing the Spheramid System™ to your organization.</p>
     <div class="contact-row">
       <div class="contact-item"><div class="contact-item-label">Email</div><div class="contact-item-value"><a href="mailto:info@russlaggan.com">info@russlaggan.com</a></div></div>
       <div class="contact-item"><div class="contact-item-label">Instagram</div><div class="contact-item-value"><a href="https://instagram.com/russ_laggan" target="_blank" rel="noopener">@russ_laggan</a></div></div>
