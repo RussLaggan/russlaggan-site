@@ -15,6 +15,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/pages.css">
+<style>
+.pay-switch{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line, #e4e0d8);border-radius:999px;background:#fff;margin:1.5rem 0 1.25rem}
+.pay-switch button{border:0;background:transparent;border-radius:999px;padding:.7rem 1.1rem;font:600 .95rem/1 Inter,sans-serif;cursor:pointer;color:#3c3832}
+.pay-switch button[aria-pressed="true"]{background:#1c1916;color:#fff}
+.price-panel[hidden]{display:none}
+</style>
 </head>
 <body>
 <nav class="nav" id="nav">
@@ -44,19 +50,23 @@
 
 <main>
   <section class="wrap">
-    <div class="grid-2">
-      <article class="card price-card">
-        <h3>Monthly</h3>
-        <div class="amount">$2,500 <span>a month</span></div>
-        <p>Six payments. $15,000 across the engagement. The subscription is set to stop after the sixth payment.</p>
-      </article>
-      <article class="card price-card featured">
-        <h3>Up front</h3>
-        <div class="amount">$13,500 <span>once</span></div>
-        <p>Ten percent off the $15,000 six-month total. $15,000 minus $1,500.</p>
-        <p class="math">$2,500 × 6 = $15,000. Pay it once and the price is $13,500.</p>
-      </article>
+    <div class="pay-switch" role="group" aria-label="How to pay">
+      <button type="button" id="show-monthly" aria-pressed="false">Pay by the month</button>
+      <button type="button" id="show-upfront" aria-pressed="true">Pay up front</button>
     </div>
+
+    <article class="card price-card" id="panel-monthly" hidden>
+      <h3>Monthly</h3>
+      <div class="amount">$2,500 <span>a month</span></div>
+      <p>Six payments. $15,000 across the engagement. The subscription stops after the sixth payment.</p>
+    </article>
+    <article class="card price-card featured" id="panel-upfront">
+      <h3>Up front</h3>
+      <div class="amount">$13,500 <span>once</span></div>
+      <p>Ten percent off the $15,000 six-month total. $15,000 minus $1,500.</p>
+      <p class="math">$2,500 × 6 = $15,000. Pay it once and the price is $13,500.</p>
+    </article>
+
     <div class="prose" style="margin-top:2rem">
       <p>Coaching uses what is already on this site. <a href="book.html">Be Followable</a>. The Spheramid System™. The three whiteboard questions. It is not a new named program, and it is not an agent-only track.</p>
       <p>The fee is what you pay Russ.</p>
@@ -76,12 +86,11 @@
       <label for="email">Email</label>
       <input id="email" name="email" type="email" autocomplete="email" required>
       <div class="pay-actions">
-        <button class="btn-primary" type="submit" data-plan="coaching-monthly" id="btn-monthly">Pay $2,500 a month</button>
-        <button class="btn-primary" type="submit" data-plan="coaching-upfront" id="btn-upfront">Pay $13,500 up front</button>
+        <button class="btn-primary" type="submit" id="pay-button" data-plan="coaching-upfront">Pay $13,500 up front</button>
       </div>
       <p id="pay-status" class="form-note" role="status"></p>
     </form>
-    <p class="form-note">If a button is off, email <a href="mailto:info@russlaggan.com?subject=Coaching">info@russlaggan.com</a> and say which way you want to pay. A company that wants him a few hours a month, on growth, is the <a href="consulting.html">fractional chief revenue officer</a> offer, not this one.</p>
+    <p class="form-note">If the button is off, email <a href="mailto:info@russlaggan.com?subject=Coaching">info@russlaggan.com</a> and say which way you want to pay. A company that wants him a few hours a month, on growth, is the <a href="consulting.html">fractional chief revenue officer</a> offer, not this one.</p>
   </section>
 </main>
 
@@ -92,8 +101,12 @@
 (function () {
   const form = document.getElementById("pay");
   const status = document.getElementById("pay-status");
-  const monthly = document.getElementById("btn-monthly");
-  const upfront = document.getElementById("btn-upfront");
+  const button = document.getElementById("pay-button");
+  const showMonthly = document.getElementById("show-monthly");
+  const showUpfront = document.getElementById("show-upfront");
+  const panelMonthly = document.getElementById("panel-monthly");
+  const panelUpfront = document.getElementById("panel-upfront");
+  const open = { monthly: false, upfront: false };
   let plan = "coaching-upfront";
 
   function say(text, bad) {
@@ -101,31 +114,36 @@
     status.classList.toggle("form-error", Boolean(bad));
   }
 
+  function show(next) {
+    plan = next === "monthly" ? "coaching-monthly" : "coaching-upfront";
+    const monthlyOn = next === "monthly";
+    showMonthly.setAttribute("aria-pressed", monthlyOn ? "true" : "false");
+    showUpfront.setAttribute("aria-pressed", monthlyOn ? "false" : "true");
+    panelMonthly.hidden = !monthlyOn;
+    panelUpfront.hidden = monthlyOn;
+    button.dataset.plan = plan;
+    button.textContent = monthlyOn ? "Pay $2,500 a month" : "Pay $13,500 up front";
+    button.disabled = monthlyOn ? !open.monthly : !open.upfront;
+  }
+
+  showMonthly.addEventListener("click", () => show("monthly"));
+  showUpfront.addEventListener("click", () => show("upfront"));
+
   const params = new URLSearchParams(location.search);
   if (params.get("canceled") === "1") say("Checkout was canceled. Nothing was charged.");
 
   fetch("/api/checkout")
     .then((res) => res.ok ? res.json() : null)
     .then((data) => {
-      if (!data) {
-        say("Email info@russlaggan.com and say which way you want to pay.");
-        monthly.disabled = true;
-        upfront.disabled = true;
-        return;
-      }
-      if (!data.upfront) {
-        upfront.disabled = true;
-        say("Email info@russlaggan.com and say which way you want to pay.");
-      }
-      if (!data.monthly) {
-        monthly.disabled = true;
-        if (data.upfront) say("The monthly plan stays off until the six-month stop is connected. Up front is open.");
-      }
+      open.upfront = Boolean(data && data.upfront);
+      open.monthly = Boolean(data && data.monthly);
+      if (!open.upfront && !open.monthly) say("Email info@russlaggan.com and say which way you want to pay.");
+      else if (!open.monthly) say("The monthly plan stays off until the six-month stop is connected. Up front is open.");
+      show(open.upfront || !open.monthly ? "upfront" : "monthly");
     })
     .catch(() => {
-      monthly.disabled = true;
-      upfront.disabled = true;
       say("Email info@russlaggan.com and say which way you want to pay.");
+      button.disabled = true;
     });
 
   const sessionId = params.get("session_id");
@@ -133,27 +151,17 @@
     fetch("/api/checkout?session_id=" + encodeURIComponent(sessionId))
       .then((res) => res.json())
       .then((data) => {
-        if (data.payment_status === "paid" || data.status === "complete") {
-          say("You are signed up. Stripe will email the receipt.");
-        } else if (data.error) {
-          say(data.error, true);
-        } else {
-          say("Checkout is not paid yet. If you closed the window, start it again.");
-        }
+        if (data.payment_status === "paid" || data.status === "complete") say("You are signed up. Stripe will email the receipt.");
+        else if (data.error) say(data.error, true);
+        else say("Checkout is not paid yet. If you closed the window, start it again.");
       })
       .catch(() => say("Could not confirm that checkout from here. Check your email for a Stripe receipt.", true));
   }
 
-  form.querySelectorAll("button[data-plan]").forEach((button) => {
-    button.addEventListener("click", () => { plan = button.dataset.plan; });
-  });
-
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const button = form.querySelector('button[data-plan="' + plan + '"]');
-    if (button && button.disabled) return;
-    monthly.disabled = true;
-    upfront.disabled = true;
+    if (button.disabled) return;
+    button.disabled = true;
     say("Opening Stripe…");
     try {
       const res = await fetch("/api/checkout", {
@@ -174,14 +182,7 @@
     } catch (err) {
       say("Payments could not be started.", true);
     }
-    monthly.disabled = false;
-    upfront.disabled = false;
-    if (!monthly.dataset.keep) {
-      fetch("/api/checkout").then((res) => res.json()).then((data) => {
-        if (!data.monthly) monthly.disabled = true;
-        if (!data.upfront) upfront.disabled = true;
-      }).catch(() => {});
-    }
+    show(plan === "coaching-monthly" ? "monthly" : "upfront");
   });
 })();
 </script>
