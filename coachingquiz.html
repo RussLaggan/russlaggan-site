@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coaching quiz | Russ Laggan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="build.css">
+</head>
+<body>
+<header class="nav"><div class="wrap nav-inner"><a class="wordmark" href="index.html">russ<span>laggan</span></a><nav class="nav-links" aria-label="Primary"><a href="speaking.html">Speaker</a><a href="author.html">Author</a><a href="coaching.html">Coach</a><a href="consulting.html">Consulting</a><a href="about.html">About</a><a class="btn" href="mailto:info@russlaggan.com?subject=Coaching">Contact Russ</a></nav></div></header>
+
+<div class="field"><section class="section" style="padding-top:56px"><div class="wrap scene">
+<p class="label">Coaching quiz</p>
+<h2 id="qtitle">Where are you.</h2>
+<p class="lede" id="qprompt"></p>
+<div class="choice" id="qopts"></div>
+<div class="hero-actions" id="qend" hidden></div>
+</div></section></div>
+<script>
+const scenes = [
+ {prompt:"Monday is already full. A partner wants a second business on top of the one that pays you.", options:[
+  ["Keep the work that pays. Let the rest be a byproduct.", 1, null],
+  ["Split the week in half so both feel fair.", 1, null],
+  ["Hand the leads to someone else and stay the face.", 99, "no"]]},
+ {prompt:"You know the number you want. You do not know which work only you can do.", options:[
+  ["Evaluate the day, cut what does not move it, then execute.", 2, null],
+  ["Add a new system and keep everything already on the plate.", 2, null],
+  ["Buy a website and a map pack and call that the plan.", 99, "no"]]},
+ {prompt:"The quarter is open. What do you actually want from Russ?", options:[
+  ["The system. I will run it.", 99, "class"],
+  ["Russ with me, on the work.", 99, "coach"],
+  ["Him inside the company, on the revenue.", 99, "cro"]]}
+];
+const results = {
+ class:["Jumpstart.","You want the system, and you will run it. Production, the people you already have, and a day you can score."],
+ coach:["Coaching.","You want Russ with you. Coaching is $15,000, or $13,500 if you pay up front."],
+ cro:["Fractional chief revenue officer.","He leads the revenue plan, the team, and the forecast. About four to five hours a month. About $10,000 a month."],
+ no:["This is not a fit.","If you want someone else to generate the leads, or you want a website and a map pack, that is not his work. That conversation lives at bestknownbrand.com."]
+};
+let step=0, door=null;
+function render(){
+  const title=document.getElementById('qtitle');
+  const prompt=document.getElementById('qprompt');
+  const opts=document.getElementById('qopts');
+  const end=document.getElementById('qend');
+  opts.innerHTML=''; end.innerHTML=''; end.hidden=true;
+  if(door){
+    title.textContent=results[door][0];
+    prompt.textContent=results[door][1];
+    end.hidden=false;
+    if(door==='no') end.innerHTML='<a class="btn" href="https://bestknownbrand.com">bestknownbrand.com</a>';
+    else end.innerHTML='<a class="btn" href="mailto:info@russlaggan.com?subject=Coaching%20quiz">Contact Russ</a>';
+    end.innerHTML += ' <button type="button" class="btn ghost" onclick="step=0;door=null;render()">Start over</button>';
+    return;
+  }
+  const scene=scenes[step];
+  title.textContent='Where are you.';
+  prompt.textContent=scene.prompt;
+  scene.options.forEach(function(o){
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=o[0];
+    b.onclick=function(){ if(o[2]) door=o[2]; else step=o[1]; render(); };
+    opts.appendChild(b);
+  });
+}
+render();
+</script>
+
+<footer class="foot"><div class="wrap"><div class="foot-card"><h2>The next quarter is already being built by someone.</h2><p>Coaching is $15,000, or 10% off if you pay up front.</p><div style="margin-top:22px"><a class="btn" href="mailto:info@russlaggan.com?subject=Coaching">Contact Russ</a></div></div><div class="cols"><div><p class="wordmark" style="color:#fff">russ<span>laggan</span></p><p>Speaker, author, coach, and consultant.</p></div><nav><h3>Work</h3><a href="speaking.html">Speaker</a><a href="author.html">Author</a><a href="coaching.html">Coach</a><a href="consulting.html">Consulting</a></nav><nav><h3>More</h3><a href="about.html">About</a><a href="coachingquiz.html">Coaching quiz</a><a href="https://russlaggan.transistor.fm/">Podcast</a><a href="mailto:info@russlaggan.com">Contact</a></nav><nav><h3>Book</h3><a href="https://www.amazon.com/Be-Followable-Russ-Laggan/dp/B0F716F6W9">Be Followable</a><a href="https://instagram.com/russ_laggan">Instagram</a></nav></div><p class="legal">&copy; 2026 Russ Laggan. Spheramid System is a trademark.</p></div></footer>
+</body>
+</html>
