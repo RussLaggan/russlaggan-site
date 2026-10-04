@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Your Adventure | Russ Laggan</title>
+<meta name="description" content="Choose Your Adventure with Russ Laggan. A coaching qualifier for producing, team building, and revenue-share organization building. $2,500 a month for six months, or $13,500 upfront.">
+<link rel="canonical" href="https://www.russlaggan.com/adventure.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a class="nav-logo" href="index.html">RUSS<span>LAGGAN</span></a><button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button><div class="nav-links"><a href="index.html#maker">About</a><a href="speaking.html">Speaking</a><a href="coaching.html">Coaching</a><a href="consulting.html">Consulting</a><a href="author.html">Author</a><a href="adventure.html">Adventure</a><a href="play.html">Play</a><a href="pentatype-assessment.html">Assessment</a><a href="index.html#podcast">Podcast</a><a href="index.html#training">Training</a><a href="index.html#contact">Contact</a><a class="nav-cta" href="pentatype-assessment.html">Take the Assessment</a></div></div></nav>
+<section class="hero" id="start-band"><div class="hero-inner">
+<div class="hero-badge">Choose Your Adventure</div>
+<h1>Which obstacle is sitting on your <em>sphere</em> business?</h1>
+<p class="hero-sub">Your name, your email, your city and state, and what you are building. Then a short run of scenarios. You will see the obstacle the way Russ coaches it, and whether this coaching is a fit. This is not a quiz for home buyers, and it is not a compensation-plan pitch.</p>
+<form class="quiz-form" id="start-form">
+<label><span class="field-label">Name</span><input name="name" required autocomplete="name"></label>
+<label><span class="field-label">Email</span><input name="email" type="email" required autocomplete="email"></label>
+<label><span class="field-label">City</span><input name="city" required autocomplete="address-level2"></label>
+<label><span class="field-label">State</span><input name="state" required autocomplete="address-level1"></label>
+<div>
+<span class="field-label">What are you building right now?</span>
+<div class="radios">
+<label><input type="radio" name="path" value="producing" required> Producing</label>
+<label><input type="radio" name="path" value="team"> Team</label>
+<label><input type="radio" name="path" value="revshare"> Revenue-share organization</label>
+<label><input type="radio" name="path" value="mixed"> Mixed</label>
+</div>
+</div>
+<button class="btn-primary" type="submit">Start my adventure</button>
+</form>
+</div></section>
+<section class="section" id="run" hidden><div class="wrap">
+<p class="progress-note" id="progress"></p>
+<div id="stage"></div>
+</div></section>
+<section class="contact" id="foot-contact"><p><a href="mailto:info@russlaggan.com">info@russlaggan.com</a></p></section>
+<footer class="footer"><p>&copy; 2026 Russ Laggan. Spheramid System™ is a registered trademark. Nothing on this page is a checkout.</p></footer>
+<script>
+(function () {
+  var SEEDS = {
+    1: {theme:"sphere", q:"Your sphere is 200 people you actively work. Roughly how many closings a year should that produce?", options:["2","5","About 20","50"], best:2, reveal:"Sphere first. A worked sphere returns about 10 percent. Sphere divided by 10 is the annual-closings rule Russ uses, so 200 people is about 20 closings. Not 2, and not 50."},
+    2: {theme:"sphere", q:"You add 3 new people to your sphere every week for a year. About how many extra sales should that be worth the following year?", options:["1 or 2","About 14","50","None, unless you buy leads"], best:1, reveal:"He counts 3 a week as about 12 a month, about 144 people in a year. At the same sphere rule, that is about 14 sales. The list grows by hand. It does not start with paid leads."},
+    3: {theme:"sphere", q:"Your sphere is not converting at about 10 percent. What is usually missing?", options:["A better website","More paid ads","Delivering value, phone calls, and handwritten notes","More social posting"], best:2, reveal:"When the return lags, it is usually the middle of the work: deliver value, make the calls, and send handwritten notes. A new website does not fix a sphere you are not working."},
+    4: {theme:"points", q:"On the 30 Points sheet, which of these earns the most points?", options:["Mailing 100 postcards","Five phone calls","One face-to-face meeting","A contract written and accepted"], best:3, reveal:"A contract written and accepted is 20 points. A face-to-face is 5. A phone call is 2. Mailers are a tenth of a point each. The sheet weights what actually produces business."},
+    5: {theme:"points", q:"Which of these earns zero points on 30 Points to Success?", options:["A listing appointment","Texting and emailing","A networking contact added","A buyer showing"], best:1, reveal:"Texting and emailing are not on the sheet. Russ treats them as maintaining the business, not building it. Listing appointments, showings, and a new networking contact are on the sheet."},
+    6: {theme:"points", q:"What counts as a successful week on 30 Points?", options:["30 points total","150 or more points","One closing","40 hours worked"], best:1, reveal:"The daily floor is 30 points, five days a week. A successful week is over 150 points. Hours worked are not the score."},
+    7: {theme:"onin", q:"You just got three deals under contract. What do you do with prospecting?", options:["Pause it until they close","Keep a reduced but steady level of on-the-business work","Hire someone the same day","Buy leads so you can restart after closing"], best:1, reveal:"On the business means the growth work. In the business means follow-up, details, and working a contract to close. Stop the on-work while you are in the deals and you get the rollercoaster. Keep a steady climb by staying on the business even while you are in it."},
+    8: {theme:"followup", q:"An agent is spending heavily on leads and almost none of them close. What is the first place Russ looks?", options:["The leads must be bad","The market","The follow-up system","The company they joined"], best:2, reveal:"Case, no names: a producer buying leads before a follow-up system exists. Russ's line is that the leads are not the first problem. The follow-up system is. Fix that before you spend more to find strangers."},
+    9: {theme:"doless", q:"New year, new strategy you want to add. What do you do first?", options:["Add it right away","Make a do-less-of list first","Work longer hours","Hire a coach for the new thing only"], best:1, reveal:"Make the list of what you need to do less of before you add anything. The coffee-mug picture is a full cup: more volume just makes a mess. The ham-ends picture is the same limit copied long after the reason is gone. Evaluate, take something off the plate, then execute."},
+    10: {theme:"value", q:"Someone asks, \"How's the market?\" What is the useful response?", options:["\"Great, are you thinking of selling?\"","\"Busy!\"","\"I just did a market update. Want me to send it?\"","Quote a national headline"], best:2, reveal:"A market update you already did is a credibility tool, not a pitch. Offer to send it. That is delivering value to people you already know."},
+    11: {theme:"attraction", q:"You do about 20 sales a year and you want to start attracting agents. Best approach?", options:["Carve production time into a recruiting quota","Quit sales and go all-in on recruiting","Make attraction a byproduct of your production","Buy an agent list and cold call it"], best:2, reveal:"Attraction through production. If someone at 20 sales drops production by 20 percent, they are at 16. Recruiting is not a second job that eats the first one. For most people, quitting production to recruit full-time is how the business runs out of cash. Sawdust can become the next product. It does not replace the mill."},
+    12: {theme:"attraction", q:"Where is the first source for an agent sphere, without buying a list?", options:["A purchased agent list","Co-op and showing agents from your own deals, plus title, mortgage, insurance, and inspector contacts","Cold-calling strangers who already produce","Social ads"], best:1, reveal:"Case, no names: build the agent sphere from your own deals. The other agent on a closing. Every showing agent, with a real reason to call them first on the next similar listing. Then the title, mortgage, insurance, and inspector people, who each already know a crowd of agents. No purchased list."},
+    13: {theme:"team", q:"You are thinking about starting a team. What is the first question?", options:["What split to offer","What to name it","Should I, or shouldn't I, based on the life I want","How many people I can hire this quarter"], best:2, reveal:"Do not build a team because it looks like the next rung. First get clear on the life: hours, days off, and what the days should feel like. Then decide whether a team serves that. The name and the split are later, if you build one at all."},
+    14: {theme:"team", q:"Which two team styles does Russ separate?", options:["Big versus small","Lead generation versus mentor, teaching, and coaching, plus hybrids","Luxury versus first-time","Local versus virtual"], best:1, reveal:"Pick the model on purpose. A lead-generation team with no sphere and no follow-up converts badly. A mentor team is teaching, training, and coaching. Hybrids exist. The style has to serve the life you already described."},
+    15: {theme:"team", q:"When Russ hires for a team, he hires for:", options:["Last year's production numbers","Motivation, drive, and nice","Years licensed","Tech skills"], best:1, reveal:"Motivation, drive, and nice. Production can be taught. The attitude is the filter. Set that expectation in both directions before anyone starts."},
+    16: {theme:"team", q:"Why not name the team after yourself?", options:["A branding rule","You can never walk away. Build a successor and an exit from the start.","It sounds arrogant","It costs more"], best:1, reveal:"Case, no names: a company that could not run without its owner. That owner could not leave. Russ's answer is a successor, a mini-me, and a phased handoff: you lead while they shadow, then side by side, then they lead with you behind, then you are out. The exit is designed on day one. The team is not your name."},
+    17: {theme:"org", q:"A grown agent is ready to leave your team. Russ's approach?", options:["Hold them in the nest as long as you can","Cut them loose","Show them how to build their own nest while they stay in your organization","Raise what you pay them so they stay"], best:2, reveal:"Do not keep a grown agent in the nest. Case, no names: offer a path to build their own nest and stay in the organization. The team trades hours for transactions. The organization is what they can build without leaving you."},
+    18: {theme:"stages", q:"Which stage comes right after \"make the money\"?", options:["Legacy","Get your time back","Retire","Start a company"], best:1, reveal:"The five stages, in the public wording: make the money, get your time back, freedom (you choose the work because you want to, not because you have to), build a legacy, then help other people build their legacy. Build the money goal and the time goal together."},
+    19: {theme:"atob", q:"Opening a recruiting conversation with an experienced agent, what do you ask first?", options:["\"Have you heard of our company?\"","\"What's working, and what's not working?\"","\"What split are you on?\"","\"When can you switch?\""], best:1, reveal:"The public three-step recipe: what's working and what isn't (where you are now), where you want to be, and how you are going to get there. The company name and the split are not the opening."},
+    20: {theme:"org", q:"Why do people join a leader's organization?", options:["The logo","The pay plan alone","They know, like, and trust the person, who solves what they actually want","The office address"], best:2, reveal:"They are choosing you, not a logo. They need to know, like, and trust you, and you solve for what they want, not for what you feel like offering. The pay plan is not the reason."},
+    21: {theme:"numbers", q:"Which of these is NOT one of the six numbers Russ tracks?", options:["Points","Additions to your sphere","Social media followers","Contracts"], best:2, reveal:"The six numbers are points, additions to the sphere, total sphere, leads, contracts, and closings. Followers are not on the list. Work backward from the goal, and allow about six months for a new relationship to incubate."},
+    22: {theme:"numbers", q:"You want about 2 closings a month. Working backward, about what size sphere do you need?", options:["20 people","About 200 people","2,000 people","It depends on ad spend"], best:1, reveal:"About 2 closings a month needs 2 or more contracts, which needs about 4 or 5 leads, which needs a sphere of about 200. Give it about six months. Ad spend is not the variable in this math."},
+    23: {theme:"team", q:"People who build a team by default, because it is \"the next level,\" often end up:", options:["With more freedom","Working more hours and making less money","Out of the business in a year","Running a simpler diary"], best:1, reveal:"The agent-to-team ladder is not automatic. A lot of people who build because it is \"next\" work more hours and make less money. The first question is still should I, or shouldn't I."},
+    24: {theme:"team", q:"Handing your role to a successor, what is the order?", options:["Hand off everything in one weekend","They lead, then they shadow, then you disappear","You lead and they shadow, then side by side, then they lead with you behind, then you are out","Hire an outside manager and leave"], best:2, reveal:"Phased succession. You lead while they shadow. Then side by side. Then they lead with you behind them. Then you are out. Not all at once, and not a stranger dropped on top of the team."},
+    25: {theme:"team", q:"Someone on the team wants more of your one-on-one time than the team gives them. Russ's approach?", options:["Give it free. That is giving back.","Say no and end it","Set an offer menu by level, and charge for the higher-touch levels","Let them go the same day"], best:2, reveal:"There is a difference between giving back and being used. Decide what you offer at each level, and charge for the higher-touch levels. The menu is set on purpose."},
+    26: {theme:"org", q:"What is the difference between a team and an organization?", options:["Headcount","A team trades time for the work of selling. An organization is built from people, not only from your hours.","There isn't one","An organization does not sell"], best:1, reveal:"The team is still trading time for transactions. The organization is people, and a path for them to build, not a claim about what anyone will earn. No pay-plan math belongs in this answer."},
+    27: {theme:"org", q:"Starting an organization from zero, what is the first target?", options:["A thousand people","A hundred people this year","One person. It is the same motion as selling.","A recruiting budget"], best:2, reveal:"Power of one. You do not need a crowd first. You need one, the same way you need one sale. That is the whole point to use here. The rest of a company pay plan stays off this page."},
+    28: {theme:"org", q:"In a recruiting conversation with an experienced agent, who should end up making the case?", options:["You sell them the whole time","They sell themselves to you","Nobody is deciding","A brand deck sells them"], best:1, reveal:"Case, no names: an experienced agent in the chair. The shift is that they sell themselves to you. You are checking fit. Motivated, driven, and a good attitude. You are not chasing them around the table."},
+    29: {theme:"org", q:"An agent says, \"I need to think about it.\" What does Russ do?", options:["Give them a month of space","Offer a bonus to decide today","Ask what is stopping them, narrow it to one thing, and ask if that is the only thing stopping them from signing paperwork today","Send a logo deck and wait"], best:2, reveal:"Case, no names. Find the one thing in the way. Then ask if that is the only thing stopping them from signing paperwork today. Not a bonus. Not a month of silence."},
+    30: {theme:"stages", q:"Why does Russ first figure out which of the five stages someone is in?", options:["To sort them by age","Once he knows where they are on the path, he knows what they will want next","For the paperwork","It does not change the coaching"], best:1, reveal:"The stage tells him what they will want next. Make the money, get your time back, choose the work, build a legacy, or help someone else build theirs. Diagnose the stage before you prescribe the work."},
+    31: {theme:"team", q:"Building the culture of a team, what does Russ insist on?", options:["Offer every flavor so nobody feels left out","Pick one flavor on purpose, because your culture equals your future","Let it form on its own","Copy whatever culture is already in the building"], best:1, reveal:"Pick a flavor on purpose. Your culture equals your future. A team that tries to be every flavor has no culture to hand to the next person."}
+  };
+
+  var POOLS = {
+    producing: [1,2,3,4,5,6,7,8,9,10,11,18,21,22,30],
+    team: [1,3,6,8,9,13,14,15,16,18,23,24,25,30,31],
+    revshare: [1,3,9,10,11,12,15,17,18,19,20,25,26,27,28,29,30],
+    mixed: [1,3,7,8,9,11,12,16,17,18,19,22,23,26,30]
+  };
+
+  var FITS = {
+    producing: [
+      {q:"Where are you now on the six numbers: points, sphere adds, total sphere, leads, contracts, and closings?", options:[
+        {t:"I track most of them in a normal week", s:"fit"},
+        {t:"I track one or two when I remember", s:"partial"},
+        {t:"I do not track numbers", s:"partial"}
+      ], reveal:"The six numbers are how Russ sees where you are now. If they are not written down, the adventure can still coach you. It just starts with the list."},
+      {q:"If the assignment is to build your full sphere list, how long would it take?", options:[
+        {t:"Within two weeks", s:"fit"},
+        {t:"I would get to it eventually", s:"partial"},
+        {t:"I want someone else to build it for me", s:"out"}
+      ], reveal:"Speed is a fit signal. More than a couple of weeks on the sphere list usually means it is not serious yet. Nobody does the push-ups for you."},
+      {q:"Which would you rather do first?", options:[
+        {t:"Work the people I already know", s:"fit"},
+        {t:"Buy more leads", s:"partial"},
+        {t:"Hear a compensation-plan pitch", s:"out"}
+      ], reveal:"Sphere first. Chasing strangers, and buying leads before a follow-up system, is the path this coaching does not take. A pay-plan pitch is a different conversation."}
+    ],
+    team: [
+      {q:"Why do you want a team?", options:[
+        {t:"I can already picture the hours, the days off, and the life", s:"fit"},
+        {t:"Because a team is the next level", s:"partial"},
+        {t:"So other people will do the work for me", s:"out"}
+      ], reveal:"A clear picture of the life is a strong fit. \"Next level\" still needs the should-I question. Wanting someone else to do the work is not a fit."},
+      {q:"If the team stopped you today, would you be working more hours for less money?", options:[
+        {t:"Yes. That is the trap I am in", s:"fit"},
+        {t:"No. The team already gave me time back", s:"partial"},
+        {t:"I do not have a team. I only want a company's pay plan", s:"out"}
+      ], reveal:"The classic case is the lead who built a team and ended up with more hours and less money. That person is who this path is for. A pay plan is not the lesson."},
+      {q:"Will you re-interview the people you already have and reset expectations both ways?", options:[
+        {t:"Yes", s:"fit"},
+        {t:"Maybe later", s:"partial"},
+        {t:"No. Expectations stay as they are", s:"out"}
+      ], reveal:"The power shift is holding people to what they said they would do, including you. That conversation happens up front, and again when the team has drifted."}
+    ],
+    revshare: [
+      {q:"Are you still producing?", options:[
+        {t:"Yes. Production is still the primary work", s:"fit"},
+        {t:"I quit selling so I could recruit full-time", s:"partial"},
+        {t:"I do not produce. I want the pay plan", s:"out"}
+      ], reveal:"Attraction is a byproduct of production. Quitting the work to recruit full-time is a flag for most people. This page will not explain how any company pays."},
+      {q:"Is building the organization taking more than it gives back right now?", options:[
+        {t:"Yes", s:"fit"},
+        {t:"It is early, and I have a plan", s:"partial"},
+        {t:"I only want to hear how a company pays", s:"out"}
+      ], reveal:"If the organization costs you the business, the offer menu and the nest are the coaching. Not a compensation spreadsheet."},
+      {q:"How will you build the list of people?", options:[
+        {t:"From my own deals and the people already around those deals", s:"fit"},
+        {t:"I would rather buy a list", s:"partial"},
+        {t:"I will not build a list", s:"out"}
+      ], reveal:"The agent sphere starts organic: your deals, showing agents, and the title, mortgage, insurance, and inspector contacts. A purchased list is the long way around."}
+    ],
+    mixed: [
+      {q:"Which of the five stages fits you right now?", options:[
+        {t:"Make the money", s:"fit"},
+        {t:"Get your time back", s:"fit"},
+        {t:"I am choosing the work. I do not have to take it.", s:"fit"},
+        {t:"Build a legacy, or help someone else build theirs", s:"fit"}
+      ], reveal:"Name the stage before you add another bucket. Make the money, get your time back, choose the work, build a legacy, help others build theirs."},
+      {q:"Which bucket do you fill first?", options:[
+        {t:"Production. Attraction is the overflow.", s:"fit"},
+        {t:"Attraction first. Production can wait.", s:"partial"},
+        {t:"I stopped producing", s:"partial"}
+      ], reveal:"Sales come first. Attraction is a byproduct, not a 50/50 split of the day. A team can feed an organization when grown people build their own nest and stay."},
+      {q:"If the next assignment is clarity on the life, plus the sphere list, when does it get done?", options:[
+        {t:"Within two weeks", s:"fit"},
+        {t:"Eventually", s:"partial"},
+        {t:"When someone does it for me", s:"out"}
+      ], reveal:"Do less of first, then the assignment. Two weeks is the serious pace. Eventually is not yet."}
+    ]
+  };
+
+  var CADENCE = {q:"Can you keep one 60-minute call with Russ every two weeks for six months?", options:[
+    {t:"Yes", s:"fit"},
+    {t:"I am not sure", s:"partial"},
+    {t:"No", s:"out"}
+  ], reveal:"The cadence is one hour every two weeks for six months. If the time is not real, this is not the program."};
+
+  var INVEST = {q:"Which works for you? Both prices are on the table. There is no switch.", options:[
+    {t:"$2,500 a month for six months", s:"month"},
+    {t:"$13,500 upfront. That upfront price saves 10% off $15,000.", s:"upfront"},
+    {t:"Neither right now", s:"neither"}
+  ]};
+
+  var lead = {};
+  var queue = [];
+  var index = 0;
+  var misses = {};
+  var fitMarks = [];
+  var invest = "";
+  var answered = false;
+
+  var form = document.getElementById("start-form");
+  var run = document.getElementById("run");
+  var stage = document.getElementById("stage");
+  var progress = document.getElementById("progress");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    lead = {
+      name: String(data.get("name") || "").trim(),
+      email: String(data.get("email") || "").trim(),
+      city: String(data.get("city") || "").trim(),
+      state: String(data.get("state") || "").trim(),
+      path: String(data.get("path") || "")
+    };
+    buildQueue();
+    document.getElementById("start-band").hidden = true;
+    run.hidden = false;
+    narrate(0);
+  });
+
+  function buildQueue() {
+    queue = POOLS[lead.path].map(function (n) {
+      var s = SEEDS[n];
+      return {kind:"scenario", seed:n, theme:s.theme, q:s.q, options:s.options.map(function (t, i) {
+        return {t:t, best:i === s.best};
+      }), reveal:s.reveal};
+    });
+    FITS[lead.path].forEach(function (f) {
+      queue.push({kind:"fit", q:f.q, options:f.options, reveal:f.reveal});
+    });
+    queue.push({kind:"fit", q:CADENCE.q, options:CADENCE.options, reveal:CADENCE.reveal});
+    queue.push({kind:"invest", q:INVEST.q, options:INVEST.options, reveal:""});
+  }
+
+  function narrate(step) {
+    var lines = [
+      "Finding which of the five stages you are in",
+      "Checking the sphere math",
+      "Checking on the business versus in the business",
+      "Reading the path you said you are building"
+    ];
+    progress.textContent = "Reading";
+    var html = "<div class=\"q-card\"><h2 class=\"section-title\">Reading your path</h2><ol class=\"stage-list\">";
+    lines.forEach(function (line, i) {
+      html += "<li>" + (i <= step ? line : "…") + "</li>";
+    });
+    html += "</ol></div>";
+    stage.innerHTML = html;
+    if (step < lines.length - 1) {
+      setTimeout(function () { narrate(step + 1); }, 450);
+    } else {
+      setTimeout(function () { index = 0; show(); }, 500);
+    }
+  }
+
+  function show() {
+    answered = false;
+    var item = queue[index];
+    progress.textContent = "Question " + (index + 1) + " of " + queue.length;
+    var html = "<div class=\"q-card\"><h2 class=\"section-title\" style=\"font-size:1.7rem\">" + escapeHtml(item.q) + "</h2>";
+    if (item.kind === "invest") {
+      html += "<div class=\"price-plain\"><strong>$2,500 a month for six months</strong>, or <strong>$13,500 upfront</strong>. Upfront saves 10% off $15,000. Both are visible here. This page does not take payment.</div>";
+    }
+    item.options.forEach(function (opt, i) {
+      html += "<button type=\"button\" class=\"opt\" data-i=\"" + i + "\">" + escapeHtml(opt.t) + "</button>";
+    });
+    html += "<div id=\"reveal\"></div></div>";
+    stage.innerHTML = html;
+    stage.querySelectorAll(".opt").forEach(function (btn) {
+      btn.addEventListener("click", function () { pick(Number(btn.getAttribute("data-i"))); });
+    });
+    window.scrollTo(0, 0);
+  }
+
+  function pick(i) {
+    if (answered) return;
+    answered = true;
+    var item = queue[index];
+    var opt = item.options[i];
+    var note = "";
+    if (item.kind === "scenario") {
+      if (!opt.best) {
+        misses[item.theme] = (misses[item.theme] || 0) + 1;
+      }
+      note = item.reveal;
+    } else if (item.kind === "fit") {
+      fitMarks.push(opt.s);
+      note = item.reveal;
+    } else {
+      invest = opt.s;
+      note = "The offer is $2,500 a month for six months, or $13,500 paid upfront. The upfront price is 10% off $15,000. Neither right now is an honest answer, and it is not a fit yet.";
+    }
+    var box = document.getElementById("reveal");
+    box.innerHTML = "<div class=\"reveal\"><p>" + escapeHtml(note) + "</p><p style=\"margin-top:.8rem\"><button type=\"button\" class=\"btn-primary\" id=\"next\">" + (index === queue.length - 1 ? "See the result" : "Next") + "</button></p></div>";
+    document.getElementById("next").addEventListener("click", function () {
+      index += 1;
+      if (index >= queue.length) result();
+      else show();
+    });
+  }
+
+  function result() {
+    var verdict = "strong";
+    if (fitMarks.indexOf("out") !== -1) verdict = "nofit";
+    else if (invest === "neither" || invest === "") verdict = "notyet";
+    else {
+      var partials = fitMarks.filter(function (m) { return m === "partial"; }).length;
+      var fits = fitMarks.filter(function (m) { return m === "fit"; }).length;
+      if (partials >= 2 || fits < 2) verdict = "notyet";
+    }
+    var themes = Object.keys(misses).sort(function (a, b) { return misses[b] - misses[a]; });
+    var obstacle = themes.length ? themeLine(themes[0]) : "Nothing in the scenarios missed the teaching. The live question is whether you will do the work at the pace you just chose.";
+    var pathName = {producing:"Producing", team:"Team builder", revshare:"Revenue-share organization builder", mixed:"Mixed"}[lead.path];
+    progress.textContent = "Result";
+    var title, body, extra;
+    if (verdict === "strong") {
+      title = "Strong fit";
+      body = lead.name + ", this looks like a fit for coaching on the " + pathName.toLowerCase() + " path. The obstacle showing up in your answers: " + obstacle;
+      extra = "<div class=\"price-plain\"><p><strong>$2,500 a month for six months</strong>, or <strong>$13,500 upfront</strong>. Upfront saves 10%.</p><p style=\"margin-top:.6rem\">One 60-minute call with Russ every two weeks, on producing, team building, or building a revenue-share organization. Nothing is charged on this page. There is no checkout.</p></div><p><a class=\"btn-primary\" href=\"" + mailHref() + "\">Email Russ to apply</a></p>";
+    } else if (verdict === "notyet") {
+      title = "Not yet";
+      body = lead.name + ", the coaching package is early. " + obstacle + " Start with the people you already know, a 30-point day, and staying on the business while you are in it.";
+      extra = "<p style=\"margin-top:1rem\"><a href=\"author.html\">Be Followable</a> · <a href=\"coaching.html\">Coaching</a></p>";
+    } else {
+      title = "Not a fit";
+      body = "This coaching is for someone who will do the work: production, a team, or an organization. It is not for a home buyer, and it is not a compensation-plan pitch. If the time or the money is not real, that is a clean no.";
+      extra = "<p style=\"margin-top:1rem\"><a href=\"index.html\">Back to the site</a></p>";
+    }
+    stage.innerHTML = "<div class=\"q-card\"><div class=\"section-label\">" + escapeHtml(lead.city) + ", " + escapeHtml(lead.state) + " · " + escapeHtml(pathName) + "</div><h2 class=\"section-title\">" + title + "</h2><p class=\"section-desc\">" + escapeHtml(body) + "</p>" + extra + "</div>";
+    window.scrollTo(0, 0);
+  }
+
+  function themeLine(theme) {
+    var lines = {
+      sphere: "The sphere is not being worked first. About 10 percent, value, calls, and notes.",
+      points: "The 30-point sheet is not running. Weight the work that produces business. Texting is not the score.",
+      onin: "The on-the-business work is stopping while you are in the deals. That is the rollercoaster.",
+      followup: "The follow-up system is behind the lead spend.",
+      doless: "Something new got added before a do-less list.",
+      value: "Value to the people you already know is thin. A market update is the simple version.",
+      attraction: "Attraction is being treated as a second job instead of a byproduct of production.",
+      team: "The team question is structure before the life, or culture and succession left unnamed.",
+      org: "The organization is being built like a chase, or like a pay plan, instead of one person at a time.",
+      atob: "The conversation is starting at the company or the split, not at where they are now.",
+      numbers: "The six numbers are not tied back to the goal.",
+      stages: "The stage is unnamed, so the next goal is a guess."
+    };
+    return lines[theme] || "The work in front of you is still the sphere.";
+  }
+
+  function mailHref() {
+    var body = lead.name + "\n" + lead.email + "\n" + lead.city + ", " + lead.state + "\nPath: " + lead.path + "\nChose: " + (invest === "upfront" ? "$13,500 upfront" : "$2,500 a month for six months");
+    return "mailto:info@russlaggan.com?subject=" + encodeURIComponent("Choose Your Adventure") + "&body=" + encodeURIComponent(body);
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+})();
+</script>
+</body>
+</html>
