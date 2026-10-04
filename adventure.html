@@ -220,7 +220,7 @@
     progress.textContent = "Reading";
     var html = "<div class=\"q-card\"><h2 class=\"section-title\">Reading your path</h2><ol class=\"stage-list\">";
     lines.forEach(function (line, i) {
-      html += "<li>" + (i <= step ? line : "\u2026") + "</li>";
+      html += "<li>" + (i <= step ? line : "…") + "</li>";
     });
     html += "</ol></div>";
     stage.innerHTML = html;
@@ -298,13 +298,13 @@
     } else if (verdict === "notyet") {
       title = "Not yet";
       body = lead.name + ", the coaching package is early. " + obstacle + " Start with the people you already know, a 30-point day, and staying on the business while you are in it.";
-      extra = "<p style=\"margin-top:1rem\"><a href=\"author.html\">Be Followable</a> \u00b7 <a href=\"coaching.html\">Coaching</a></p>";
+      extra = "<p style=\"margin-top:1rem\"><a href=\"author.html\">Be Followable</a> · <a href=\"coaching.html\">Coaching</a></p>";
     } else {
       title = "Not a fit";
       body = "This coaching is for someone who will do the work: production, a team, or an organization. It is not for a home buyer, and it is not a compensation-plan pitch. If the time or the money is not real, that is a clean no.";
       extra = "<p style=\"margin-top:1rem\"><a href=\"index.html\">Back to the site</a></p>";
     }
-    stage.innerHTML = "<div class=\"q-card\"><div class=\"section-label\">" + escapeHtml(lead.city) + ", " + escapeHtml(lead.state) + " \u00b7 " + escapeHtml(pathName) + "</div><h2 class=\"section-title\">" + title + "</h2><p class=\"section-desc\">" + escapeHtml(body) + "</p>" + extra + "</div>";
+    stage.innerHTML = "<div class=\"q-card\"><div class=\"section-label\">" + escapeHtml(lead.city) + ", " + escapeHtml(lead.state) + " · " + escapeHtml(pathName) + "</div><h2 class=\"section-title\">" + title + "</h2><p class=\"section-desc\">" + escapeHtml(body) + "</p>" + extra + "</div>";
     window.scrollTo(0, 0);
   }
 
