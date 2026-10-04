@@ -39,3 +39,22 @@ h1{font-family:var(--font-display);font-size:3.2rem;line-height:1.1;font-weight:
 .footer{background:var(--charcoal);padding:1.5rem 2rem;text-align:center}
 .footer p{color:rgba(255,255,255,.25);font-size:.75rem}
 @media(max-width:800px){.speaking-grid,.book-layout{grid-template-columns:1fr}.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--blue-deep);padding:1rem 1.5rem}.nav-toggle{display:block}h1{font-size:2.2rem}}
+
+.quiz-form{display:grid;gap:.75rem;max-width:640px;margin-top:1.2rem}
+.quiz-form label span,.field-label{display:block;font-size:.78rem;font-weight:600;margin-bottom:.3rem;color:rgba(255,255,255,.82)}
+.quiz-form input,.quiz-form select{width:100%;padding:.7rem .85rem;border-radius:8px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;font:inherit}
+.quiz-form input::placeholder{color:rgba(255,255,255,.45)}
+.radios{display:grid;gap:.4rem;margin-top:.2rem}
+.radios label{font-weight:500;color:rgba(255,255,255,.92);font-size:.95rem}
+.q-card{background:var(--cream);border:1px solid var(--gray-200);border-radius:16px;padding:1.4rem 1.5rem}
+.opt{display:block;width:100%;text-align:left;margin-top:.55rem;padding:.8rem .95rem;border-radius:10px;border:1px solid var(--gray-200);background:#fff;font:inherit;color:var(--gray-900);cursor:pointer}
+.opt:hover,.opt:focus{border-color:var(--orange);outline:none}
+.reveal{margin-top:1rem;padding:1rem 1.1rem;border-left:4px solid var(--orange);background:#fff;border-radius:0 10px 10px 0}
+.price-plain{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:1rem 1.1rem;margin:1rem 0}
+.price-plain strong{color:var(--blue)}
+.progress-note{color:var(--gray-500);font-size:.85rem;margin-bottom:.6rem}
+.stage-list{margin:.8rem 0 0 1.1rem;color:var(--gray-700)}
+.stage-list li{margin:.25rem 0}
+#board{width:100%;max-width:960px;height:auto;background:#FAF8F5;border:1px solid var(--gray-200);border-radius:12px;display:block;touch-action:none}
+.hud{display:flex;justify-content:space-between;gap:1rem;align-items:center;margin:.7rem 0;flex-wrap:wrap}
+.sound-btn{background:#fff;border:1px solid var(--gray-200);border-radius:8px;padding:.45rem .8rem;font:inherit;cursor:pointer}
