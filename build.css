@@ -438,6 +438,7 @@ button, input, select, textarea { font: inherit; }
 .work-card.talk-violet .label { color: var(--talk); }
 .panel p.more { margin-top: auto; padding-top: 22px; color: #71717a; font-weight: 600; }
 a.panel:hover p.more { color: #ef5d17; }
+a.panel.work-card:hover p.more { color: var(--talk); }
 
 .foot-card h2 em {
   font-style: italic;
