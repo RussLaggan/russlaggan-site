@@ -597,7 +597,8 @@ a.panel:hover p.more { color: #ef5d17; }
 .talk-blue { --talk: #4c6fff; }
 .talk-violet { --talk: #b06cff; }
 .talk-orange { --talk: #ef5d17; }
-.page-author .label { color: #4c6fff; }
+.page-author .talk-blue { --talk: #1a4e8c; }
+.page-author .label { color: #1a4e8c; }
 .tone-cards .panel {
   position: relative;
   overflow: hidden;
