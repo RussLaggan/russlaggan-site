@@ -244,6 +244,9 @@ button, input, select, textarea { font: inherit; }
 .maker-grid figcaption { margin-top: 10px; font-weight: 650; letter-spacing: -0.02em; }
 .fact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
 .fact { background: #fff; border-radius: 16px; padding: 18px 16px; box-shadow: 0 0 0 1px rgba(12, 59, 120, 0.08), 0 16px 36px -22px rgba(12, 59, 120, 0.28); }
+.fact.has-photo { display: flex; align-items: stretch; padding: 0; overflow: hidden; }
+.fact.has-photo img { width: 112px; flex: none; height: 100%; min-height: 128px; object-fit: cover; }
+.fact.has-photo .fact-copy { padding: 16px 14px; }
 .fact strong { display: block; font-size: 32px; letter-spacing: -0.04em; color: #1a4e8c; line-height: 1; }
 .fact span { display: block; margin-top: 8px; font-weight: 650; }
 .fact em { display: block; margin-top: 4px; font-style: normal; color: #52525b; font-size: 14px; line-height: 1.4; }
