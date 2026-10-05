@@ -127,6 +127,14 @@ button, input, select, textarea { font: inherit; }
 .coach-hero .label { color: rgba(255, 255, 255, 0.86); }
 .coach-hero h1,
 .coach-hero .lede { color: #fff; }
+.coach-shot {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  object-position: center 18%;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
 .nav-links a:not(.btn):hover::after { transform: scaleX(1); }
 .nav-links a.btn,
 .nav-links a.btn:hover { color: #fff; }
