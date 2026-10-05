@@ -131,6 +131,8 @@ button, input, select, textarea { font: inherit; }
   font-style: italic;
   font-weight: 650;
   color: #ef5d17;
+  background: none;
+  -webkit-text-fill-color: #ef5d17;
 }
 .coach-hero h1 {
   margin: 14px 0 0;
