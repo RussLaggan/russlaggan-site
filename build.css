@@ -558,6 +558,7 @@ a.panel:hover p.more { color: #ef5d17; }
 .talk-blue { --talk: #4c6fff; }
 .talk-violet { --talk: #b06cff; }
 .talk-orange { --talk: #ef5d17; }
+.page-author .label { color: #ef5d17; }
 .tone-cards .panel {
   position: relative;
   overflow: hidden;
