@@ -67,10 +67,6 @@ export function Contact() {
     const form = event.currentTarget;
     const data = new FormData(form);
     const company = String(data.get("company") || "").trim();
-    if (!site.contactEndpoint) {
-      setError("The form is on the site. The mailbox hook is the last step.");
-      return;
-    }
     setSending(true);
     const payload = {
       first: String(data.get("first") || "").trim(),
@@ -83,12 +79,15 @@ export function Contact() {
       company,
     };
     try {
-      await fetch(site.contactEndpoint, {
+      const res = await fetch(site.contactEndpoint, {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      if (!res.ok) {
+        setError("That did not send. Try again.");
+        return;
+      }
       if (!company) {
         setSent(true);
         form.reset();
