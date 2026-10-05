@@ -7,7 +7,7 @@
   --nav-h: 72px;
   color: var(--ink);
   background: #fafafa;
-  font-family: "Geist Sans", Geist, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-geist), "Geist Sans", Geist, ui-sans-serif, system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -26,7 +26,7 @@ button, input, select, textarea { font: inherit; }
 
 .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
 .label {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--font-mono), "JetBrains Mono", ui-monospace, monospace;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.14em;
@@ -639,6 +639,10 @@ a.panel.work-card:hover p.more { color: var(--talk); }
 .stage-media iframe{position:absolute;top:50%;left:50%;width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;transform:translate(-50%,-50%);border:0}
 .video-frame{position:relative;margin-top:28px;aspect-ratio:16/9;background:#070b14;overflow:hidden}
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+button.video-poster{display:block;width:100%;padding:0;border:0;cursor:pointer;color:inherit}
+.video-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.video-poster .play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:16px;background:rgba(18,40,72,.82);box-shadow:0 10px 24px rgba(0,0,0,.28)}
+.video-poster .play::before{content:"";position:absolute;left:26px;top:20px;border-style:solid;border-width:12px 0 12px 18px;border-color:transparent transparent transparent #fff}
 .talk-dialog{width:min(960px,calc(100vw - 32px));border:0;padding:16px;background:#fff;color:#18181b}
 .talk-dialog::backdrop{background:rgba(7,11,20,.72)}
 .stage-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,8,24,.15) 0%,rgba(16,8,24,.35) 40%,rgba(16,8,24,.78) 100%)}
