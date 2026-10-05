@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 
-const TO = "russ@russlaggan.com";
-const CC = "brett@brettkmoore.com";
-
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   if (!body || String(body.company || "").trim()) {
@@ -21,29 +18,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
-  const res = await fetch(`https://formsubmit.co/ajax/${TO}`, {
+  const hook = process.env.CONTACT_WEBHOOK_URL;
+  if (!hook) {
+    return NextResponse.json({ error: "Mailbox is not connected" }, { status: 503 });
+  }
+
+  const res = await fetch(hook, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      name: `${first} ${last}`,
-      email,
-      phone,
-      interest,
-      message,
-      page,
-      _subject: `Russ Laggan site: ${interest} from ${first} ${last}`,
-      _replyto: email,
-      _cc: CC,
-      _template: "table",
-      _captcha: "false",
-    }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ first, last, email, phone, interest, message, page }),
+    redirect: "follow",
   });
 
   const data = await res.json().catch(() => ({}));
-  if (!res.ok || data.success === false) {
+  if (!res.ok || data.ok === false) {
     return NextResponse.json({ error: "Mail did not send" }, { status: 502 });
   }
 
