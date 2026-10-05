@@ -360,6 +360,8 @@ a.panel:hover p.more { color: #ef5d17; }
 .stage-media iframe{position:absolute;top:50%;left:50%;width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;transform:translate(-50%,-50%);border:0}
 .video-frame{position:relative;margin-top:28px;aspect-ratio:16/9;background:#070b14;overflow:hidden}
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.talk-dialog{width:min(960px,calc(100vw - 32px));border:0;padding:16px;background:#fff;color:#18181b}
+.talk-dialog::backdrop{background:rgba(7,11,20,.72)}
 .stage-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,11,20,.25) 0%,rgba(7,11,20,.55) 42%,rgba(7,11,20,.88) 100%)}
 .stage-copy{position:relative;z-index:1;padding:140px 0 72px}
 .stage-copy .label{color:#93c5fd}
