@@ -423,9 +423,11 @@ button, input, select, textarea { font: inherit; }
 }
 .book-cover { width: 100%; }
 .learn { grid-template-columns: 1fr 1fr; gap: 22px; }
-.quote-card{display:grid;grid-template-columns:88px 1fr;gap:18px;align-items:center}
-.quote-card img{width:88px;height:88px;object-fit:cover;object-position:center 20%;border-radius:50%}
-.tone-cards .quote-card{display:grid}
+.byline { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
+.byline img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: center 20%; flex: none; }
+.byline p { margin: 0; }
+.byline strong { display: block; }
+.byline span { display: block; color: #52525b; font-size: 14px; margin-top: 2px; }
 
 .work-card { display: flex; flex-direction: column; }
 .work-card.talk-magenta,
