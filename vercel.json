@@ -9,14 +9,5 @@
         { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/robots.txt",
-      "has": [
-        { "type": "host", "value": ".*\\.vercel\\.app" }
-      ],
-      "destination": "/robots-vercel.txt"
-    }
   ]
 }
