@@ -415,6 +415,9 @@ button, input, select, textarea { font: inherit; }
 .offer-card p, .offer-card li { color: rgba(255,255,255,.82); }
 .offer-list { position:relative; margin:18px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:10px 18px; }
 .offer-list li { padding-left:0; }
+.results { grid-template-columns: 1fr; gap: 14px; margin-top: 22px; }
+.results li { display: flex; align-items: flex-start; gap: 12px; }
+.results svg { width: 22px; height: 22px; flex: none; margin-top: 2px; color: #3dd68c; }
 .price-toggle { position:relative; display:inline-grid; grid-template-columns:1fr 1fr; gap:4px; background:#f4f4f5; border-radius:999px; padding:4px; }
 .price-toggle button { border:0; background:transparent; border-radius:999px; padding:8px 14px; cursor:pointer; font-weight:600; }
 .price-toggle button.on { background:#1a56c4; color:#fff; }
