@@ -103,7 +103,30 @@ button, input, select, textarea { font: inherit; }
     radial-gradient(42% 38% at 8% 0%, rgba(255, 255, 255, 0.24), transparent 70%),
     linear-gradient(165deg, var(--hue-bar) 0%, var(--hue) 52%, var(--hue-deep) 100%);
 }
-.hue-coach .price-toggle button.on { background: var(--hue); color: #fff; }
+.coach-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(48% 42% at 0% 0%, rgba(255, 255, 255, 0.28), transparent 68%),
+    linear-gradient(165deg, #2ec8d6 0%, #0c8494 46%, #084e5c 100%);
+  color: #fff;
+}
+.coach-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.28) 1px, transparent 1px);
+  background-size: 14px 14px;
+  mask-image: linear-gradient(to bottom right, #000 0%, transparent 72%);
+  -webkit-mask-image: linear-gradient(to bottom right, #000 0%, transparent 72%);
+}
+.coach-hero .wrap { position: relative; z-index: 1; }
+.coach-hero .label { color: rgba(255, 255, 255, 0.86); }
+.coach-hero h1,
+.coach-hero .lede { color: #fff; }
 .nav-links a:not(.btn):hover::after { transform: scaleX(1); }
 .nav-links a.btn,
 .nav-links a.btn:hover { color: #fff; }
