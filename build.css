@@ -617,6 +617,21 @@ a.panel:hover p.more { color: #ef5d17; }
   padding-top: 28px;
 }
 .speaker-floor .lattice-card { margin-top: 16px; }
+.foot .cols a,
+.foot .cols a:link,
+.foot .cols a:visited,
+.foot .cols a:hover,
+.foot .cols a:active {
+  color: rgba(255, 255, 255, 0.78);
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.78);
+  background: none;
+  background-image: none;
+}
+.foot .cols a:hover,
+.foot .cols a:focus-visible {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
 @media (max-width: 800px) {
   .speaker-floor .cards.talks { grid-template-columns: 1fr; }
 }
