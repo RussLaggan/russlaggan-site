@@ -1264,7 +1264,7 @@
                 visionaryScore: scores.visionary,
                 advocateScore: scores.advocate,
                 timeSpent: timeSpent,
-                profileURL: `https://russlaggan.com/types/${subtypeKey}.html`
+                profileURL: `https://www.russlaggan.com/types/${subtypeKey}`
             });
         }
 
@@ -1352,7 +1352,7 @@
             const profileBtn = document.createElement('div');
             profileBtn.style.textAlign = 'center';
             profileBtn.style.marginTop = '20px';
-            profileBtn.innerHTML = `<a href="types/${subtypeKey}.html" class="btn" style="display: inline-block; text-decoration: none;">View Your Full ${subtypeName} Profile →</a>`;
+            profileBtn.innerHTML = `<a href="/types/${subtypeKey}" class="btn" style="display: inline-block; text-decoration: none;">View Your Full ${subtypeName} Profile →</a>`;
             document.getElementById('subtypeInfo').appendChild(profileBtn);
         }
 
