@@ -71,7 +71,54 @@ button, input, select, textarea { font: inherit; }
   transform-origin: left center;
   transition: transform 0.18s ease;
 }
-.nav-links a:not(.btn):hover { color: var(--ink); }
+.nav-links a[href="/speaking"],
+.nav-links a[href="speaking.html"] { color: #c2186a; }
+.nav-links a[href="/coaching"],
+.nav-links a[href="coaching.html"] { color: #0c8494; }
+.nav-links a[href="/trainer"],
+.nav-links a[href="trainer.html"] { color: #7a3ec8; }
+.nav-links a[href="/speaking"]:hover,
+.nav-links a[href="speaking.html"]:hover { color: #e23a98; }
+.nav-links a[href="/coaching"]:hover,
+.nav-links a[href="coaching.html"]:hover { color: #2ec8d6; }
+.nav-links a[href="/trainer"]:hover,
+.nav-links a[href="trainer.html"]:hover { color: #b06cff; }
+.cols a[href="/speaking"],
+.cols a[href="speaking.html"] { color: #e23a98; }
+.cols a[href="/coaching"],
+.cols a[href="coaching.html"] { color: #2ec8d6; }
+.cols a[href="/consulting"],
+.cols a[href="consulting.html"] { color: #8aa4ff; }
+.cols a[href="/trainer"],
+.cols a[href="trainer.html"] { color: #c9a6ff; }
+
+.hue-coach { --hue: #0c8494; --hue-bar: #2ec8d6; --hue-deep: #084e5c; }
+.hue-train { --hue: #7a3ec8; --hue-bar: #b06cff; --hue-deep: #3d1d6e; }
+.hue-cro { --hue: #3454e0; --hue-bar: #4c6fff; --hue-deep: #1c2f8a; }
+.hue-coach .label,
+.hue-train .label,
+.hue-cro .label { color: var(--hue); }
+.hue-coach h1 em,
+.hue-train h1 em,
+.hue-cro h1 em {
+  color: var(--hue);
+  background: none;
+  -webkit-text-fill-color: var(--hue);
+}
+.hue-coach .lattice-card,
+.hue-coach .panel,
+.hue-train .lattice-card,
+.hue-train .panel,
+.hue-cro .lattice-card,
+.hue-cro .panel { border-top: 4px solid var(--hue-bar); }
+.hue-coach .offer-card,
+.hue-train .offer-card,
+.hue-cro .offer-card {
+  background:
+    radial-gradient(42% 38% at 8% 0%, rgba(255, 255, 255, 0.24), transparent 70%),
+    linear-gradient(165deg, var(--hue-bar) 0%, var(--hue) 52%, var(--hue-deep) 100%);
+}
+.hue-coach .price-toggle button.on { background: var(--hue); color: #fff; }
 .nav-links a:not(.btn):hover::after { transform: scaleX(1); }
 .nav-links a.btn,
 .nav-links a.btn:hover { color: #fff; }
