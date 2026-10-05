@@ -133,7 +133,7 @@ button, input, select, textarea { font: inherit; }
   display: inline-block;
   line-height: 1;
   padding: 0 0.04em 0.12em 0;
-  background-image: linear-gradient(105deg, #9a3412 0%, #ef5d17 22%, #ffd7b0 40%, #fff6ec 48%, #ff8a3d 62%, #ef5d17 82%, #c2410c 100%);
+  background-image: linear-gradient(90deg, #fff6ec 0%, #ffc48a 28%, #ef5d17 62%, #9a3412 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
