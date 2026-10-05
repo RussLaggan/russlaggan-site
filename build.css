@@ -182,7 +182,10 @@ button, input, select, textarea { font: inherit; }
 .amount { font-size: 42px; letter-spacing: -0.04em; margin: 8px 0; }
 
 .foot {
-  background: #0e1c30;
+  background:
+    radial-gradient(820px 360px at 0% 0%, rgba(226, 58, 152, 0.38), transparent 70%),
+    radial-gradient(720px 380px at 100% 18%, rgba(126, 231, 239, 0.24), transparent 68%),
+    #120818;
   color: #fff;
   padding: 48px 0 28px;
 }
@@ -322,6 +325,14 @@ button, input, select, textarea { font: inherit; }
 .quote-card img{width:88px;height:88px;object-fit:cover;object-position:center 20%;border-radius:8px}
 
 .work-card { display: flex; flex-direction: column; }
+.work-card.talk-magenta,
+.work-card.talk-cyan,
+.work-card.talk-blue,
+.work-card.talk-violet { border-top: 4px solid var(--talk); }
+.work-card.talk-magenta .label,
+.work-card.talk-cyan .label,
+.work-card.talk-blue .label,
+.work-card.talk-violet .label { color: var(--talk); }
 .panel p.more { margin-top: auto; padding-top: 22px; color: #71717a; font-weight: 600; }
 a.panel:hover p.more { color: #ef5d17; }
 
