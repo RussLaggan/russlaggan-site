@@ -344,7 +344,8 @@ button, input, select, textarea { font: inherit; }
 .book-cover { width: 100%; }
 .learn { grid-template-columns: 1fr 1fr; gap: 22px; }
 .quote-card{display:grid;grid-template-columns:88px 1fr;gap:18px;align-items:center}
-.quote-card img{width:88px;height:88px;object-fit:cover;object-position:center 20%;border-radius:8px}
+.quote-card img{width:88px;height:88px;object-fit:cover;object-position:center 20%;border-radius:50%}
+.tone-cards .quote-card{display:grid}
 
 .work-card { display: flex; flex-direction: column; }
 .work-card.talk-magenta,
@@ -510,6 +511,31 @@ a.panel:hover p.more { color: #ef5d17; }
 .talk-blue { --talk: #4c6fff; }
 .talk-violet { --talk: #b06cff; }
 .talk-orange { --talk: #ef5d17; }
+.tone-cards .panel {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border-top: 4px solid var(--talk, #e23a98);
+  box-shadow: 0 0 0 1px rgba(12, 59, 120, 0.08), 0 16px 36px -22px rgba(12, 59, 120, 0.28);
+}
+.tone-cards .panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(12, 59, 120, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 59, 120, 0.08) 1px, transparent 1px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(78% 58% at 0% 0%, #000 0%, transparent 62%);
+  -webkit-mask-image: radial-gradient(78% 58% at 0% 0%, #000 0%, transparent 62%);
+}
+.tone-cards .panel > * { position: relative; }
+.tone-cards .panel h3 { font-weight: 700; }
+.tone-cards .panel .label { color: var(--talk, #e23a98); }
 .speaker-floor .panel .more,
 .speaker-floor .lattice-card .more {
   margin-top: auto;
