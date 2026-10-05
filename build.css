@@ -313,3 +313,30 @@ button, input, select, textarea { font: inherit; }
 a.panel:hover p.more { color: #ef5d17; }
 
 .foot-card h2 em { font-style: italic; color: #1a56c4; }
+
+.trainer-list { grid-template-columns: 1fr 1fr; margin-top: 28px; }
+.trainer-list li { display: flex; gap: 10px; align-items: flex-start; }
+.trainer-list svg { width: 20px; height: 20px; flex: none; margin-top: 2px; color: #fff; }
+.lattice-card {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 16px;
+  padding: 22px 22px 24px;
+  box-shadow: 0 0 0 1px rgba(12, 59, 120, 0.12), 0 18px 40px -24px rgba(12, 59, 120, 0.45);
+}
+.lattice-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(12, 59, 120, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 59, 120, 0.12) 1px, transparent 1px);
+  background-size: 12px 12px;
+  mask-image: linear-gradient(to bottom right, #000 0%, #000 22%, transparent 82%);
+  -webkit-mask-image: linear-gradient(to bottom right, #000 0%, #000 22%, transparent 82%);
+}
+.lattice-card > * { position: relative; }
+.lattice-card h3 { margin: 10px 0 8px; font-size: 20px; letter-spacing: -0.03em; }
+.lattice-card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 15px; }
