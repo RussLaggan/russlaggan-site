@@ -509,6 +509,7 @@ a.panel:hover p.more { color: #ef5d17; }
 .talk-cyan { --talk: #2ec8d6; }
 .talk-blue { --talk: #4c6fff; }
 .talk-violet { --talk: #b06cff; }
+.talk-orange { --talk: #ef5d17; }
 .speaker-floor .panel .more,
 .speaker-floor .lattice-card .more {
   margin-top: auto;
