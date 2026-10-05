@@ -55,9 +55,24 @@ button, input, select, textarea { font: inherit; }
   font-size: 20px;
 }
 .wordmark span { color: var(--orange); }
-.nav-links { display: flex; align-items: center; gap: 22px; }
-.nav-links a { font-size: 14px; color: #3f3f46; }
-.nav-links a:hover { color: var(--ink); }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a { font-size: 14px; font-weight: 700; color: #3f3f46; }
+.nav-links a:not(.btn) { position: relative; padding-bottom: 6px; }
+.nav-links a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #e23a98, #b06cff, #4c6fff, #2ec8d6);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.18s ease;
+}
+.nav-links a:not(.btn):hover { color: var(--ink); }
+.nav-links a:not(.btn):hover::after { transform: scaleX(1); }
 .nav-links a.btn,
 .nav-links a.btn:hover { color: #fff; }
 .btn {
