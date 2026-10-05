@@ -127,6 +127,12 @@ button, input, select, textarea { font: inherit; }
 .coach-hero .label { color: rgba(255, 255, 255, 0.86); }
 .coach-hero h1,
 .coach-hero .lede { color: #fff; }
+.coach-hero h1 em {
+  color: #fff;
+  background: none;
+  -webkit-text-fill-color: #fff;
+  font-style: italic;
+}
 .coach-hero h1 {
   margin: 14px 0 0;
   font-size: clamp(44px, 6vw, 72px);
