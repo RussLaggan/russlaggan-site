@@ -649,3 +649,7 @@ a.panel.work-card:hover p.more { color: var(--talk); }
 @media (max-width: 800px) {
   .speaker-floor .cards.talks { grid-template-columns: 1fr; }
 }
+.episode audio { width: 100%; margin-top: 16px; }
+.episode .more { margin-top: 12px; }
+.episode .more a { color: #71717a; font-weight: 600; }
+.episode .more a:hover { color: #ef5d17; }
