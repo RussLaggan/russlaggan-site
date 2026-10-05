@@ -530,6 +530,7 @@ a.panel.work-card:hover p.more { color: var(--talk); }
   padding-right: 0.18em;
   margin-right: -0.06em;
 }
+.hero .portrait {
   border: 0;
   background: none;
   box-shadow: 0 28px 60px -16px rgba(15, 23, 42, 0.45), 0 10px 24px -10px rgba(15, 23, 42, 0.28);
