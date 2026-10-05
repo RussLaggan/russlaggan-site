@@ -345,3 +345,12 @@ a.panel:hover p.more { color: #ef5d17; }
 .plan-list { position: relative; list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
 .lattice-card .plan-list li { color: var(--muted); line-height: 1.5; }
 .offer-card .plan-list li { color: rgba(255,255,255,.82); line-height: 1.5; }
+
+.field h1 {
+  margin: 14px 0 0;
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  font-weight: 650;
+}
+.field h1 em { font-style: italic; color: #1a56c4; font-weight: 650; }
