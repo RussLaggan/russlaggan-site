@@ -365,6 +365,8 @@ button, input, select, textarea { font: inherit; }
 .cols a, .cols p { display: block; color: rgba(255,255,255,.72); font-size: 14px; line-height: 1.9; }
 .cols a:hover { color: #fff; }
 .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.7); font-size: 14px; }
+.legal a { color: #fff; font-weight: 600; }
+.legal a:hover { color: #ef5d17; }
 
 /* Best Known Brand pricing shell. Tailwind "single price with details", their navy treatment. */
 .offer-card,
