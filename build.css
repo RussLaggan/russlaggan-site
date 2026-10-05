@@ -201,9 +201,10 @@ button, input, select, textarea { font: inherit; }
 .hero h1 {
   margin: 14px 0 0;
   font-size: clamp(44px, 6vw, 72px);
-  line-height: 0.96;
+  line-height: 1.05;
   letter-spacing: -0.045em;
   font-weight: 650;
+  overflow: visible;
 }
 .hero h1 em {
   font-style: italic;
@@ -530,7 +531,9 @@ a.panel.work-card:hover p.more { color: var(--talk); }
 .hero h1 em,
 .foot-card h2 em {
   display: inline-block;
-  padding-right: 0.45em;
+  line-height: 1;
+  padding: 0 0.03em 0.16em 0;
+  overflow: visible;
 }
 .hero .portrait {
   border: 0;
