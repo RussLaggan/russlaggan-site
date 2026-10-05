@@ -306,7 +306,9 @@ button, input, select, textarea { font: inherit; }
   font-weight: 650;
 }
 .book-cover { width: 100%; }
-.learn { grid-template-columns: 1fr 1fr; }
+.learn { grid-template-columns: 1fr 1fr; gap: 22px; }
+.quote-card{display:grid;grid-template-columns:88px 1fr;gap:18px;align-items:center}
+.quote-card img{width:88px;height:88px;object-fit:cover;object-position:center 20%;border-radius:8px}
 
 .work-card { display: flex; flex-direction: column; }
 .panel p.more { margin-top: auto; padding-top: 22px; color: #71717a; font-weight: 600; }
