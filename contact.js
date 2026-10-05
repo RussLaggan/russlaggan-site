@@ -112,6 +112,21 @@
   });
 
   document.addEventListener("click", function (event) {
+    var toggle = event.target.closest(".nav-toggle");
+    var nav = document.getElementById("site-nav");
+    if (toggle && nav) {
+      var open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      return;
+    }
+    if (nav && nav.classList.contains("open") && !event.target.closest("#site-nav")) {
+      nav.classList.remove("open");
+      var button = document.querySelector(".nav-toggle");
+      if (button) button.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("click", function (event) {
     var link = event.target.closest("a[href='#contact'], a[data-interest]");
     if (!link) return;
     if (link.getAttribute("href") !== "#contact") return;
