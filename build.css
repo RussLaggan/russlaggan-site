@@ -433,6 +433,8 @@ a.panel:hover p.more { color: #ef5d17; }
   align-items: stretch;
 }
 .speaker-floor .panel {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -440,6 +442,19 @@ a.panel:hover p.more { color: #ef5d17; }
   border-top: 4px solid var(--talk, #e23a98);
   box-shadow: 0 0 0 1px rgba(12, 59, 120, 0.08), 0 16px 36px -22px rgba(12, 59, 120, 0.28);
 }
+.speaker-floor .panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(12, 59, 120, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 59, 120, 0.08) 1px, transparent 1px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(78% 58% at 0% 0%, #000 0%, transparent 62%);
+  -webkit-mask-image: radial-gradient(78% 58% at 0% 0%, #000 0%, transparent 62%);
+}
+.speaker-floor .panel > * { position: relative; }
 .speaker-floor .panel .label { color: var(--talk, #e23a98); }
 .talk-magenta { --talk: #e23a98; }
 .talk-cyan { --talk: #2ec8d6; }
