@@ -127,11 +127,17 @@ button, input, select, textarea { font: inherit; }
 .coach-hero .label { color: rgba(255, 255, 255, 0.86); }
 .coach-hero h1,
 .coach-hero .lede { color: #fff; }
-.coach-hero h1 em {
-  color: #fff;
-  background: none;
-  -webkit-text-fill-color: #fff;
+.field .coach-hero h1 em {
   font-style: italic;
+  font-weight: 650;
+  display: inline-block;
+  line-height: 1;
+  padding: 0 0.04em 0.12em 0;
+  background-image: linear-gradient(105deg, #9a3412 0%, #ef5d17 22%, #ffd7b0 40%, #fff6ec 48%, #ff8a3d 62%, #ef5d17 82%, #c2410c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 .coach-hero h1 {
   margin: 14px 0 0;
