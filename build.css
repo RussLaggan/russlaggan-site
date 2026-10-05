@@ -296,3 +296,5 @@ button, input, select, textarea { font: inherit; }
 .work-card { display: flex; flex-direction: column; }
 .panel p.more { margin-top: auto; padding-top: 22px; color: #71717a; font-weight: 600; }
 a.panel:hover p.more { color: #ef5d17; }
+
+.foot-card h2 em { font-style: italic; color: #1a56c4; }
