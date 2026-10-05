@@ -478,6 +478,12 @@ a.panel:hover p.more { color: #ef5d17; }
     linear-gradient(140deg, #e23a98 0%, #b06cff 36%, #4c6fff 68%, #2ec8d6 100%) border-box;
   background-clip: padding-box, border-box;
 }
+.proof-card.pop-vest {
+  background:
+    radial-gradient(42% 38% at 8% 0%, rgba(255, 255, 255, 0.24), transparent 70%),
+    linear-gradient(165deg, #3a62a8 0%, #1a4e8c 52%, #122848 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 18px 36px -18px rgba(26, 78, 140, 0.55);
+}
 .proof-card.pop-magenta {
   background:
     radial-gradient(42% 38% at 8% 0%, rgba(255, 255, 255, 0.28), transparent 70%),
