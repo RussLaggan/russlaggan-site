@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Speaking | Russ Laggan</title>
+<title>30 Points to Success | Russ Laggan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -14,45 +14,60 @@
 
 <div class="field"><section class="section" style="padding-top:56px"><div class="wrap">
 <p class="label">30 Points to Success</p>
-<h1>Did you do the<br>money-making <em>work</em>?</h1>
-<p class="lede">Thirty points a day when closings are already coming in. Fifty or sixty a day when nothing is lined up, until the business is moving, then back to thirty. Hit the number and you are done for the day. From the production scorecard in Be Followable.</p>
+<h1>Score the<br><em>attraction</em> work.</h1>
+<p class="lede">30 points a day. 150 a week. 600 a month. Hit the day and you are done. <a href="30-points-attraction.pdf">Download the sheet</a>.</p>
 <div class="offer-shell">
 <div class="offer-card">
 <h2 class="offer-title" id="status" style="font-size:32px;margin:0">Today</h2>
-<p>Text and email do not score. They keep a relationship warm. They do not build a new one.</p>
 <ul class="plan-list" id="rows"></ul>
 </div>
 <div class="offer-pay">
-<div class="price-toggle" id="targets" style="grid-template-columns:repeat(3,1fr)">
-<button type="button" data-target="30" class="on">30</button>
-<button type="button" data-target="50">50</button>
-<button type="button" data-target="60">60</button>
-</div>
 <p class="big" id="total">0</p>
-<p id="of">of 30</p>
-<p style="margin-top:16px;color:#52525b;font-size:14px">Saved on this browser for today.</p>
-<p style="margin-top:16px"><button class="btn" type="button" onclick="window.print()">Print the sheet</button></p>
+<p id="of">of 30 today</p>
+<p style="margin-top:18px" id="week">0 of 150 this week</p>
+<p id="month">0 of 600 this month</p>
+<div class="lattice-card" style="margin-top:22px;color:#18181b">
+<p>A phone call means you talked to the contact. A voicemail does not count.</p>
+<p style="margin-top:10px">A join means the paperwork is signed and the license has been switched.</p>
+<p style="margin-top:10px">Follow-up is a phone call or a text. Email does not score.</p>
+</div>
 </div>
 </div>
 </div></section></div>
 <style>
 .tick{border:0;background:transparent;color:#fff;font-size:20px;cursor:pointer;width:28px}
 .count{display:inline-block;min-width:1.5rem;text-align:center}
+.offer-pay .lattice-card p{color:#18181b}
 </style>
 <script>
 const items = [
-  ["mailer","Mailer",0.1],
-  ["call","Phone call",2],
-  ["face","Face-to-face business conversation",5],
-  ["showing","Buyer showing",10],
-  ["listing","Listing appointment, won or not",10],
-  ["network","Networking contact captured",10],
-  ["review","Annual business review",20],
-  ["contract","Contract written and accepted",20]
+  ["text","Text or message to get referrals",1],
+  ["prospect","New prospect",2],
+  ["zoom","Zoom or meet with an agent",2],
+  ["event","Networking event, each agent added to your sphere",2],
+  ["meeting","State meeting, AAC meeting, or teach a class",5],
+  ["call","Phone call with a new prospect",5],
+  ["three","Three-way call with a prospect",5],
+  ["follow","Follow-up with a prospect",5],
+  ["lunch","Lunch and learn with a referral",10],
+  ["webinar","Webinar with a referral",10],
+  ["application","Agent fills out an application",20],
+  ["referral","Referral joins",20],
+  ["joins","Agent joins",30]
 ];
-const key = "russ-points-" + new Date().toISOString().slice(0,10);
-let state = { target: 30, counts: {} };
-try { state = Object.assign(state, JSON.parse(localStorage.getItem(key) || "{}")); } catch (e) {}
+function dayKey(date){
+  const local = new Date(date.getTime() - date.getTimezoneOffset()*60000);
+  return "russ-attraction-" + local.toISOString().slice(0,10);
+}
+function readDay(date){
+  try { return (JSON.parse(localStorage.getItem(dayKey(date)) || "{}").counts) || {}; }
+  catch (e) { return {}; }
+}
+function score(counts){
+  return items.reduce(function(sum, item){ return sum + item[2] * (counts[item[0]] || 0); }, 0);
+}
+const today = new Date();
+let counts = readDay(today);
 const rows = document.getElementById("rows");
 items.forEach(function(item){
   const li = document.createElement("li");
@@ -60,32 +75,36 @@ items.forEach(function(item){
   li.innerHTML = "<span>" + item[1] + " · " + item[2] + (item[2] === 1 ? " point" : " points") + "</span><span><button class='tick' type='button' data-id='"+item[0]+"' data-by='-1' aria-label='Remove'>\u2212</button><strong class='count' id='c-"+item[0]+"'>0</strong><button class='tick' type='button' data-id='"+item[0]+"' data-by='1' aria-label='Add'>+</button></span>";
   rows.appendChild(li);
 });
-function render(){
+function rangeScore(start, end){
   let total = 0;
+  for (let day = new Date(start); day <= end; day.setDate(day.getDate()+1)){
+    const same = day.toDateString() === today.toDateString();
+    total += score(same ? counts : readDay(day));
+  }
+  return total;
+}
+function render(){
   items.forEach(function(item){
-    const n = state.counts[item[0]] || 0;
-    total += item[2] * n;
-    document.getElementById("c-"+item[0]).textContent = n;
+    document.getElementById("c-"+item[0]).textContent = counts[item[0]] || 0;
   });
-  document.getElementById("total").textContent = Number.isInteger(total) ? total : total.toFixed(1);
-  document.getElementById("of").textContent = "of " + state.target;
-  document.getElementById("status").textContent = total >= state.target ? "Done for the day." : "Today";
-  document.querySelectorAll("#targets button").forEach(function(btn){
-    btn.className = Number(btn.dataset.target) === state.target ? "on" : "";
-  });
-  localStorage.setItem(key, JSON.stringify(state));
+  const dayTotal = score(counts);
+  const weekStart = new Date(today);
+  const weekday = weekStart.getDay();
+  weekStart.setDate(weekStart.getDate() + (weekday === 0 ? -6 : 1 - weekday));
+  weekStart.setHours(0,0,0,0);
+  const weekEnd = new Date(weekStart); weekEnd.setDate(weekStart.getDate()+6);
+  const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+  document.getElementById("total").textContent = dayTotal;
+  document.getElementById("week").textContent = rangeScore(weekStart, today) + " of 150 this week";
+  document.getElementById("month").textContent = rangeScore(monthStart, today) + " of 600 this month";
+  document.getElementById("status").textContent = dayTotal >= 30 ? "Done for the day." : "Today";
+  localStorage.setItem(dayKey(today), JSON.stringify({ counts: counts }));
 }
 rows.addEventListener("click", function(event){
   const btn = event.target.closest("button");
   if (!btn) return;
   const id = btn.dataset.id;
-  state.counts[id] = Math.max(0, (state.counts[id] || 0) + Number(btn.dataset.by));
-  render();
-});
-document.getElementById("targets").addEventListener("click", function(event){
-  const btn = event.target.closest("button");
-  if (!btn) return;
-  state.target = Number(btn.dataset.target);
+  counts[id] = Math.max(0, (counts[id] || 0) + Number(btn.dataset.by));
   render();
 });
 render();
