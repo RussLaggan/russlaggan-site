@@ -133,7 +133,9 @@ button, input, select, textarea { font: inherit; }
   display: inline-block;
   line-height: 1;
   padding: 0 0.04em 0.12em 0;
-  background-image: linear-gradient(90deg, #fff6ec 0%, #ffc48a 28%, #ef5d17 62%, #9a3412 100%);
+  background-image: linear-gradient(90deg, #ff7a32 0%, #f2651c 55%, #e25614 100%);
+  background-size: 100% 100%;
+  background-position: left center;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
