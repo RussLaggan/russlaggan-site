@@ -371,12 +371,17 @@ button, input, select, textarea { font: inherit; }
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(12, 59, 120, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(12, 59, 120, 0.12) 1px, transparent 1px);
-  background-size: 12px 12px;
-  mask-image: linear-gradient(to bottom right, #000 0%, #000 22%, transparent 82%);
+    linear-gradient(rgba(12, 59, 120, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 59, 120, 0.07) 1px, transparent 1px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(72% 58% at 0% 0%, #000 0%, transparent 68%);
+  -webkit-mask-image: radial-gradient(72% 58% at 0% 0%, #000 0%, transparent 68%);
 }
 .offer-shell {
+  display: flex;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 28px;
   box-shadow:
     0 0 0 1px rgba(12, 59, 120, 0.12),
     0 24px 50px -18px rgba(12, 59, 120, 0.4),
@@ -402,7 +407,8 @@ button, input, select, textarea { font: inherit; }
   .hero { padding-top: 36px; }
 }
 
-.offer-shell { display:flex; border-radius:16px; overflow:hidden; margin-top:28px; }
+.stack { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+.offer-card svg { width: 20px; height: 20px; flex: none; }
 .offer-card { flex: 1.2; padding: 40px; color:#fff; }
 .offer-pay { flex: 0.8; padding: 40px; text-align:center; }
 .offer-card h2, .offer-card p, .offer-card li, .offer-card h3 { position:relative; }
