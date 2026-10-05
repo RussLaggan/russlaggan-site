@@ -455,6 +455,7 @@ a.panel:hover p.more { color: #ef5d17; }
   -webkit-mask-image: radial-gradient(78% 58% at 0% 0%, #000 0%, transparent 62%);
 }
 .speaker-floor .panel > * { position: relative; }
+.speaker-floor .panel h3 { font-weight: 700; }
 .speaker-floor .panel .label { color: var(--talk, #e23a98); }
 .talk-magenta { --talk: #e23a98; }
 .talk-cyan { --talk: #2ec8d6; }
