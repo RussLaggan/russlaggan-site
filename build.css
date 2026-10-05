@@ -71,10 +71,14 @@ button, input, select, textarea { font: inherit; }
   transform-origin: left center;
   transition: transform 0.18s ease;
 }
-.nav-links a:not(.btn):hover { color: var(--ink); }
+.nav-links a:not(.btn),
+.nav-links a:not(.btn):link,
+.nav-links a:not(.btn):visited { color: #3f3f46; }
+.nav-links a:not(.btn):hover { color: #18181b; }
+.nav-links a:not(.btn):hover::after { transform: scaleX(1); }
 
-.hue-coach { --hue: #0c8494; --hue-bar: #2ec8d6; --hue-deep: #084e5c; }
-.hue-train { --hue: #7a3ec8; --hue-bar: #b06cff; --hue-deep: #3d1d6e; }
+.hue-coach { --hue: #3454e0; --hue-bar: #4c6fff; --hue-deep: #1c2f8a; }
+.hue-train { --hue: #3454e0; --hue-bar: #4c6fff; --hue-deep: #1c2f8a; }
 .hue-cro { --hue: #3454e0; --hue-bar: #4c6fff; --hue-deep: #1c2f8a; }
 .hue-coach .label,
 .hue-train .label,
