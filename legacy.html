@@ -16,29 +16,14 @@
 <p class="label">Talk</p>
 <h1>Build a <em>legacy</em>.</h1>
 <p class="lede">Money first. Then time. Then what you leave behind. Then helping other people build theirs.</p>
-<p class="hero-actions" style="margin-top:22px"><button class="btn" type="button" id="open-talk">Watch the talk</button> <a class="more" href="https://www.youtube.com/watch?v=Vk8-6hu5l1A" target="_blank" rel="noopener">Watch on YouTube</a></p>
+<div class="video-frame" style="border-radius:16px"><iframe src="https://www.youtube.com/embed/b9pO5bMCWOg?rel=0" title="eXp Build 2024 Detroit | Attract Agents and Build Legacy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<p style="margin-top:10px;color:#71717a;font-size:14px">eXp Build 2024 Detroit. Attract Agents and Build Legacy. 14 minutes, on a stage. The other file with legacy in the title is a 35-second clip, so this is the one on the page.</p>
 <div class="lattice-card" style="margin-top:28px">
 <p>The path has five steps. You need the money. Then you want the evenings and the weekends back. Then you reach a point where you can choose the work, because you no longer have to trade the day for the dollar.</p>
 <p style="margin-top:14px">That is when legacy starts. What do you leave that outlives you. The last step is wider. You help other people build their legacy, and that can keep going.</p>
 </div>
 <p style="margin-top:28px"><a class="btn" href="mailto:info@russlaggan.com?subject=Legacy">Contact Russ</a></p>
 </div></section></div>
-<dialog id="talk" class="talk-dialog">
-<div class="video-frame"><iframe id="talk-frame" title="Build Your Legacy Through Attraction" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
-<p style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap"><button class="btn" type="button" id="close-talk">Close</button><a href="https://www.youtube.com/watch?v=Vk8-6hu5l1A" target="_blank" rel="noopener">Watch on YouTube</a></p>
-</dialog>
-<script>
-const talk = document.getElementById("talk");
-const frame = document.getElementById("talk-frame");
-const src = "https://www.youtube-nocookie.com/embed/Vk8-6hu5l1A?rel=0&autoplay=1";
-function openTalk(){ frame.src = src; talk.showModal(); }
-function closeTalk(){ talk.close(); frame.src = ""; }
-document.getElementById("open-talk").addEventListener("click", openTalk);
-document.getElementById("close-talk").addEventListener("click", closeTalk);
-talk.addEventListener("click", function(event){ if (event.target === talk) closeTalk(); });
-talk.addEventListener("close", function(){ frame.src = ""; });
-openTalk();
-</script>
 <footer class="foot"><div class="wrap"><div class="foot-card"><h2>Stop chasing. Start <em>attracting</em>.</h2><p>You are producing, and the business still moves only when you chase it. The team, the clients, and the life around the work should come to you.</p><div style="margin-top:22px"><a class="btn" href="mailto:info@russlaggan.com?subject=Coaching">Contact Russ</a></div></div><div class="cols"><div><p class="wordmark" style="color:#fff">russ<span>laggan</span></p><p>Stop chasing. Start attracting.</p></div><nav><h3>Work</h3><a href="speaking.html">Speaker</a><a href="author.html">Author</a><a href="coaching.html">Coach</a><a href="consulting.html">Consulting</a><a href="trainer.html">Trainer</a><a href="jumpstart.html">Jumpstart</a></nav><nav><h3>More</h3><a href="about.html">About</a><a href="articles.html">Articles</a><a href="points.html">30 Points</a><a href="coachingquiz.html">Coaching quiz</a><a href="https://russlaggan.transistor.fm/">Podcast</a><a href="mailto:info@russlaggan.com">Contact</a></nav><nav><h3>Book</h3><a href="https://www.amazon.com/Be-Followable-Russ-Laggan/dp/B0F716F6W9">Be Followable</a><a href="https://instagram.com/russ_laggan">Instagram</a></nav></div><p class="legal">&copy; 2026 Russ Laggan. Spheramid System is a trademark.</p></div></footer>
 </body>
 </html>
