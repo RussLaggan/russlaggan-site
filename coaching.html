@@ -67,7 +67,7 @@
 <p id="note" style="margin-top:18px;color:#71717a">$2,500 a month</p>
 <p class="big" id="amt">$2,500</p>
 <p id="sub">per month</p>
-<p style="margin-top:22px"><a class="btn" href="#contact" data-interest="Coaching">Contact Russ</a></p>
+<p style="margin-top:22px"><a class="btn" id="buy" href="https://buy.stripe.com/8x25kE1vxcUw3vng416J200">Buy now</a></p>
 </div>
 </div>
 </div></section>
@@ -91,6 +91,7 @@ function setPrice(up){
   document.getElementById('amt').textContent = up ? '$13,500' : '$2,500';
   document.getElementById('note').textContent = up ? '10% off, six months paid once' : '$2,500 a month';
   document.getElementById('sub').textContent = up ? 'paid up front' : 'per month';
+  document.getElementById('buy').href = up ? 'https://buy.stripe.com/cNi9AU0rtbQs0jb8Bz6J201' : 'https://buy.stripe.com/8x25kE1vxcUw3vng416J200';
 }
 </script>
 
