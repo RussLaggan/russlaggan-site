@@ -8,7 +8,6 @@ const paths = [
   "/attraction-advantage",
   "/author",
   "/coaching",
-  "/coachingquiz",
   "/coffee-mug-test",
   "/consulting",
   "/jellyfish-method",
