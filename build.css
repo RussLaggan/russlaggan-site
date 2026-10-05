@@ -77,7 +77,7 @@ button, input, select, textarea { font: inherit; }
 .nav-links a:not(.btn):hover { color: #18181b; }
 .nav-links a:not(.btn):hover::after { transform: scaleX(1); }
 
-.hue-coach { --hue: #0c8494; --hue-bar: #2ec8d6; --hue-deep: #084e5c; }
+.hue-coach { --hue: #1a4e8c; --hue-bar: #3a62a8; --hue-deep: #122848; }
 .hue-train { --hue: #3454e0; --hue-bar: #4c6fff; --hue-deep: #1c2f8a; }
 .hue-cro { --hue: #3454e0; --hue-bar: #4c6fff; --hue-deep: #1c2f8a; }
 .hue-coach .label,
@@ -108,7 +108,7 @@ button, input, select, textarea { font: inherit; }
   overflow: hidden;
   background:
     radial-gradient(48% 42% at 0% 0%, rgba(255, 255, 255, 0.28), transparent 68%),
-    linear-gradient(165deg, #2ec8d6 0%, #0c8494 46%, #084e5c 100%);
+    linear-gradient(165deg, #3a62a8 0%, #1a4e8c 52%, #122848 100%);
   color: #fff;
 }
 .coach-hero::before {
@@ -117,8 +117,8 @@ button, input, select, textarea { font: inherit; }
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.28) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.14) 1px, transparent 1px);
   background-size: 14px 14px;
   mask-image: linear-gradient(to bottom right, #000 0%, transparent 72%);
   -webkit-mask-image: linear-gradient(to bottom right, #000 0%, transparent 72%);
@@ -127,6 +127,14 @@ button, input, select, textarea { font: inherit; }
 .coach-hero .label { color: rgba(255, 255, 255, 0.86); }
 .coach-hero h1,
 .coach-hero .lede { color: #fff; }
+.coach-hero h1 {
+  margin: 14px 0 0;
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  font-weight: 650;
+}
+.coach-hero .lede { font-size: 18px; line-height: 1.55; max-width: 38rem; }
 .coach-shot {
   width: 100%;
   aspect-ratio: 5 / 4;
