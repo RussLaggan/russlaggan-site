@@ -207,7 +207,6 @@ button, input, select, textarea { font: inherit; }
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.28)) drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.22));
 }
 .lede { margin: 22px 0 0; max-width: 36rem; color: var(--muted); font-size: 17px; line-height: 1.6; }
 .hero-actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
@@ -471,7 +470,6 @@ a.panel.work-card:hover p.more { color: var(--talk); }
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.28)) drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.22));
 }
 
 .trainer-list { grid-template-columns: 1fr 1fr; margin-top: 28px; }
@@ -522,13 +520,11 @@ a.panel.work-card:hover p.more { color: var(--talk); }
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.28)) drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.22));
 }
 .hero h1 em,
 .foot-card h2 em {
   display: inline-block;
-  padding-right: 0.18em;
-  margin-right: -0.06em;
+  padding-right: 0.45em;
 }
 .hero .portrait {
   border: 0;
