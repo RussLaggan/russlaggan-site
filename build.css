@@ -108,7 +108,7 @@ button, input, select, textarea { font: inherit; }
   overflow: hidden;
   background:
     radial-gradient(48% 42% at 0% 0%, rgba(255, 255, 255, 0.28), transparent 68%),
-    linear-gradient(165deg, #2ec8d6 0%, #0c8494 46%, #084e5c 100%);
+    linear-gradient(165deg, #6b86ff 0%, #3454e0 46%, #1c2f8a 100%);
   color: #fff;
 }
 .coach-hero::before {
