@@ -331,11 +331,11 @@ a.panel:hover p.more { color: #ef5d17; }
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(12, 59, 120, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(12, 59, 120, 0.12) 1px, transparent 1px);
-  background-size: 12px 12px;
-  mask-image: linear-gradient(to bottom right, #000 0%, #000 22%, transparent 82%);
-  -webkit-mask-image: linear-gradient(to bottom right, #000 0%, #000 22%, transparent 82%);
+    linear-gradient(rgba(12, 59, 120, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 59, 120, 0.07) 1px, transparent 1px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(68% 52% at 0% 0%, #000 0%, transparent 58%);
+  -webkit-mask-image: radial-gradient(68% 52% at 0% 0%, #000 0%, transparent 58%);
 }
 .lattice-card > * { position: relative; }
 .lattice-card h3 { margin: 10px 0 8px; font-size: 20px; letter-spacing: -0.03em; }
