@@ -260,7 +260,7 @@ button, input, select, textarea { font: inherit; }
 
 @media (max-width: 860px) {
   .nav-links a:not(.btn) { display: none; }
-  .hero-grid, .cards, .cards.two, .cols { grid-template-columns: 1fr; }
+  .hero-grid, .book-row, .cards, .cards.two, .cols { grid-template-columns: 1fr; }
   .hero { padding-top: 36px; }
 }
 
@@ -276,3 +276,19 @@ button, input, select, textarea { font: inherit; }
 .price-toggle button.on { background:#ef5d17; color:#fff; }
 .big { position:relative; font-size:64px; letter-spacing:-.04em; margin:18px 0 0; font-weight:650; }
 @media (max-width: 860px) { .offer-shell { flex-direction:column; } .offer-list { grid-template-columns:1fr; } }
+
+.book-row {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 36px;
+  align-items: center;
+}
+.book-row h1 {
+  margin: 10px 0 0;
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  font-weight: 650;
+}
+.book-cover { width: 100%; }
+.learn { grid-template-columns: 1fr 1fr; }
