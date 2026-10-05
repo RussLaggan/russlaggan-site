@@ -249,10 +249,12 @@ button, input, select, textarea { font: inherit; }
 .book-list { margin: 14px 0 0; padding-left: 18px; color: var(--muted); }
 .book-list li { margin: 8px 0; line-height: 1.5; }
 .book-cover {
-  width: min(100%, 380px);
+  width: 100%;
+  height: auto;
   display: block;
-  border-radius: 8px;
-  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.16);
+  border-radius: 2px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 18px 36px -16px rgba(15, 23, 42, 0.35);
 }
 .talk-face { display: flex; align-items: center; gap: 14px; }
 .talk-face .label { margin: 0; }
@@ -469,6 +471,7 @@ button, input, select, textarea { font: inherit; }
   .nav-links a:not(.btn)::after { display: none; }
   .nav-links a.btn { margin-top: 14px; }
   .hero-grid, .book-row, .cards, .cards.two, .cols, .maker-grid { grid-template-columns: 1fr; }
+  .book-cover { width: min(100%, 240px); }
   .hero { padding: 28px 0 24px; }
   .hero h1, .coach-hero h1 { font-size: clamp(34px, 9vw, 48px); }
   .stage-hero { min-height: 0; }
@@ -503,9 +506,9 @@ button, input, select, textarea { font: inherit; }
 
 .book-row {
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 36px;
-  align-items: center;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
 }
 .book-row h1 {
   margin: 10px 0 0;
@@ -514,7 +517,7 @@ button, input, select, textarea { font: inherit; }
   letter-spacing: -0.045em;
   font-weight: 650;
 }
-.book-cover { width: 100%; }
+.book-cover { width: 100%; height: auto; }
 .learn { grid-template-columns: 1fr 1fr; gap: 22px; }
 .byline { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
 .byline img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: center 20%; flex: none; }
