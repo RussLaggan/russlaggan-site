@@ -410,13 +410,24 @@ a.panel:hover p.more { color: #ef5d17; }
 .panel .more{margin-top:16px}
 
 .speaker-floor {
-  background:
-    radial-gradient(760px 320px at 0% 0%, rgba(226, 58, 152, 0.34), transparent 70%),
-    radial-gradient(680px 340px at 100% 8%, rgba(126, 231, 239, 0.24), transparent 68%),
-    #120818;
-  padding-top: 28px;
+  position: relative;
+  background: #fff;
+  padding-top: 36px;
   padding-bottom: 88px;
 }
+.speaker-floor::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(12, 59, 120, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 59, 120, 0.08) 1px, transparent 1px);
+  background-size: 14px 14px;
+  mask-image: linear-gradient(to bottom right, #000 0%, transparent 82%);
+  -webkit-mask-image: linear-gradient(to bottom right, #000 0%, transparent 82%);
+}
+.speaker-floor > .wrap { position: relative; z-index: 1; }
 .speaker-floor .cards.talks {
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
@@ -427,7 +438,7 @@ a.panel:hover p.more { color: #ef5d17; }
   height: 100%;
   background: #fff;
   border-top: 4px solid var(--talk, #e23a98);
-  box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 0 1px rgba(12, 59, 120, 0.08), 0 16px 36px -22px rgba(12, 59, 120, 0.28);
 }
 .speaker-floor .panel .label { color: var(--talk, #e23a98); }
 .talk-magenta { --talk: #e23a98; }
