@@ -10,11 +10,11 @@ export async function POST(request: Request) {
   const last = String(body.last || "").trim();
   const email = String(body.email || "").trim();
   const phone = String(body.phone || "").trim();
-  const interest = String(body.interest || "").trim();
+  const interest = String(body.interest || "Inquiry").trim() || "Inquiry";
   const message = String(body.message || "").trim();
   const page = String(body.page || "").trim();
 
-  if (!first || !last || !email || !interest || !email.includes("@")) {
+  if (!first || !last || !email || !email.includes("@")) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
