@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 import schema from "@/lib/schema.json";
 import { site } from "@/site";
 import "./build.css";
+import "./hero-wash.css";
 
 const geist = Geist({
   subsets: ["latin"],
