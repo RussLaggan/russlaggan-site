@@ -10,15 +10,15 @@ const CHOICES = [
   },
   {
     name: "Coaching",
-    blurb: "Russ with you. Where you are, where you want to be, and how you get there.",
+    blurb: "Coaching on how to get where you want to go.",
   },
   {
     name: "Training",
-    blurb: "Russ trains the team. Same page, same metrics, and business from their own sphere.",
+    blurb: "Train your team. Get them on the same page, with measurable metrics, and build business from their sphere.",
   },
   {
     name: "Fractional CRO",
-    blurb: "Chief revenue officer. Russ comes in on the revenue number and helps the organization grow.",
+    blurb: "Get Russ as a fractional chief revenue officer for your organization to drive growth.",
   },
 ];
 
@@ -209,7 +209,6 @@ export function Contact() {
                       key={choice.name}
                       type="button"
                       aria-pressed={interest.includes(choice.name)}
-                      aria-describedby="rq-blurb"
                       onMouseEnter={() => setHover(choice.name)}
                       onFocus={() => setHover(choice.name)}
                       onBlur={() => setHover("")}
@@ -219,7 +218,7 @@ export function Contact() {
                     </button>
                   ))}
                 </div>
-                <p className="rq-blurb" id="rq-blurb" aria-live="polite">
+                <p className="rq-blurb" id="rq-blurb">
                   {shown ? shown.blurb : "You can skip these."}
                 </p>
               </fieldset>
