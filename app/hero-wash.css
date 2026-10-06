@@ -4,6 +4,7 @@ body {
 }
 .field {
   background-color: #f6f4f1;
+  background-size: 28px 28px;
 }
 .nav {
   background: #f7f6f4;
@@ -13,21 +14,26 @@ body {
   isolation: isolate;
   background: linear-gradient(155deg, #f3f0eb 0%, #f6f4f1 46%, #f6f4f1 100%);
 }
-.hero-wash::before {
+.hero-wash::before,
+.speaker-floor::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
   background-image:
-    linear-gradient(to right, rgba(92, 68, 38, 0.22) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(92, 68, 38, 0.22) 1px, transparent 1px);
+    linear-gradient(to right, rgba(92, 68, 38, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(92, 68, 38, 0.18) 1px, transparent 1px);
   background-size: 28px 28px;
   mask-image: linear-gradient(to bottom right, #000 0%, rgba(0, 0, 0, 0.7) 16%, rgba(0, 0, 0, 0.26) 40%, transparent 68%);
   -webkit-mask-image: linear-gradient(to bottom right, #000 0%, rgba(0, 0, 0, 0.7) 16%, rgba(0, 0, 0, 0.26) 40%, transparent 68%);
 }
 .hero-wash > .wrap,
-.hero-wash .wrap { position: relative; z-index: 1; }
+.hero-wash .wrap,
+.speaker-floor > .wrap { position: relative; z-index: 1; }
+.speaker-floor {
+  background: #f6f4f1;
+}
 .hero.hero-wash h1 em {
   font-style: normal !important;
   font-family: inherit;
