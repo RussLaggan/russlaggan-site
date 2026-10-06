@@ -18,3 +18,9 @@
 }
 .hero-wash > .wrap,
 .hero-wash .wrap { position: relative; z-index: 1; }
+.hero-wash h1,
+.hero-wash h1 em,
+.hero-wash .lede {
+  font-family: var(--font-geist), "Geist Sans", Geist, ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+}
