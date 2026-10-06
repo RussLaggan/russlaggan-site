@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { site } from "@/site";
 
-const CHOICES = ["Speaking", "Coaching", "Training"];
+const CHOICES = ["Speaking", "Coaching", "Training", "Fractional CRO"];
 
 export function Contact() {
   const [open, setOpen] = useState(false);
-  const [interest, setInterest] = useState("");
+  const [interest, setInterest] = useState<string[]>([]);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
@@ -30,7 +30,8 @@ export function Contact() {
       const link = target.closest("a");
       if (!link || link.getAttribute("href") !== "#contact") return;
       event.preventDefault();
-      setInterest(link.getAttribute("data-interest") || "");
+      const preset = link.getAttribute("data-interest") || "";
+      setInterest(preset && CHOICES.includes(preset) ? [preset] : []);
       setSent(false);
       setError("");
       setOpen(true);
@@ -57,11 +58,17 @@ export function Contact() {
     setOpen(false);
   }
 
+  function toggle(name: string) {
+    setInterest((current) =>
+      current.includes(name) ? current.filter((item) => item !== name) : [...current, name]
+    );
+  }
+
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
-    if (!interest) {
-      setError("Pick speaking, coaching, or training.");
+    if (!interest.length) {
+      setError("Pick at least one.");
       return;
     }
     const form = event.currentTarget;
@@ -73,7 +80,7 @@ export function Contact() {
       last: String(data.get("last") || "").trim(),
       email: String(data.get("email") || "").trim(),
       phone: String(data.get("phone") || "").trim(),
-      interest,
+      interest: interest.join(", "),
       message: String(data.get("message") || "").trim(),
       page: location.pathname,
       company,
@@ -91,7 +98,7 @@ export function Contact() {
       if (!company) {
         setSent(true);
         form.reset();
-        setInterest("");
+        setInterest([]);
       }
     } catch {
       setError("That did not send. Try again.");
@@ -146,7 +153,7 @@ export function Contact() {
             <form onSubmit={onSubmit}>
               <p className="rq-label">Contact</p>
               <h2 id="rq-title">Contact Russ</h2>
-              <p className="rq-lede">Speaking, coaching, or training. Tell him what you need.</p>
+              <p className="rq-lede">Pick one or more. Tell him what you need.</p>
               <div className="rq-row">
                 <label>
                   First name
@@ -172,8 +179,8 @@ export function Contact() {
                     <button
                       key={name}
                       type="button"
-                      aria-pressed={interest === name}
-                      onClick={() => setInterest(name)}
+                      aria-pressed={interest.includes(name)}
+                      onClick={() => toggle(name)}
                     >
                       {name}
                     </button>
