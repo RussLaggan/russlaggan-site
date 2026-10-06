@@ -22,6 +22,14 @@ const CHOICES = [
   },
 ];
 
+function Req() {
+  return (
+    <span className="rq-req" aria-hidden="true">
+      *
+    </span>
+  );
+}
+
 export function Contact() {
   const [open, setOpen] = useState(false);
   const [interest, setInterest] = useState<string[]>([]);
@@ -143,7 +151,7 @@ export function Contact() {
         .rq input:focus,.rq textarea:focus{outline:2px solid #ef5d17;border-color:transparent}
         .rq fieldset{border:0;margin:0;padding:0}
         .rq legend{font-size:13px;font-weight:600;margin-bottom:8px}
-        .rq-req{color:#dc2626}
+        .rq-req{color:#dc2626;font-size:16px;font-weight:700;line-height:1}
         .rq-opt{color:#71717a;font-weight:500}
         .rq-pills{display:flex;flex-wrap:wrap;gap:8px}
         .rq-pills button{border:1px solid rgba(24,24,27,.16);background:#fff;border-radius:8px;padding:8px 14px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;color:#18181b}
@@ -177,16 +185,16 @@ export function Contact() {
               <p className="rq-lede">Name and email are enough. The rest is optional.</p>
               <div className="rq-row">
                 <label>
-                  <span>First name <span className="rq-req" aria-hidden="true">*</span></span>
+                  <span>First name <Req /></span>
                   <input name="first" required autoComplete="given-name" />
                 </label>
                 <label>
-                  <span>Last name <span className="rq-req" aria-hidden="true">*</span></span>
+                  <span>Last name <Req /></span>
                   <input name="last" required autoComplete="family-name" />
                 </label>
               </div>
               <label>
-                <span>Email <span className="rq-req" aria-hidden="true">*</span></span>
+                <span>Email <Req /></span>
                 <input type="email" name="email" required autoComplete="email" />
               </label>
               <label>
@@ -195,15 +203,14 @@ export function Contact() {
               </label>
               <fieldset>
                 <legend>What do you want to talk about? <span className="rq-opt">optional</span></legend>
-                <div className="rq-pills">
+                <div className="rq-pills" onMouseLeave={() => setHover("")}>
                   {CHOICES.map((choice) => (
                     <button
                       key={choice.name}
                       type="button"
                       aria-pressed={interest.includes(choice.name)}
-                      title={choice.blurb}
+                      aria-describedby="rq-blurb"
                       onMouseEnter={() => setHover(choice.name)}
-                      onMouseLeave={() => setHover("")}
                       onFocus={() => setHover(choice.name)}
                       onBlur={() => setHover("")}
                       onClick={() => toggle(choice.name)}
@@ -212,8 +219,8 @@ export function Contact() {
                     </button>
                   ))}
                 </div>
-                <p className="rq-blurb" aria-live="polite">
-                  {shown ? shown.blurb : "Hover a choice to see what it is."}
+                <p className="rq-blurb" id="rq-blurb" aria-live="polite">
+                  {shown ? shown.blurb : "You can skip these."}
                 </p>
               </fieldset>
               <label>
