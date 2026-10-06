@@ -3,11 +3,29 @@
 import { useEffect, useState } from "react";
 import { site } from "@/site";
 
-const CHOICES = ["Speaking", "Coaching", "Training", "Fractional CRO"];
+const CHOICES = [
+  {
+    name: "Speaking",
+    blurb: "A keynote or a panel. Fun, funny, and built with steps people can use.",
+  },
+  {
+    name: "Coaching",
+    blurb: "Russ with you. Where you are, where you want to be, and how you get there.",
+  },
+  {
+    name: "Training",
+    blurb: "Russ trains the team. Same page, same metrics, and business from their own sphere.",
+  },
+  {
+    name: "Fractional CRO",
+    blurb: "Chief revenue officer. Russ comes in on the revenue number and helps the organization grow.",
+  },
+];
 
 export function Contact() {
   const [open, setOpen] = useState(false);
   const [interest, setInterest] = useState<string[]>([]);
+  const [hover, setHover] = useState("");
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
@@ -31,7 +49,8 @@ export function Contact() {
       if (!link || link.getAttribute("href") !== "#contact") return;
       event.preventDefault();
       const preset = link.getAttribute("data-interest") || "";
-      setInterest(preset && CHOICES.includes(preset) ? [preset] : []);
+      setInterest(preset && CHOICES.some((choice) => choice.name === preset) ? [preset] : []);
+      setHover("");
       setSent(false);
       setError("");
       setOpen(true);
@@ -99,6 +118,7 @@ export function Contact() {
         setSent(true);
         form.reset();
         setInterest([]);
+        setHover("");
       }
     } catch {
       setError("That did not send. Try again.");
@@ -106,6 +126,8 @@ export function Contact() {
       setSending(false);
     }
   }
+
+  const shown = CHOICES.find((choice) => choice.name === hover);
 
   return (
     <>
@@ -128,6 +150,7 @@ export function Contact() {
         .rq-pills{display:flex;flex-wrap:wrap;gap:8px}
         .rq-pills button{border:1px solid rgba(24,24,27,.16);background:#fff;border-radius:8px;padding:8px 14px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;color:#18181b}
         .rq-pills button[aria-pressed='true']{background:#ef5d17;border-color:#ef5d17;color:#fff}
+        .rq-blurb{min-height:42px;margin:8px 0 0;color:#3f3f46;font-size:14px;font-weight:500;line-height:1.45}
         .rq-hp{position:absolute;left:-9999px;height:0;overflow:hidden}
         .rq-err{margin:0;color:#9a3412;font-size:14px}
         .rq-send{width:100%}
@@ -153,7 +176,7 @@ export function Contact() {
             <form onSubmit={onSubmit}>
               <p className="rq-label">Contact</p>
               <h2 id="rq-title">Contact Russ</h2>
-              <p className="rq-lede">Pick one or more. Tell him what you need.</p>
+              <p className="rq-lede">Pick one or more. Hover a choice to see what it is.</p>
               <div className="rq-row">
                 <label>
                   First name
@@ -175,17 +198,25 @@ export function Contact() {
               <fieldset>
                 <legend>What do you want to talk about?</legend>
                 <div className="rq-pills">
-                  {CHOICES.map((name) => (
+                  {CHOICES.map((choice) => (
                     <button
-                      key={name}
+                      key={choice.name}
                       type="button"
-                      aria-pressed={interest.includes(name)}
-                      onClick={() => toggle(name)}
+                      aria-pressed={interest.includes(choice.name)}
+                      title={choice.blurb}
+                      onMouseEnter={() => setHover(choice.name)}
+                      onMouseLeave={() => setHover("")}
+                      onFocus={() => setHover(choice.name)}
+                      onBlur={() => setHover("")}
+                      onClick={() => toggle(choice.name)}
                     >
-                      {name}
+                      {choice.name}
                     </button>
                   ))}
                 </div>
+                <p className="rq-blurb" aria-live="polite">
+                  {shown ? shown.blurb : "Hover a choice to see what it is."}
+                </p>
               </fieldset>
               <label>
                 Message
