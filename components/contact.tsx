@@ -86,10 +86,6 @@ export function Contact() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
-    if (!interest.length) {
-      setError("Pick at least one.");
-      return;
-    }
     const form = event.currentTarget;
     const data = new FormData(form);
     const company = String(data.get("company") || "").trim();
@@ -99,7 +95,7 @@ export function Contact() {
       last: String(data.get("last") || "").trim(),
       email: String(data.get("email") || "").trim(),
       phone: String(data.get("phone") || "").trim(),
-      interest: interest.join(", "),
+      interest: interest.length ? interest.join(", ") : "Inquiry",
       message: String(data.get("message") || "").trim(),
       page: location.pathname,
       company,
@@ -147,6 +143,8 @@ export function Contact() {
         .rq input:focus,.rq textarea:focus{outline:2px solid #ef5d17;border-color:transparent}
         .rq fieldset{border:0;margin:0;padding:0}
         .rq legend{font-size:13px;font-weight:600;margin-bottom:8px}
+        .rq-req{color:#dc2626}
+        .rq-opt{color:#71717a;font-weight:500}
         .rq-pills{display:flex;flex-wrap:wrap;gap:8px}
         .rq-pills button{border:1px solid rgba(24,24,27,.16);background:#fff;border-radius:8px;padding:8px 14px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;color:#18181b}
         .rq-pills button[aria-pressed='true']{background:#ef5d17;border-color:#ef5d17;color:#fff}
@@ -176,27 +174,27 @@ export function Contact() {
             <form onSubmit={onSubmit}>
               <p className="rq-label">Contact</p>
               <h2 id="rq-title">Contact Russ</h2>
-              <p className="rq-lede">Pick one or more. Hover a choice to see what it is.</p>
+              <p className="rq-lede">Name and email are enough. The rest is optional.</p>
               <div className="rq-row">
                 <label>
-                  First name
+                  <span>First name <span className="rq-req" aria-hidden="true">*</span></span>
                   <input name="first" required autoComplete="given-name" />
                 </label>
                 <label>
-                  Last name
+                  <span>Last name <span className="rq-req" aria-hidden="true">*</span></span>
                   <input name="last" required autoComplete="family-name" />
                 </label>
               </div>
               <label>
-                Email
+                <span>Email <span className="rq-req" aria-hidden="true">*</span></span>
                 <input type="email" name="email" required autoComplete="email" />
               </label>
               <label>
-                Phone
+                <span>Phone <span className="rq-opt">optional</span></span>
                 <input type="tel" name="phone" autoComplete="tel" />
               </label>
               <fieldset>
-                <legend>What do you want to talk about?</legend>
+                <legend>What do you want to talk about? <span className="rq-opt">optional</span></legend>
                 <div className="rq-pills">
                   {CHOICES.map((choice) => (
                     <button
@@ -219,7 +217,7 @@ export function Contact() {
                 </p>
               </fieldset>
               <label>
-                Message
+                <span>Message <span className="rq-opt">optional</span></span>
                 <textarea name="message" rows={4} />
               </label>
               <label className="rq-hp">
