@@ -1,17 +1,17 @@
 :root,
 body {
-  background: #f4efe6;
+  background: #f6f4f1;
 }
 .field {
-  background-color: #f4efe6;
+  background-color: #f6f4f1;
 }
 .nav {
-  background: #f7f3ec;
+  background: #f7f6f4;
 }
 .hero-wash {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(155deg, #f3eadc 0%, #f4efe6 46%, #f4efe6 100%);
+  background: linear-gradient(155deg, #f3f0eb 0%, #f6f4f1 46%, #f6f4f1 100%);
 }
 .hero-wash::before {
   content: "";
