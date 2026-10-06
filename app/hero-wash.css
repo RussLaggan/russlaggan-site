@@ -1,7 +1,17 @@
+:root,
+body {
+  background: #f4efe6;
+}
+.field {
+  background-color: #f4efe6;
+}
+.nav {
+  background: #f7f3ec;
+}
 .hero-wash {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(155deg, #f3eadc 0%, #f7f1e6 38%, #fbfaf7 72%, #ffffff 100%);
+  background: linear-gradient(155deg, #f3eadc 0%, #f4efe6 46%, #f4efe6 100%);
 }
 .hero-wash::before {
   content: "";
