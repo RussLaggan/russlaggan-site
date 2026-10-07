@@ -42,17 +42,6 @@ export function Contact() {
     function onClick(event: MouseEvent) {
       const target = event.target as Element | null;
       if (!target) return;
-      const toggle = target.closest(".nav-toggle");
-      const nav = document.getElementById("site-nav");
-      if (toggle && nav) {
-        const isOpen = nav.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-        return;
-      }
-      if (nav && nav.classList.contains("open") && !target.closest("#site-nav")) {
-        nav.classList.remove("open");
-        document.querySelector(".nav-toggle")?.setAttribute("aria-expanded", "false");
-      }
       const link = target.closest("a");
       if (!link || link.getAttribute("href") !== "#contact") return;
       event.preventDefault();
