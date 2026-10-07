@@ -3,7 +3,7 @@ import { PageView } from "./view";
 
 export const metadata: Metadata = {
   title: "Thank you | Russ Laggan",
-  description: "Russ will be in touch within one business day to schedule your first session.",
+  description: "Your payment went through. Russ will be in touch within one business day.",
   robots: { index: false, follow: false },
 };
 
