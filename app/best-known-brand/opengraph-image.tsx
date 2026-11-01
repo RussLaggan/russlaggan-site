@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Best Known Brand 1-Month Buildout with Russ Laggan";
+export const alt = "Best Known Brand: 1-Month Buildout";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

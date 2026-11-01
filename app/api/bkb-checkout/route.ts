@@ -4,7 +4,8 @@ import Stripe from "stripe";
 export const runtime = "nodejs";
 
 // Best Known Brand 1-Month Buildout: one payment of $4,500.
-// The price lives in Stripe; set its ID in STRIPE_PRICE_BKB_BUILDOUT.
+// The price lives in Stripe (Laggan Holdings LLC). STRIPE_PRICE_BKB_BUILDOUT overrides the default.
+const DEFAULT_PRICE = "price_1UWgXCKFIl1mC1gNnJ7IL9tO";
 const PAGE = "/best-known-brand";
 
 function back(origin: string, reason: string) {
@@ -14,8 +15,8 @@ function back(origin: string, reason: string) {
 export async function POST(request: Request) {
   const origin = new URL(request.url).origin;
   const secret = process.env.STRIPE_SECRET_KEY;
-  const priceId = process.env.STRIPE_PRICE_BKB_BUILDOUT;
-  if (!secret || !priceId) {
+  const priceId = process.env.STRIPE_PRICE_BKB_BUILDOUT || DEFAULT_PRICE;
+  if (!secret) {
     console.error("bkb checkout missing configuration");
     return back(origin, "unavailable");
   }
@@ -41,7 +42,7 @@ export async function POST(request: Request) {
       payment_intent_data: { metadata: { program: "bkb_buildout_1mo" } },
       custom_text: {
         submit: {
-          message: "One payment for the Best Known Brand 1-Month Buildout. We'll reach out within 1 business day to book your kickoff.",
+          message: "One payment for Best Known Brand: 1-Month Buildout. We'll reach out within 1 business day to book your kickoff.",
         },
       },
     });

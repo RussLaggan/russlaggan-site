@@ -11,11 +11,10 @@ function Check() {
 }
 
 const INCLUDED = [
-  "A website built and marked up so Google and AI can read your business",
-  "Your Google Business Profile and the records that describe you, corrected",
-  "Every inquiry gets a text, an email, and the file within minutes",
-  "Connectors that wire your site's inquiries into that response, so nothing sits",
-  "Setup, onboarding, and access to the AI mastermind community",
+  "A website marked up so Google and AI can read your business. The website is yours.",
+  "Your Google Business Profile and directory records, corrected and kept current",
+  "Every inquiry gets a text, an email, and the file or quote in minutes",
+  "AI training that saves 5 to 10 hours a week",
 ];
 
 const STEPS = [
@@ -27,17 +26,17 @@ const STEPS = [
   {
     when: "Within 1 business day",
     title: "Book your kickoff",
-    body: "We reach out to book your kickoff, then collect the access we need: your domain, your Google Business Profile, and where your inquiries land.",
+    body: "We reach out within 1 business day to book your kickoff.",
   },
   {
     when: "During the month",
     title: "We build",
-    body: "The site and its markup, your Business Profile and records, and the connectors that answer every inquiry in minutes.",
+    body: "The site and its markup, your Business Profile and directory records, inquiry responses in minutes, and your AI training.",
   },
   {
     when: "End of the month",
-    title: "Walkthrough",
-    body: "We show you what is live and how it works. If your market is open, you decide whether to hold it with the twelve-month program.",
+    title: "Decide whether to hold your market",
+    body: "The single month does not lock your market. If your market is open, the twelve-month plan holds your category in your pack.",
   },
 ];
 
@@ -59,16 +58,6 @@ const FOR = [
   },
 ];
 
-const TWELVE = [
-  "One client per category per Google Map Pack, for the full twelve months",
-  "Your Business Profile and every record kept current",
-  "Weekly articles on your site, with pages kept current",
-  "Profiles on Zillow and other directories, kept current",
-  "Monthly Map Pack work for your town",
-  "Articles about your brand",
-  "An AI system to stay in touch with your sphere",
-];
-
 export function PageView() {
   return (
     <div className="field hue-coach bkb">
@@ -81,7 +70,7 @@ export function PageView() {
             </h1>
             <p className="lede">
               We help brands get found and become the best known brand in their market. In one month we build the
-              foundation: a site Google and AI can read, a Business Profile that tells the truth about you, and every
+              foundation: a site Google and AI can read, a corrected Business Profile and directory records, and every
               inquiry answered in minutes.
             </p>
             <div className="hero-actions">
@@ -90,7 +79,7 @@ export function PageView() {
                 See what's included
               </a>
             </div>
-            <p className="bkb-fine">One payment. No subscription.</p>
+            <p className="bkb-fine">One payment. No subscription. The website is yours.</p>
           </div>
           <img className="coach-shot" src="/images/russ-point.webp" alt="Russ Laggan" fetchPriority="high" />
         </div>
@@ -147,9 +136,9 @@ export function PageView() {
           <div className="offer-shell">
             <div className="offer-card">
               <h2 className="offer-title" style={{ fontSize: "32px", margin: "0" }}>
-                The 1-Month Buildout
+                Best Known Brand: 1-Month Buildout
               </h2>
-              <p>An AI buildout and a website and connector buildout, done in one month.</p>
+              <p>A website and AI buildout, done in one month.</p>
               <ul className="offer-list results bkb-list">
                 {INCLUDED.map((item) => (
                   <li key={item}>
@@ -159,7 +148,7 @@ export function PageView() {
                 ))}
               </ul>
               <p className="bkb-note">
-                The buildout does not hold your category in your Map Pack. That lock comes with the twelve-month program.
+                The single month does not include market exclusivity. The twelve-month plan holds your category in your pack.
               </p>
             </div>
             <div className="offer-pay">
@@ -170,7 +159,7 @@ export function PageView() {
                 <BuyButton />
               </div>
               <p className="bkb-fine" style={{ marginTop: "14px" }}>
-                Secure checkout by Stripe.
+                The website is yours. Secure checkout by Stripe.
               </p>
             </div>
           </div>
@@ -220,18 +209,9 @@ export function PageView() {
               Become Best Known. Twelve months, one per market.
             </h2>
             <p style={{ marginTop: "14px" }}>
-              The buildout gets you found. Twelve months holds your spot. Become Best Known is $4,500 a month for
-              twelve months, and we take one client per category in each Google Map Pack. While you hold it, we do not
-              take a direct competitor in your pack. Months seven through twelve, every system keeps running.
+              The buildout gets you found. The twelve-month plan holds your category in your pack, so one business
+              per category owns that spot in its market. The single month does not.
             </p>
-            <ul className="offer-list results bkb-list">
-              {TWELVE.map((item) => (
-                <li key={item}>
-                  <Check />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
             <p style={{ marginTop: "22px" }}>
               <a className="btn" href="https://www.bestknownbrand.com/start/" target="_blank" rel="noopener noreferrer">
                 Is your market open?

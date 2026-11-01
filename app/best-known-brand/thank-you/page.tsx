@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "You're in | Best Known Brand 1-Month Buildout",
+  title: "You're in | Best Known Brand: 1-Month Buildout",
   description: "Your payment went through. We'll reach out within 1 business day to book your kickoff.",
   robots: { index: false, follow: false },
 };
@@ -21,7 +21,6 @@ export default function Page() {
             <ol style={{ margin: "8px 0 0", paddingLeft: "20px", color: "var(--muted)", lineHeight: 1.6 }}>
               <li>Watch your email for your Stripe receipt.</li>
               <li>We reach out within 1 business day to book your kickoff.</li>
-              <li>Have your domain login and Google Business Profile access handy for the kickoff.</li>
             </ol>
           </div>
           <p style={{ marginTop: "28px" }}>

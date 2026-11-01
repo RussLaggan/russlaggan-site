@@ -1,11 +1,15 @@
 export const faq = [
   {
     q: "What do I have at the end of the month?",
-    a: "A website marked up so Google and AI can read your business, a Google Business Profile and records that are corrected and agree with each other, and inquiry handling that sends a text, an email, and the file within minutes. It is built and running, not a plan on paper.",
+    a: "A website marked up so Google and AI can read your business, your Google Business Profile and directory records corrected and kept current, every inquiry answered with a text, an email, and the file or quote in minutes, and AI training that saves 5 to 10 hours a week.",
+  },
+  {
+    q: "Who owns the website?",
+    a: "You do. The website we build during your month is yours.",
   },
   {
     q: "Does the buildout lock my market?",
-    a: "No. The single month has no lock. One client per category per Google Map Pack comes with the twelve-month Become Best Known program, and only while your market is open.",
+    a: "No. The single month does not include market exclusivity. The twelve-month plan holds your category in your pack.",
   },
   {
     q: "Who is it for?",
@@ -17,11 +21,11 @@ export const faq = [
   },
   {
     q: "What happens after I pay?",
-    a: "We reach out within 1 business day to book your kickoff. At the kickoff we collect the access we need and start the build.",
+    a: "You get a Stripe receipt by email, and we reach out within 1 business day to book your kickoff.",
   },
   {
     q: "Can I move to the twelve-month program?",
-    a: "Yes, if your market is open. Become Best Known is $4,500 a month for twelve months. It holds your category in your Google Map Pack and keeps every system running and current.",
+    a: "Yes, if your market is open. The twelve-month plan holds your category in your pack. Check whether your market is open at bestknownbrand.com.",
   },
   {
     q: "Do you guarantee rankings?",

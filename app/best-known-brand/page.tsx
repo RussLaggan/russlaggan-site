@@ -3,7 +3,7 @@ import { faqSchema } from "./faq";
 import { PageView } from "./view";
 import "./bkb.css";
 
-const title = "1-Month Buildout | Best Known Brand with Russ Laggan";
+const title = "Best Known Brand: 1-Month Buildout | Russ Laggan";
 const description =
   "Get found and become the best known brand in your market. A one-time $4,500 buildout: a site Google and AI can read, a corrected Business Profile, and every inquiry answered in minutes.";
 const url = "https://www.russlaggan.com/best-known-brand";
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const offerSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Best Known Brand 1-Month Buildout",
+  name: "Best Known Brand: 1-Month Buildout",
   serviceType: "AI search and Google Map Pack buildout",
   provider: { "@id": "https://bestknownbrand.com/#organization" },
   url,
