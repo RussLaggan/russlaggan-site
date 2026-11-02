@@ -4,6 +4,7 @@ import { site } from "@/site";
 const paths = [
   "/",
   "/about",
+  "/ai-done",
   "/articles",
   "/attraction-advantage",
   "/author",

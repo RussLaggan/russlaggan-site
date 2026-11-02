@@ -11,12 +11,27 @@ const SLUGS = {
 const SUCCESS = "https://www.russlaggan.com/thank-you?session_id={CHECKOUT_SESSION_ID}";
 const CANCEL = "https://www.russlaggan.com/coaching";
 
+const AI_LINKS = {
+  ai: process.env.STRIPE_LINK_AI_DONE || "",
+  "ai-month": process.env.STRIPE_LINK_AI_MONTH || "",
+} as const;
+
 function stripeLink(plan: keyof typeof SLUGS) {
   return `https://buy.stripe.com/${SLUGS[plan]}`;
 }
 
 export async function GET(request: Request) {
   const plan = new URL(request.url).searchParams.get("plan");
+
+  if (plan === "ai" || plan === "ai-month") {
+    const url = AI_LINKS[plan];
+    if (url.startsWith("https://")) {
+      return NextResponse.redirect(url, 303);
+    }
+    const flag = plan === "ai" ? "ai" : "month";
+    return NextResponse.redirect(`https://www.russlaggan.com/ai-done?checkout=${flag}#checkout`, 303);
+  }
+
   if (plan !== "month" && plan !== "upfront") {
     return NextResponse.redirect(CANCEL, 303);
   }
