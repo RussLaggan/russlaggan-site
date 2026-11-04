@@ -1,17 +1,15 @@
-/* Best Known Brand 1-Month Buildout page. Scoped to .bkb so it can't touch other pages. */
+/* Scoped helpers for the AI Done page. Visual system stays in build.css. */
 .bkb [id] { scroll-margin-top: 88px; }
 .bkb .bkb-buy { display: inline-flex; margin: 0; }
 .bkb .bkb-buy .btn { cursor: pointer; font-family: inherit; }
 .bkb .hero-actions .btn { min-height: 44px; }
-.bkb .coach-hero .bkb-ghost { color: #fff; border-color: rgba(255, 255, 255, 0.7); }
-.bkb .coach-hero .bkb-ghost:hover { background: rgba(255, 255, 255, 0.1); }
-.bkb .bkb-fine { margin: 12px 0 0; font-size: 14px; color: rgba(255, 255, 255, 0.78); }
-.bkb .offer-pay .bkb-fine { color: #71717a; }
-.bkb .offer-card .label { color: rgba(255, 255, 255, 0.72); }
-.bkb .bkb-list { grid-template-columns: 1fr; }
-.bkb .bkb-note { margin: 22px 0 0; font-size: 14px; color: rgba(255, 255, 255, 0.7); }
+.bkb .coach-hero .btn.ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.bkb .coach-hero .btn.ghost:hover { background: rgba(255, 255, 255, 0.1); }
 .bkb .bkb-notice {
-  margin: 0 0 16px;
+  margin: 18px 0 0;
   padding: 14px 16px;
   border-radius: 12px;
   background: #fff7ed;
@@ -19,37 +17,10 @@
   color: #7c2d12;
   font-size: 15px;
 }
-
-.bkb .bkb-videos { align-items: start; }
-.bkb .bkb-caption { margin: 10px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
-
-.bkb .bkb-steps { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 16px; }
-.bkb .bkb-steps li { display: flex; gap: 18px; align-items: flex-start; }
-.bkb .bkb-num {
-  flex: none;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 22px;
-  font-weight: 600;
-  color: #ef5d17;
-  line-height: 1.2;
-}
-.bkb .bkb-steps .label { margin: 0; }
-
-.bkb .bkb-upgrade { border-radius: 16px; }
-.bkb .bkb-upgrade .bkb-list { grid-template-columns: 1fr 1fr; }
-
-.bkb .bkb-faq { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
-.bkb .bkb-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
-.bkb .bkb-faq summary::-webkit-details-marker { display: none; }
-.bkb .bkb-faq summary::after { content: "+"; flex: none; font-size: 24px; line-height: 1; color: #ef5d17; }
-.bkb .bkb-faq details[open] summary::after { content: "\2212"; }
-.bkb .bkb-faq summary h3 { margin: 0; font-size: 18px; }
-.bkb .bkb-faq details p { margin-top: 12px; }
-
-.bkb .bkb-final h2 { margin: 10px 0 14px; }
+.bkb .panel .video-frame { margin-top: 0; border-radius: 12px; }
+.bkb .panel h3 { margin-top: 16px; }
 
 @media (max-width: 860px) {
-  .bkb .bkb-upgrade .bkb-list { grid-template-columns: 1fr; }
   .bkb .hero-actions { flex-direction: column; align-items: stretch; }
   .bkb .hero-actions .bkb-buy,
   .bkb .hero-actions .bkb-buy .btn { width: 100%; }

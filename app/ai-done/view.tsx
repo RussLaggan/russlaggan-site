@@ -5,7 +5,11 @@ import { faq } from "./faq";
 function Check() {
   return (
     <svg viewBox="0 0 20 20" width="22" height="22" fill="currentColor" aria-hidden="true">
-      <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd"></path>
+      <path
+        fillRule="evenodd"
+        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+        clipRule="evenodd"
+      />
     </svg>
   );
 }
@@ -56,8 +60,8 @@ const FOR = [
     body: "You close deals. You want Claude handling the work that eats your week, and a website and social presence you can run yourself.",
   },
   {
-    label: "Lending and CPA",
-    title: "Mortgage lenders, brokers, and CPA firms",
+    label: "Lending",
+    title: "Mortgage lenders and brokers",
     body: "Learn to use Claude for your website, your Google Business Profile, and your social content.",
   },
   {
@@ -82,44 +86,74 @@ export function PageView() {
             </p>
             <div className="hero-actions">
               <BuyButton label="Start the buildout · $4,500" />
-              <a className="btn ghost bkb-ghost" href="#included">
+              <a className="btn ghost" href="#included">
                 See what's included
               </a>
             </div>
-            <p className="bkb-fine">One payment. No subscription. The website is yours.</p>
+            <p className="lede" style={{ marginTop: "16px", color: "rgba(255,255,255,.78)", fontSize: "15px" }}>
+              One payment. No subscription. The website is yours.
+            </p>
           </div>
-          <img className="coach-shot" src="/images/russ-point.webp" alt="Russ Laggan" fetchPriority="high" />
+          <img
+            className="coach-shot"
+            src="/images/russ-whiteboard.webp"
+            alt="Russ Laggan at the whiteboard"
+            fetchPriority="high"
+          />
         </div>
       </section>
 
+      <section className="section">
+        <div className="wrap">
+          <p className="label">Real world results</p>
+          <div className="cards">
+            <article className="offer-card proof-card pop-vest">
+              <div className="stat">1,692</div>
+              <p>Agents recruited in 12 months. A recruiting engine, at 5.8 per person.</p>
+            </article>
+            <article className="offer-card proof-card pop-vest">
+              <div className="stat">28</div>
+              <p>Offices managed. Each one a team, with its own leader.</p>
+            </article>
+            <article className="offer-card proof-card pop-vest">
+              <div className="stat">$970M</div>
+              <p>Closed volume in 2017, across those offices.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-      <section className="section" style={{ paddingTop: "0" }}>
+      <section className="section" style={{ paddingTop: 0 }}>
         <div className="wrap">
           <p className="label">Watch</p>
           <h2>Russ on who AI says is best.</h2>
-          <div className="cards two bkb-videos">
-            <div>
+          <div className="cards two">
+            <article className="panel">
               <YouTube id="NP8GTmC4AKQ" title="Who Does AI Say Is the Best Agent in Your Town? The 5 Layers of AI" />
-              <p className="bkb-caption">Who Does AI Say Is the Best Agent in Your Town? The 5 Layers of AI</p>
-            </div>
-            <div>
+              <h3>Who Does AI Say Is the Best Agent in Your Town?</h3>
+              <p>The 5 Layers of AI.</p>
+            </article>
+            <article className="panel">
               <YouTube id="4NdYxezxLgw" title="AI for Real Estate Agents: Why You Keep Getting Stuck, and the Fix" />
-              <p className="bkb-caption">AI for Real Estate Agents: Why You Keep Getting Stuck, and the Fix</p>
-            </div>
+              <h3>Why you keep getting stuck</h3>
+              <p>AI for real estate agents, and the fix.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section className="section" id="included" style={{ paddingTop: "0" }}>
-        <div className="wrap" id="buildout">
+      <section className="section" id="included" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <p className="label">The buildout</p>
+          <h2>One month. One payment.</h2>
           <CheckoutNotice />
           <div className="offer-shell">
             <div className="offer-card">
               <h2 className="offer-title" style={{ fontSize: "32px", margin: "0" }}>
                 1-Month AI Buildout
               </h2>
-              <p>Claude, your website, and HighLevel, set up with you in one month.</p>
-              <ul className="offer-list results bkb-list">
+              <p>Claude, your website, and HighLevel, set up with you.</p>
+              <ul className="offer-list results">
                 {INCLUDED.map((item) => (
                   <li key={item}>
                     <Check />
@@ -127,8 +161,8 @@ export function PageView() {
                   </li>
                 ))}
               </ul>
-              <h3 style={{ marginTop: "22px" }}>What you provide</h3>
-              <ul className="offer-list bkb-list">
+              <h3 style={{ marginTop: "28px" }}>What you provide</h3>
+              <ul className="offer-list results">
                 {PROVIDE.map((item) => (
                   <li key={item}>
                     <Check />
@@ -141,10 +175,11 @@ export function PageView() {
               <p style={{ color: "#71717a" }}>One month, paid once</p>
               <p className="big">$4,500</p>
               <p>one time</p>
+              <p style={{ marginTop: "8px", color: "#71717a" }}>No subscription.</p>
               <div style={{ marginTop: "22px" }}>
                 <BuyButton />
               </div>
-              <p className="bkb-fine" style={{ marginTop: "14px" }}>
+              <p style={{ marginTop: "14px", color: "#71717a", fontSize: "14px" }}>
                 The website is yours. Secure checkout by Stripe.
               </p>
             </div>
@@ -156,22 +191,19 @@ export function PageView() {
         <div className="wrap" style={{ maxWidth: "760px" }}>
           <p className="label">How it works</p>
           <h2>From checkout to running in a month.</h2>
-          <ol className="bkb-steps">
-            {STEPS.map((step, index) => (
-              <li key={step.title} className="lattice-card">
-                <span className="bkb-num">{String(index + 1).padStart(2, "0")}</span>
-                <div>
-                  <p className="label">{step.when}</p>
-                  <h3>{step.title}</h3>
-                  <p>{step.body}</p>
-                </div>
-              </li>
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "28px" }}>
+            {STEPS.map((step) => (
+              <article key={step.title} className="lattice-card">
+                <p className="label">{step.when}</p>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </article>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: "0" }}>
+      <section className="section" style={{ paddingTop: 0 }}>
         <div className="wrap">
           <p className="label">Who it's for</p>
           <h2>Business owners ready to put AI to work.</h2>
@@ -187,10 +219,12 @@ export function PageView() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: "0" }}>
+      <section className="section" style={{ paddingTop: 0 }}>
         <div className="wrap">
-          <div className="offer-card proof-card bkb-upgrade">
-            <p className="label">After the buildout</p>
+          <article className="offer-card proof-card pop-vest">
+            <p className="label" style={{ color: "rgba(255,255,255,.72)" }}>
+              After the buildout
+            </p>
             <h2 className="offer-title" style={{ fontSize: "32px", margin: "10px 0 0" }}>
               Keep going with the twelve-month plan.
             </h2>
@@ -202,7 +236,7 @@ export function PageView() {
                 Is your market open?
               </a>
             </p>
-          </div>
+          </article>
         </div>
       </section>
 
@@ -210,27 +244,24 @@ export function PageView() {
         <div className="wrap" style={{ maxWidth: "760px" }}>
           <p className="label">Questions</p>
           <h2>What people are asking.</h2>
-          <div className="bkb-faq">
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "28px" }}>
             {faq.map((item) => (
-              <details key={item.q} className="lattice-card">
-                <summary>
-                  <h3>{item.q}</h3>
-                </summary>
+              <article key={item.q} className="lattice-card">
+                <h3>{item.q}</h3>
                 <p>{item.a}</p>
-              </details>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: "0" }}>
+      <section className="section" style={{ paddingTop: 0 }}>
         <div className="wrap" style={{ maxWidth: "760px" }}>
-          <div className="lattice-card bkb-final">
+          <article className="lattice-card">
             <p className="label">Start this month</p>
-            <h2>Get AI done in your business this month.</h2>
+            <h2 style={{ margin: "10px 0 14px" }}>Get AI done in your business this month.</h2>
             <p>
-              Russ Laggan has been in real estate since he was licensed at 33 in 2005, and became a broker at 36 in 2008.
-              He wrote Be Followable. He works one-on-one with you to set up Claude and train you to use it.
+              Russ Laggan has been in real estate since he was licensed at 33 in 2005, and became a broker at 36 in 2008. He wrote Be Followable. He works one-on-one with you to set up Claude and train you to use it.
             </p>
             <div className="hero-actions">
               <BuyButton label="Start the buildout · $4,500" />
@@ -238,7 +269,7 @@ export function PageView() {
                 Ask Russ a question
               </a>
             </div>
-          </div>
+          </article>
         </div>
       </section>
     </div>
