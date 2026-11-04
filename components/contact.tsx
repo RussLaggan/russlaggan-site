@@ -20,6 +20,14 @@ const CHOICES = [
     name: "Fractional CRO",
     blurb: "Get Russ as a fractional chief revenue officer for your organization to drive growth.",
   },
+  {
+    name: "Consulting",
+    blurb: "A 30-minute assessment. Stop the bleeding and leave with a plan you can run.",
+  },
+  {
+    name: "AI Done",
+    blurb: "One-to-one AI setup. Three 90-minute sessions. $4,500.",
+  },
 ];
 
 function Req() {

@@ -4,9 +4,11 @@ import { site } from "@/site";
 const paths = [
   "/",
   "/about",
+  "/ai-done",
   "/articles",
   "/attraction-advantage",
   "/author",
+  "/best-known-brand",
   "/coaching",
   "/coffee-mug-test",
   "/consulting",
