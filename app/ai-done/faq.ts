@@ -13,7 +13,7 @@ export const faq = [
   },
   {
     q: "Who is it for?",
-    a: "Real estate agents and teams, mortgage lenders and brokers, CPA firms, and personal brands who want to put Claude to work in their business.",
+    a: "Real estate agents and teams, mortgage lenders and brokers, and personal brands who want to put Claude to work in their business.",
   },
   {
     q: "How do I pay?",
