@@ -82,7 +82,7 @@ export function PageView() {
               Put AI to work in your <em>business.</em>
             </h1>
             <p className="lede">
-              In one month, we set up Claude with you, build out or optimize your website together, set up HighLevel for your social posting, and train you to run it yourself.
+              We optimize and build out your AI together, to serve you and save you time.
             </p>
             <div className="hero-actions">
               <BuyButton label="Start the buildout · $4,500" />
