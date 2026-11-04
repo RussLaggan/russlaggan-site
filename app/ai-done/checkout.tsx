@@ -2,9 +2,16 @@
 
 import { useEffect, useState } from "react";
 
-export function BuyButton({ label = "Start the buildout" }: { label?: string }) {
+export function BuyButton({
+  label = "Start the buildout",
+  plan = "buildout",
+}: {
+  label?: string;
+  plan?: "buildout" | "monthly";
+}) {
   return (
     <form action="/api/bkb-checkout" method="post" className="bkb-buy">
+      <input type="hidden" name="plan" value={plan} />
       <button className="btn" type="submit">
         {label}
       </button>
