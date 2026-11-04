@@ -17,7 +17,7 @@ function Check() {
 const INCLUDED = [
   "Four 45-minute one-on-one training sessions",
   "Claude desktop app installed, with instruction on Claude Cowork and Claude Code",
-  "A website build-out or optimization done together in working sessions, with training on doing it yourself with Claude. The website is yours.",
+  "A website build-out or optimization done together in working sessions, with training on doing it yourself with Claude. The system is yours.",
   "A HighLevel sub-account for social media posting",
   "Training on setting up and optimizing your Google Business Profile using Claude",
   "Training on using Claude Code to edit video",
@@ -91,7 +91,7 @@ export function PageView() {
               </a>
             </div>
             <p className="lede" style={{ marginTop: "16px", color: "rgba(255,255,255,.78)", fontSize: "15px" }}>
-              One payment. No subscription. The website is yours.
+              One payment, no subscription. The system is yours.
             </p>
           </div>
           <img
@@ -180,7 +180,7 @@ export function PageView() {
                 <BuyButton />
               </div>
               <p style={{ marginTop: "14px", color: "#71717a", fontSize: "14px" }}>
-                The website is yours. Secure checkout by Stripe.
+                The system is yours. Secure checkout by Stripe.
               </p>
             </div>
           </div>
