@@ -5,7 +5,7 @@ export const faq = [
   },
   {
     q: "Who owns the website?",
-    a: "You do. The website we build during your month is yours.",
+    a: "You do. The system we build with you during your month is yours.",
   },
   {
     q: "What do I need to provide?",
