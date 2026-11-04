@@ -27,7 +27,7 @@ export default function Image() {
             Put AI to work in your
           </div>
           <div style={{ display: "flex", fontSize: 76, fontWeight: 700, lineHeight: 1.02, letterSpacing: -2, color: "#ef5d17" }}>
-            recommend.
+            business.
           </div>
           <div style={{ display: "flex", marginTop: 28, fontSize: 30, opacity: 0.88 }}>
             1-Month AI Buildout. $4,500 one time.
