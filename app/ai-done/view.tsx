@@ -30,6 +30,14 @@ const PROVIDE = [
   "Time for the kickoff and the sessions",
 ];
 
+const MONTHLY = [
+  "One 90-minute training session each month, one-on-one or with a small group from your team",
+  "New skills, and anything you want to try but don't know how to do yet",
+  "Continual skill updates for your AI, including Claude and Grok",
+  "Best practices as AI changes, so you stay up to speed",
+  "Email support for maintenance and technical issues, with a quick call when something needs fixing",
+];
+
 const STEPS = [
   {
     when: "Today",
@@ -181,6 +189,43 @@ export function PageView() {
               </div>
               <p style={{ marginTop: "14px", color: "#71717a", fontSize: "14px" }}>
                 The system is yours. Secure checkout by Stripe.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="monthly" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <p className="label">Ai Done Monthly</p>
+          <h2>Keep growing after the buildout.</h2>
+          <div className="offer-shell">
+            <div className="offer-card">
+              <h2 className="offer-title" style={{ fontSize: "32px", margin: "0" }}>
+                Ai Done Monthly
+              </h2>
+              <p>
+                Ongoing training and development that empowers you to take your AI to the next level, every month. Not just maintenance.
+              </p>
+              <ul className="offer-list results">
+                {MONTHLY.map((item) => (
+                  <li key={item}>
+                    <Check />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="offer-pay">
+              <p style={{ color: "#71717a" }}>Ongoing, month to month</p>
+              <p className="big">$497</p>
+              <p>per month</p>
+              <p style={{ marginTop: "8px", color: "#71717a" }}>Cancel anytime.</p>
+              <div style={{ marginTop: "22px" }}>
+                <BuyButton plan="monthly" label="Start Ai Done Monthly" />
+              </div>
+              <p style={{ marginTop: "14px", color: "#71717a", fontSize: "14px" }}>
+                Secure checkout by Stripe.
               </p>
             </div>
           </div>
