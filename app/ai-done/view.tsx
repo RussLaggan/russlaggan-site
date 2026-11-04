@@ -158,7 +158,7 @@ export function PageView() {
           <div className="offer-shell">
             <div className="offer-card">
               <h2 className="offer-title" style={{ fontSize: "32px", margin: "0" }}>
-                1-Month AI Buildout
+                Ai Done For You
               </h2>
               <p>Claude, your website, and HighLevel, set up with you.</p>
               <ul className="offer-list results">
