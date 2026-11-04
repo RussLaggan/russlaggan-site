@@ -24,6 +24,10 @@ export const faq = [
     a: "You get a Stripe receipt by email, and we reach out within 1 business day to book your kickoff.",
   },
   {
+    q: "What is Ai Done Monthly?",
+    a: "Ongoing AI training and development for $497 a month, cancel anytime. Each month you get one 90-minute training session, one-on-one or with a small group from your team, continual skill updates for your AI, including Claude and Grok, best practices as AI changes, and email support for maintenance and technical issues, with a quick call when something needs fixing.",
+  },
+  {
     q: "Can I move to the twelve-month program?",
     a: "Yes. At the end of the month, you decide whether to continue with the twelve-month plan.",
   },
