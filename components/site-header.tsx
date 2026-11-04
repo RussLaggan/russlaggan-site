@@ -61,6 +61,12 @@ export function SiteHeader() {
           <a href="/trainer" onClick={close}>
             Trainer
           </a>
+          <a href="/consulting" onClick={close}>
+            Consulting
+          </a>
+          <a href="/ai-done" onClick={close}>
+            AI Done
+          </a>
           <a href="/about" onClick={close}>
             About
           </a>
