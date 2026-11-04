@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 // Best Known Brand 1-Month Buildout: one payment of $4,500.
 // The price lives in Stripe (Laggan Holdings LLC). STRIPE_PRICE_BKB_BUILDOUT overrides the default.
 const DEFAULT_PRICE = "price_1UWgXCKFIl1mC1gNnJ7IL9tO";
-const PAGE = "/best-known-brand";
+const PAGE = "/ai-done";
 
 function back(origin: string, reason: string) {
   return NextResponse.redirect(`${origin}${PAGE}?checkout=${reason}#buildout`, 303);
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
       payment_intent_data: { metadata: { program: "bkb_buildout_1mo" } },
       custom_text: {
         submit: {
-          message: "One payment for Best Known Brand: 1-Month Buildout. We'll reach out within 1 business day to book your kickoff.",
+          message: "One payment for AI Done: 1-Month AI Buildout. We'll reach out within 1 business day to book your kickoff.",
         },
       },
     });
