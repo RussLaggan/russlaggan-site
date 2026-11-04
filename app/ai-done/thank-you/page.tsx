@@ -6,7 +6,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ plan?: string }>;
+}) {
+  const { plan } = await searchParams;
+  const monthly = plan === "monthly";
   return (
     <div className="field">
       <section className="section" style={{ paddingTop: "72px", paddingBottom: "96px" }}>
@@ -14,13 +20,19 @@ export default function Page() {
           <p className="label">Payment received</p>
           <h1>You're in.</h1>
           <p className="lede">
-            Your 1-Month AI Buildout is paid. We'll reach out within 1 business day to book your kickoff.
+            {monthly
+              ? "Your Ai Done Monthly subscription is active. We'll reach out within 1 business day to book your first session."
+              : "Your 1-Month AI Buildout is paid. We'll reach out within 1 business day to book your kickoff."}
           </p>
           <div className="lattice-card" style={{ marginTop: "28px" }}>
             <h3>What happens next</h3>
             <ol style={{ margin: "8px 0 0", paddingLeft: "20px", color: "var(--muted)", lineHeight: 1.6 }}>
               <li>Watch your email for your Stripe receipt.</li>
-              <li>We reach out within 1 business day to book your kickoff.</li>
+              <li>
+                {monthly
+                  ? "We reach out within 1 business day to book your first session."
+                  : "We reach out within 1 business day to book your kickoff."}
+              </li>
             </ol>
           </div>
           <p style={{ marginTop: "28px" }}>
