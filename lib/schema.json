@@ -1,1 +1,260 @@
-{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://www.russlaggan.com/#website", "url": "https://www.russlaggan.com/", "name": "Russ Laggan", "description": "Speaker, author, coach, and consultant.", "publisher": {"@id": "https://bestknownbrand.com/#organization"}, "inLanguage": "en-US", "about": {"@id": "https://www.russlaggan.com/#person"}, "copyrightHolder": {"@id": "https://www.russlaggan.com/#person"}}, {"@type": "Person", "@id": "https://www.russlaggan.com/#person", "name": "Russ Laggan", "alternateName": "Russell Laggan", "url": "https://www.russlaggan.com/", "image": "https://www.russlaggan.com/images/russ-home.webp", "jobTitle": ["Speaker, author, coach, and consultant", "Co-founder and Fractional Chief Revenue Officer"], "worksFor": {"@id": "https://bestknownbrand.com/#organization"}, "description": "Russ Laggan is a speaker, author, coach, and consultant. He is a co-founder and fractional chief revenue officer of Best Known Brand LLC. He wrote Be Followable.", "sameAs": ["https://www.youtube.com/@russlagganvest", "https://www.instagram.com/russ_laggan/", "https://www.amazon.com/Be-Followable-Russ-Laggan/dp/B0F716F6W9", "https://podcasts.apple.com/podcast/russ-laggan-show/id1875459627", "https://open.spotify.com/show/2YbedmhUEtYu2gPWSCBKYg"], "knowsAbout": ["speaking", "coaching", "leadership", "followability"]}, {"@type": "Book", "@id": "https://www.russlaggan.com/#be-followable", "name": "Be Followable", "alternateName": "The Leader's Guide to Inspiring Others and Building Lasting Impact", "author": {"@id": "https://www.russlaggan.com/#person"}, "isbn": "9798305089226", "bookFormat": "https://schema.org/Paperback", "inLanguage": "en", "image": "https://www.russlaggan.com/images/be-followable.webp", "url": "https://www.amazon.com/Be-Followable-Russ-Laggan/dp/B0F716F6W9"}, {"@type": "Organization", "@id": "https://bestknownbrand.com/#organization", "name": "Best Known Brand", "legalName": "Best Known Brand LLC", "url": "https://bestknownbrand.com/", "logo": {"@type": "ImageObject", "@id": "https://bestknownbrand.com/#logo", "url": "https://bestknownbrand.com/brand/bestknown-wordmark.png"}}]}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.russlaggan.com/#website",
+      "url": "https://www.russlaggan.com/",
+      "name": "Russ Laggan",
+      "description": "Speaker, author, coach, and consultant.",
+      "publisher": {
+        "@id": "https://bestknownbrand.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "about": {
+        "@id": "https://www.russlaggan.com/#person"
+      },
+      "copyrightHolder": {
+        "@id": "https://www.russlaggan.com/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.russlaggan.com/#person",
+      "name": "Russ Laggan",
+      "alternateName": "Russell Laggan",
+      "url": "https://www.russlaggan.com/",
+      "image": "https://www.russlaggan.com/images/russ-home.webp",
+      "jobTitle": [
+        "Speaker, author, coach, and consultant",
+        "Co-founder and Fractional Chief Revenue Officer"
+      ],
+      "worksFor": {
+        "@id": "https://bestknownbrand.com/#organization"
+      },
+      "description": "Russ Laggan is a speaker, author, coach, and consultant. He is a co-founder and fractional chief revenue officer of Best Known Brand LLC. He wrote Be Followable.",
+      "sameAs": [
+        "https://www.youtube.com/@russlagganvest",
+        "https://www.instagram.com/russ_laggan/",
+        "https://open.spotify.com/show/2YbedmhUEtYu2gPWSCBKYg",
+        "https://podcasts.apple.com/us/podcast/the-russ-laggan-podcast/id1875459627",
+        "https://www.linkedin.com/in/rlaggan",
+        "https://x.com/RussLaggan",
+        "https://www.facebook.com/rlaggan",
+        "https://www.inman.com/author/russ-laggan/"
+      ],
+      "knowsAbout": [
+        "speaking",
+        "coaching",
+        "leadership",
+        "followability"
+      ],
+      "workExample": [
+        {
+          "@type": "Article",
+          "@id": "https://www.inman.com/2024/07/03/assessing-and-transforming-your-business-at-every-stage/",
+          "headline": "How to assess — and transform — your business at every stage",
+          "url": "https://www.inman.com/2024/07/03/assessing-and-transforming-your-business-at-every-stage/",
+          "mainEntityOfPage": "https://www.inman.com/2024/07/03/assessing-and-transforming-your-business-at-every-stage/",
+          "datePublished": "2024-07-03",
+          "author": {
+            "@id": "https://www.russlaggan.com/#person"
+          },
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Inman"
+          }
+        },
+        {
+          "@type": "Article",
+          "@id": "https://www.inman.com/2024/07/29/is-there-a-right-way-to-dress-professional-in-real-estate/",
+          "headline": "Is there a right way to dress as a real estate professional?",
+          "url": "https://www.inman.com/2024/07/29/is-there-a-right-way-to-dress-professional-in-real-estate/",
+          "mainEntityOfPage": "https://www.inman.com/2024/07/29/is-there-a-right-way-to-dress-professional-in-real-estate/",
+          "datePublished": "2024-07-29",
+          "author": {
+            "@id": "https://www.russlaggan.com/#person"
+          },
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Inman"
+          }
+        },
+        {
+          "@id": "https://www.russlaggan.com/#podcast"
+        }
+      ],
+      "subjectOf": [
+        {
+          "@type": "NewsArticle",
+          "@id": "https://www.inman.com/2024/08/02/questions-and-answers-its-inmans-top-5-stories-of-the-week/",
+          "url": "https://www.inman.com/2024/08/02/questions-and-answers-its-inmans-top-5-stories-of-the-week/"
+        },
+        {
+          "@type": "NewsArticle",
+          "@id": "https://www.inman.com/2024/04/30/exp-eyes-growth-with-leadership-team-shuffle/",
+          "url": "https://www.inman.com/2024/04/30/exp-eyes-growth-with-leadership-team-shuffle/"
+        },
+        {
+          "@type": "NewsArticle",
+          "@id": "https://www.housingwire.com/articles/exp-realty-makes-changes-to-its-executive-team/",
+          "url": "https://www.housingwire.com/articles/exp-realty-makes-changes-to-its-executive-team/"
+        },
+        {
+          "@type": "NewsArticle",
+          "@id": "https://www.inman.com/2023/11/29/the-2023-word-of-the-year-is-authentic-but-what-does-it-mean/",
+          "url": "https://www.inman.com/2023/11/29/the-2023-word-of-the-year-is-authentic-but-what-does-it-mean/"
+        },
+        {
+          "@type": "NewsArticle",
+          "@id": "https://www.inman.com/2015/10/24/the-week-in-industry-hires-and-promotions-oct-19-23-2015/",
+          "url": "https://www.inman.com/2015/10/24/the-week-in-industry-hires-and-promotions-oct-19-23-2015/"
+        },
+        {
+          "@type": "NewsArticle",
+          "@id": "https://www.rismedia.com/2015/10/21/carrington-real-estate-services-promotes-new-regional-vice-presidents/",
+          "url": "https://www.rismedia.com/2015/10/21/carrington-real-estate-services-promotes-new-regional-vice-presidents/"
+        },
+        {
+          "@type": "NewsArticle",
+          "@id": "https://www.prnewswire.com/news-releases/carrington-real-estate-services-names-new-regional-vice-presidents-to-oversee-its-northeast-and-southeast-operations-300163634.html",
+          "url": "https://www.prnewswire.com/news-releases/carrington-real-estate-services-names-new-regional-vice-presidents-to-oversee-its-northeast-and-southeast-operations-300163634.html"
+        },
+        {
+          "@type": "PodcastEpisode",
+          "@id": "https://womenwhorisesuccesspodcast.podbean.com/e/former-exp-realty-executive-on-leading-yourself-first-russ-laggan/",
+          "url": "https://womenwhorisesuccesspodcast.podbean.com/e/former-exp-realty-executive-on-leading-yourself-first-russ-laggan/",
+          "partOfSeries": {
+            "@type": "PodcastSeries",
+            "name": "Women Who Rise: The Success Podcast for Ambitious Women"
+          }
+        },
+        {
+          "@type": "PodcastEpisode",
+          "@id": "https://podcast.austincheviron.com/21",
+          "url": "https://podcast.austincheviron.com/21",
+          "partOfSeries": {
+            "@type": "PodcastSeries",
+            "name": "Winning Twice with Austin Cheviron"
+          }
+        },
+        {
+          "@type": "PodcastEpisode",
+          "@id": "https://xfactormarketing.transistor.fm/episodes/use-ai-to-free-up-time-to-be-a-better-human-russ-laggans-framework-for-real-estate-agents",
+          "url": "https://xfactormarketing.transistor.fm/episodes/use-ai-to-free-up-time-to-be-a-better-human-russ-laggans-framework-for-real-estate-agents",
+          "partOfSeries": {
+            "@type": "PodcastSeries",
+            "name": "X-Factor Marketing with Wendy Forsythe"
+          }
+        },
+        {
+          "@type": "PodcastEpisode",
+          "@id": "https://castro.fm/episode/OdECNj",
+          "url": "https://castro.fm/episode/OdECNj",
+          "partOfSeries": {
+            "@type": "PodcastSeries",
+            "name": "The Leverage Lounge"
+          }
+        },
+        {
+          "@type": "PodcastEpisode",
+          "@id": "https://www.podchaser.com/podcasts/simplified-home-sales-683453/episodes/ep8-russ-laggan-attract-busine-38273861",
+          "url": "https://www.podchaser.com/podcasts/simplified-home-sales-683453/episodes/ep8-russ-laggan-attract-busine-38273861",
+          "partOfSeries": {
+            "@type": "PodcastSeries",
+            "name": "Simplified Home Sales"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Book",
+      "@id": "https://www.russlaggan.com/#be-followable",
+      "name": "Be Followable",
+      "alternateName": "The Leader's Guide to Inspiring Others and Building Lasting Impact",
+      "author": {
+        "@id": "https://www.russlaggan.com/#person"
+      },
+      "isbn": "9798305089226",
+      "bookFormat": "https://schema.org/Paperback",
+      "inLanguage": "en",
+      "image": "https://www.russlaggan.com/images/be-followable.webp",
+      "url": "https://www.amazon.com/Be-Followable-Russ-Laggan/dp/B0F716F6W9"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://bestknownbrand.com/#organization",
+      "name": "Best Known Brand",
+      "legalName": "Best Known Brand LLC",
+      "url": "https://bestknownbrand.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://bestknownbrand.com/#logo",
+        "url": "https://bestknownbrand.com/brand/bestknown-wordmark.png"
+      }
+    },
+    {
+      "@type": "PodcastSeries",
+      "@id": "https://www.russlaggan.com/#podcast",
+      "name": "The Russ Laggan Podcast",
+      "url": "https://www.russlaggan.com/podcast",
+      "description": "Join host Russ Laggan as he explores the human side of leadership, woodworking, grilling, team building, and being followable.",
+      "image": "https://www.russlaggan.com/images/russ-laggan-podcast.jpg",
+      "author": {
+        "@id": "https://www.russlaggan.com/#person"
+      },
+      "webFeed": "https://feeds.transistor.fm/russ-laggan-show",
+      "inLanguage": "en",
+      "datePublished": "2026-02-06",
+      "sameAs": [
+        "https://podcasts.apple.com/us/podcast/the-russ-laggan-podcast/id1875459627",
+        "https://open.spotify.com/show/2YbedmhUEtYu2gPWSCBKYg",
+        "https://russlaggan.transistor.fm/"
+      ],
+      "hasPart": [
+        {
+          "@type": "PodcastEpisode",
+          "@id": "https://russlaggan.transistor.fm/1",
+          "name": "Don Hobbs",
+          "url": "https://russlaggan.transistor.fm/1",
+          "datePublished": "2026-02-06",
+          "duration": "PT50M1S",
+          "author": {
+            "@id": "https://www.russlaggan.com/#person"
+          },
+          "partOfSeries": {
+            "@id": "https://www.russlaggan.com/#podcast"
+          }
+        },
+        {
+          "@type": "PodcastEpisode",
+          "@id": "https://russlaggan.transistor.fm/2",
+          "name": "Joshua & Russ",
+          "url": "https://russlaggan.transistor.fm/2",
+          "datePublished": "2026-02-06",
+          "duration": "PT57M23S",
+          "author": {
+            "@id": "https://www.russlaggan.com/#person"
+          },
+          "partOfSeries": {
+            "@id": "https://www.russlaggan.com/#podcast"
+          }
+        },
+        {
+          "@type": "PodcastEpisode",
+          "@id": "https://russlaggan.transistor.fm/3",
+          "name": "Scott Clary",
+          "url": "https://russlaggan.transistor.fm/3",
+          "datePublished": "2026-02-06",
+          "duration": "PT53M10S",
+          "author": {
+            "@id": "https://www.russlaggan.com/#person"
+          },
+          "partOfSeries": {
+            "@id": "https://www.russlaggan.com/#podcast"
+          }
+        }
+      ]
+    }
+  ]
+}

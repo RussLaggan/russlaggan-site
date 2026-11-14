@@ -48,6 +48,11 @@ const SITE_PHOTO = {
   alt: "Russ Laggan at the whiteboard",
 };
 
+const VIDEO_ALT: Record<string, string> = {
+  NP8GTmC4AKQ: "Who Does AI Say Is the Best Agent in Your Town? The 5 Layers of AI",
+  "4NdYxezxLgw": "AI for Real Estate Agents: Why You Keep Getting Stuck, and the Fix",
+};
+
 const SITE_BIO =
   "Russ Laggan has been in real estate since he was licensed at 33 in 2005, and became a broker at 36 in 2008. He wrote Be Followable. He works one-on-one with you to set up Claude and train you to use it.";
 
@@ -104,7 +109,7 @@ export function PageView() {
           <div className="cards two">
             {VIDEOS.items.map((item) => (
               <article key={item.id} className="panel">
-                <YouTube id={item.id} title={item.title} />
+                <YouTube id={item.id} title={item.title} alt={VIDEO_ALT[item.id] ?? ""} />
                 <h3>{item.title}</h3>
                 <p>{item.caption}</p>
               </article>
