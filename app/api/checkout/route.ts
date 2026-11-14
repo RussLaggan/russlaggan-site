@@ -4,8 +4,7 @@ import Stripe from "stripe";
 export const runtime = "nodejs";
 
 const SLUGS = {
-  month: "8x25kE1vxcUw3vng416J200",
-  upfront: "cNi9AU0rtbQs0jb8Bz6J201",
+  month: "8x228s0rtf2Ec1T5pn6J204",
 } as const;
 
 const SUCCESS = "https://www.russlaggan.com/thank-you?session_id={CHECKOUT_SESSION_ID}";
@@ -16,8 +15,8 @@ const AI_LINKS = {
   "ai-month": process.env.STRIPE_LINK_AI_MONTH || "",
 } as const;
 
-function stripeLink(plan: keyof typeof SLUGS) {
-  return `https://buy.stripe.com/${SLUGS[plan]}`;
+function stripeLink() {
+  return `https://buy.stripe.com/${SLUGS.month}`;
 }
 
 export async function GET(request: Request) {
@@ -32,20 +31,23 @@ export async function GET(request: Request) {
     return NextResponse.redirect(`https://www.russlaggan.com/ai-done?checkout=${flag}#checkout`, 303);
   }
 
-  if (plan !== "month" && plan !== "upfront") {
+  // Upfront plan removed; fall back to the monthly 3-month coaching offer.
+  if (plan !== "month" && plan !== "upfront" && plan !== null && plan !== "") {
     return NextResponse.redirect(CANCEL, 303);
   }
 
   const secret = process.env.STRIPE_SECRET_KEY;
   if (!secret) {
-    return NextResponse.redirect(stripeLink(plan), 303);
+    // Payment Link path: the 3-payment end is enforced by the stripe-webhook schedule.
+    return NextResponse.redirect(stripeLink(), 303);
   }
 
   const stripe = new Stripe(secret);
   const listed = await stripe.paymentLinks.list({ limit: 100 });
-  const link = listed.data.find((item) => item.url.includes(SLUGS[plan]));
+  const link = listed.data.find((item) => item.url.includes(SLUGS.month));
   if (!link) {
-    return NextResponse.redirect(stripeLink(plan), 303);
+    // Payment Link path: the 3-payment end is enforced by the stripe-webhook schedule.
+    return NextResponse.redirect(stripeLink(), 303);
   }
 
   try {
@@ -67,6 +69,7 @@ export async function GET(request: Request) {
     return [{ price: priceId, quantity: item.quantity || 1 }];
   });
   if (!items.length) {
+    // Payment Link path: the 3-payment end is enforced by the stripe-webhook schedule.
     return NextResponse.redirect(link.url, 303);
   }
 
@@ -76,6 +79,8 @@ export async function GET(request: Request) {
   });
 
   try {
+    // Checkout Session subscription_data has no cancel_at; the 3-payment end
+    // is enforced by the stripe-webhook subscription schedule (iterations: 3).
     const session = await stripe.checkout.sessions.create({
       mode: recurring ? "subscription" : "payment",
       line_items: items,
@@ -87,8 +92,10 @@ export async function GET(request: Request) {
       return NextResponse.redirect(session.url, 303);
     }
   } catch {
+    // Payment Link path: the 3-payment end is enforced by the stripe-webhook schedule.
     return NextResponse.redirect(link.url, 303);
   }
 
+  // Payment Link path: the 3-payment end is enforced by the stripe-webhook schedule.
   return NextResponse.redirect(link.url, 303);
 }
