@@ -33,6 +33,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
+      <link rel="preload" as="image" href="/images/real-estate/hero-dusk.avif" fetchPriority="high" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(realEstateSchema) }} />
       <PageView />
     </>
