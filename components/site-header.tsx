@@ -70,6 +70,9 @@ export function SiteHeader() {
           <a href="/about" onClick={close}>
             About
           </a>
+          <a href="/podcast" onClick={close}>
+            Podcast
+          </a>
           <a href="https://www.bestknownbrand.com" target="_blank" rel="noopener noreferrer" onClick={close}>
             Branding
           </a>

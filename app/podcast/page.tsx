@@ -1,15 +1,27 @@
 import type { Metadata } from "next";
 import { PageView } from "./view";
 
+const title = "The Russ Laggan Podcast";
+const description =
+  "Join host Russ Laggan as he explores the human side of leadership, woodworking, grilling, team building, and being followable. On Apple and Spotify.";
+const url = "https://www.russlaggan.com/podcast";
+const image = "https://www.russlaggan.com/images/russ-laggan-podcast.jpg";
+
 export const metadata: Metadata = {
-  title: "The Russ Laggan Podcast",
-  description: "The Russ Laggan Podcast. Leadership, building a team, and being followable.",
-  alternates: { canonical: "https://www.russlaggan.com/podcast" },
+  title,
+  description,
+  alternates: { canonical: url },
   openGraph: {
-    title: "The Russ Laggan Podcast",
-    description: "The Russ Laggan Podcast. Leadership, building a team, and being followable.",
-    url: "https://www.russlaggan.com/podcast",
-    images: ["https://www.russlaggan.com/images/russ-home.webp"],
+    title,
+    description,
+    url,
+    images: [image],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [image],
   },
 };
 
