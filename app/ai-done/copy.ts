@@ -8,6 +8,15 @@
 export const SUBTITLE =
   "We work with whatever AI you already use and optimize it. Then we add workflows built on Grok and Claude, to serve you and save you time.";
 
+export const HOOK = {
+  questions: [
+    "Have you gotten started with AI but keep getting stuck?",
+    "Don't have a full system that's integrated, fully functional, and saving you time?",
+    "Feel like you keep beating your head against a brick wall?",
+  ],
+  answer: "We solve that.",
+};
+
 export const PAGE = {
   title: "AI Done: 12-Month Partnership",
   description:
