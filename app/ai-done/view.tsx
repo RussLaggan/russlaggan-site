@@ -5,7 +5,6 @@ import {
   BUILDOUT,
   CLOSER,
   HERO,
-  HOOK,
   INCLUDED,
   MARKET,
   ONGOING,
@@ -75,12 +74,7 @@ export function PageView() {
               <em>{HERO.titleEm}</em>
             </h1>
             <p className="lede">{SUBTITLE}</p>
-            <div className="bkb-hook">
-              {HOOK.questions.map((question) => (
-                <p key={question}>{question}</p>
-              ))}
-              <p className="bkb-hook-answer">{HOOK.answer}</p>
-            </div>
+            <p className="bkb-solve">{HERO.solve}</p>
             <div className="hero-actions">
               <BuyButton label={HERO.primaryCta} plan="partnership" />
               <a className="btn ghost" href="#options">
@@ -195,6 +189,7 @@ export function PageView() {
         <div className="wrap" style={{ maxWidth: "760px" }}>
           <p className="label">{STEPS.label}</p>
           <h2>{STEPS.title}</h2>
+          <p className="lede">{STEPS.intro}</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "28px" }}>
             {STEPS.items.map((step) => (
               <article key={step.title} className="lattice-card">
