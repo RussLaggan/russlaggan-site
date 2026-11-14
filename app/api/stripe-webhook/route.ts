@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { handleAiDoneStripeEvent } from "@/lib/ai-done-webhook";
 
 export const runtime = "nodejs";
 
@@ -30,6 +31,15 @@ export async function POST(request: Request) {
   } catch {
     console.error("stripe webhook signature failed");
     return NextResponse.json({ error: "invalid signature" }, { status: 400 });
+  }
+
+  if (
+    event.type === "checkout.session.completed" ||
+    event.type === "invoice.paid" ||
+    event.type === "invoice.payment_failed"
+  ) {
+    const handled = await handleAiDoneStripeEvent(stripe, event);
+    if (handled) return handled;
   }
 
   if (event.type !== "customer.subscription.created") {

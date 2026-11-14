@@ -1,34 +1,32 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { NOTICES } from "./copy";
 
 export function BuyButton({
-  label = "Start the buildout",
-  plan = "buildout",
+  label = "Start the 12-month partnership",
+  plan = "partnership",
+  variant = "solid",
 }: {
   label?: string;
-  plan?: "buildout" | "monthly";
+  plan?: "partnership" | "buildout";
+  variant?: "solid" | "ghost";
 }) {
   return (
     <form action="/api/bkb-checkout" method="post" className="bkb-buy">
       <input type="hidden" name="plan" value={plan} />
-      <button className="btn" type="submit">
+      <button className={variant === "ghost" ? "btn ghost" : "btn"} type="submit">
         {label}
       </button>
     </form>
   );
 }
 
-const NOTICES: Record<string, string> = {
-  cancelled: "Checkout was cancelled. Nothing was charged. Start again when you're ready.",
-  unavailable: "Checkout isn't open right now. Use Contact Russ and we'll send you a payment link.",
-};
-
 export function CheckoutNotice() {
   const [notice, setNotice] = useState("");
   useEffect(() => {
     const reason = new URLSearchParams(window.location.search).get("checkout") || "";
-    setNotice(NOTICES[reason] || "");
+    setNotice(NOTICES[reason as keyof typeof NOTICES] || "");
   }, []);
   if (!notice) return null;
   return (

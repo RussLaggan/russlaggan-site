@@ -1,35 +1,49 @@
 import type { Metadata } from "next";
+import { site } from "@/site";
+import { PAGE } from "./copy";
 import { faqSchema } from "./faq";
 import { PageView } from "./view";
 import "./bkb.css";
 
-const title = "AI Done: 1-Month AI Buildout | Russ Laggan";
-const description =
-  "A one-time $4,500, one-month AI buildout: four one-on-one sessions, Claude set up with you, your website built out together, and HighLevel for social posting.";
-const url = "https://www.russlaggan.com/ai-done";
+const title = `${PAGE.title} | ${site.name}`;
+const description = PAGE.description;
+const url = `${site.url}/ai-done`;
 
 export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: url },
-  openGraph: { title, description, url, type: "website", siteName: "Russ Laggan" },
+  openGraph: { title, description, url, type: "website", siteName: site.name },
   twitter: { card: "summary_large_image", title, description },
 };
 
 const offerSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "AI Done: 1-Month AI Buildout",
+  name: PAGE.title,
   serviceType: "AI setup and training",
   provider: { "@id": "https://bestknownbrand.com/#organization" },
   url,
   description,
-  offers: {
-    "@type": "Offer",
-    price: "4500",
-    priceCurrency: "USD",
-    url,
-  },
+  offers: [
+    {
+      "@type": "Offer",
+      name: "AI Done: 12-Month Partnership",
+      price: "2500",
+      priceCurrency: "USD",
+      url,
+      description:
+        "$2,500 today for month 1, then $497 a month for months 2 through 12. 12-month commitment. Ends after month 12.",
+    },
+    {
+      "@type": "Offer",
+      name: "AI Done: 1-Month Buildout",
+      price: "4500",
+      priceCurrency: "USD",
+      url,
+      description: "One payment of $4,500 for about 30 days of consulting and systems setup.",
+    },
+  ],
 };
 
 export default function Page() {
