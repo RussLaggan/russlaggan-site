@@ -4,7 +4,9 @@ import { handleAiDoneStripeEvent } from "@/lib/ai-done-webhook";
 
 export const runtime = "nodejs";
 
-const DEFAULT_PRICE = "price_1UN3qHKFIl1mC1gNrbJRX1UN";
+const DEFAULT_PRICE = "price_1UbpPOKFIl1mC1gNSYx6emd4";
+/** Coaching is three paid months, then the schedule cancels. */
+const COACHING_PAID_MONTHS = 3;
 
 function priceId() {
   return process.env.COACHING_MONTHLY_PRICE_ID || DEFAULT_PRICE;
@@ -68,7 +70,7 @@ export async function POST(request: Request) {
         {
           items: [{ price: monthly, quantity: 1 }],
           start_date: start,
-          iterations: 6,
+          iterations: COACHING_PAID_MONTHS,
         },
       ],
     });
