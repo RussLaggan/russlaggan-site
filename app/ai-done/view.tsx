@@ -5,6 +5,7 @@ import {
   BUILDOUT,
   CLOSER,
   HERO,
+  HOOK,
   INCLUDED,
   MARKET,
   ONGOING,
@@ -74,6 +75,12 @@ export function PageView() {
               <em>{HERO.titleEm}</em>
             </h1>
             <p className="lede">{SUBTITLE}</p>
+            <div className="bkb-hook">
+              {HOOK.questions.map((question) => (
+                <p key={question}>{question}</p>
+              ))}
+              <p className="bkb-hook-answer">{HOOK.answer}</p>
+            </div>
             <div className="hero-actions">
               <BuyButton label={HERO.primaryCta} plan="partnership" />
               <a className="btn ghost" href="#options">
