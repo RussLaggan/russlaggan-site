@@ -85,6 +85,8 @@ export const PROVIDE = [
 export const STEPS = {
   label: "How it works",
   title: "From checkout to a year, or to the end of the month.",
+  intro:
+    "We work with whatever AI you already use and optimize it. Then we build in Claude and Grok workflows to serve you and save you time.",
   items: [
     {
       when: "Today",

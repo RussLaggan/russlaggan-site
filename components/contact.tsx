@@ -26,7 +26,8 @@ const CHOICES = [
   },
   {
     name: "AI Done",
-    blurb: "One-to-one AI setup. Three 90-minute sessions. $4,500.",
+    blurb:
+      "The 1-month buildout is $4,500, paid once. Or choose the 12-month partnership: $2,500 today, then $497 a month for months 2 through 12.",
   },
 ];
 

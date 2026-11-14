@@ -189,6 +189,7 @@ export function PageView() {
         <div className="wrap" style={{ maxWidth: "760px" }}>
           <p className="label">{STEPS.label}</p>
           <h2>{STEPS.title}</h2>
+          <p className="lede">{STEPS.intro}</p>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "28px" }}>
             {STEPS.items.map((step) => (
               <article key={step.title} className="lattice-card">
