@@ -16,6 +16,7 @@ const paths = [
   "/legacy",
   "/podcast",
   "/points",
+  "/real-estate",
   "/speaking",
   "/sphere-and-lead-generation",
   "/three-recipes",

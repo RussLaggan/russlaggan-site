@@ -1,0 +1,106 @@
+.re-page {
+  --re-display: clamp(28px, 3.5vw, 44px);
+}
+
+.re-page .re-hero.section {
+  padding: 20px 0 8px;
+}
+
+.re-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(200px, 0.72fr);
+  gap: 28px 40px;
+  align-items: start;
+}
+
+.field.re-page h1.re-name,
+.re-page .re-broker {
+  margin: 0;
+  font-size: var(--re-display);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  font-weight: 650;
+  color: #18181b;
+}
+
+.re-page .re-broker {
+  margin-top: 10px;
+}
+
+.re-page .re-disclosure {
+  margin: 12px 0 0;
+  max-width: 40rem;
+  color: #18181b;
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.re-page .re-hero .lede {
+  margin-top: 14px;
+}
+
+.re-page .re-portrait {
+  width: 100%;
+  max-height: 520px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.re-page .section h2 {
+  font-size: clamp(22px, 2.4vw, 32px);
+}
+
+.re-page .re-cities,
+.re-page .re-profiles {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px 20px;
+}
+
+.re-page .re-cities {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.re-page .re-cities li {
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.re-page .re-profiles {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.re-page a.re-text {
+  color: #1a4e8c;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.re-page a.re-text:hover {
+  color: #ef5d17;
+}
+
+.re-page .re-also {
+  margin-top: 28px;
+}
+
+@media (max-width: 860px) {
+  .re-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .re-page .re-portrait {
+    width: min(100%, 220px);
+    max-height: 280px;
+  }
+
+  .re-page .re-cities,
+  .re-page .re-profiles {
+    grid-template-columns: 1fr 1fr;
+  }
+}
