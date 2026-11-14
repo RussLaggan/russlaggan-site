@@ -54,7 +54,7 @@ const VIDEO_ALT: Record<string, string> = {
 };
 
 const SITE_BIO =
-  "Russ Laggan has been in real estate since he was licensed at 33 in 2005, and became a broker at 36 in 2008. He wrote Be Followable. He works one-on-one with you to set up Claude and train you to use it.";
+  "Russ Laggan has been in real estate since he was licensed at 33 in 2005, and became a broker at 36 in 2008. He wrote Be Followable. He works one-on-one with you to optimize the AI you already use and add workflows built on Grok and Claude. He runs his own business the same way.";
 
 const SITE_PROOF = [
   { stat: "1,692", body: "Agents recruited in 12 months. A recruiting engine, at 5.8 per person." },

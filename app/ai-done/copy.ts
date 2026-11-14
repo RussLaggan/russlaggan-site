@@ -6,7 +6,7 @@
  */
 
 export const SUBTITLE =
-  "We optimize and build out your AI together, to serve you and save you time.";
+  "We work with whatever AI you already use and optimize it. Then we add workflows built on Grok and Claude, to serve you and save you time.";
 
 export const PAGE = {
   title: "AI Done: 12-Month Partnership",
@@ -27,7 +27,7 @@ export const OPTIONS = {
   label: "Two ways to start",
   title: "A year together, or one month.",
   intro:
-    "Both options include consulting and a systems buildout. The 12-month partnership is the one we recommend. The 1-month buildout is a single payment if you want the setup only.",
+    "We start with the AI you already use and get it set up right, then add the Grok and Claude workflows we use in our own business. Both options include consulting and a systems buildout. The 12-month partnership is the one we recommend. The 1-month buildout is a single payment if you want the setup only.",
 };
 
 export const PARTNERSHIP = {
@@ -60,12 +60,12 @@ export const BUILDOUT = {
 
 export const INCLUDED = [
   "Four 45-minute one-on-one training sessions",
-  "Claude desktop app installed, with instruction on Claude Cowork and Claude Code",
-  "A website build-out or optimization done together in working sessions, with training on doing it yourself with Claude. The system is yours.",
+  "Your AI assistant (Claude, Grok, or whatever you already use) set up and optimized, plus Grok and Claude workflows (including Claude Cowork and Claude Code where useful)",
+  "A website build-out or optimization done together in working sessions, with training on doing it yourself with your AI. The system is yours.",
   "A HighLevel sub-account for social media posting",
-  "Training on setting up and optimizing your Google Business Profile using Claude",
-  "Training on using Claude Code to edit video",
-  "Training on using Claude to research social media content",
+  "Training on setting up and optimizing your Google Business Profile with your AI",
+  "Training on AI-assisted video editing",
+  "Training on researching social media content with your AI",
 ];
 
 export const ONGOING = [
@@ -77,7 +77,7 @@ export const ONGOING = [
 
 export const PROVIDE = [
   "Your domain or website access",
-  "Your business details, social logins, and a computer for Claude",
+  "Your business details, social logins, and a computer for your AI assistant",
   "Time for the kickoff and the sessions",
 ];
 
@@ -98,7 +98,7 @@ export const STEPS = {
     {
       when: "Month 1",
       title: "We build",
-      body: "Consulting and the full systems buildout: your sessions, Claude setup, the website working sessions, and your HighLevel setup.",
+      body: "Consulting and the full systems buildout: your sessions, your AI setup, the website working sessions, and your HighLevel setup.",
     },
     {
       when: "Months 2 through 12",
@@ -120,17 +120,17 @@ export const AUDIENCE = {
     {
       label: "Real estate",
       title: "Agents and teams who already close",
-      body: "You close deals. You want Claude handling the work that eats your week, and a website and social presence you can run yourself.",
+      body: "You close deals. You want your AI handling the work that eats your week, and a website and social presence you can run yourself.",
     },
     {
       label: "Lending",
       title: "Mortgage lenders and brokers",
-      body: "Learn to use Claude for your website, your Google Business Profile, and your social content.",
+      body: "Learn to use your AI for your website, your Google Business Profile, and your social content.",
     },
     {
       label: "Personal brands",
       title: "When your name is the product",
-      body: "Speakers, coaches, and authors who want to research, edit video, and post with Claude.",
+      body: "Speakers, coaches, and authors who want to research, edit video, and post with your AI.",
     },
   ],
 };
@@ -168,7 +168,7 @@ export const QUESTIONS = {
 export const faq = [
   {
     q: "What do I have at the end of month 1?",
-    a: "Four 45-minute one-on-one training sessions, the Claude desktop app installed with instruction on Claude Cowork and Claude Code, your website built out or optimized together, a HighLevel sub-account for social media posting, and training on your Google Business Profile, editing video with Claude Code, and researching social content with Claude.",
+    a: "Four 45-minute one-on-one training sessions, your AI assistant (Claude, Grok, or whatever you already use) set up and optimized, plus Grok and Claude workflows (including Claude Cowork and Claude Code where useful), your website built out or optimized together, a HighLevel sub-account for social media posting, and training on your Google Business Profile with your AI, AI-assisted video editing, and researching social content with your AI.",
   },
   {
     q: "Who owns the website?",
@@ -176,11 +176,11 @@ export const faq = [
   },
   {
     q: "What do I need to provide?",
-    a: "Your domain or website access, your business details, social logins, and a computer for Claude, and time for the kickoff and sessions.",
+    a: "Your domain or website access, your business details, social logins, and a computer for your AI assistant, and time for the kickoff and sessions.",
   },
   {
     q: "Who is it for?",
-    a: "Real estate agents and teams, mortgage lenders and brokers, and personal brands who want to put Claude to work in their business.",
+    a: "Real estate agents and teams, mortgage lenders and brokers, and personal brands who want to put your AI to work in their business.",
   },
   {
     q: "How do I pay for the 12-month partnership?",
