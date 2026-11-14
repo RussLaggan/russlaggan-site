@@ -21,7 +21,7 @@
 .bkb .panel h3 { margin-top: 16px; }
 .bkb-plans {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1fr;
   gap: 18px;
   align-items: stretch;
   margin-top: 28px;
@@ -71,6 +71,5 @@
   .bkb .hero-actions { flex-direction: column; align-items: stretch; }
   .bkb .hero-actions .bkb-buy,
   .bkb .hero-actions .bkb-buy .btn { width: 100%; }
-  .bkb-plans { grid-template-columns: 1fr; }
   .bkb-plan .offer-pay .big { font-size: 48px; }
 }
