@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export function YouTube({ id, title }: { id: string; title: string }) {
+export function YouTube({ id, title, alt = "" }: { id: string; title: string; alt?: string }) {
   const [play, setPlay] = useState(false);
   if (play) {
     return (
@@ -24,7 +24,7 @@ export function YouTube({ id, title }: { id: string; title: string }) {
       onClick={() => setPlay(true)}
       aria-label={`Play ${title}`}
     >
-      <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" />
+      <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt={alt} />
       <span className="play" />
     </button>
   );
