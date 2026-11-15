@@ -60,13 +60,6 @@ const GALLERY = [
     alt: "Illustrative photograph of a suburban house behind a hedge on an overcast day. Not a current listing.",
   },
   {
-    src: "/images/real-estate/gallery-stone-dusk",
-    width: 2400,
-    height: 1692,
-    caption: "Evening exterior",
-    alt: "Illustrative photograph of a stone house lit at dusk with holiday lights. Not a current listing.",
-  },
-  {
     src: "/images/real-estate/gallery-brick-manor",
     width: 2400,
     height: 1599,
@@ -132,18 +125,18 @@ export function PageView() {
             <source
               media="(max-width: 700px)"
               type="image/avif"
-              srcSet="/images/real-estate/hero-dusk-mobile.avif"
+              srcSet="/images/real-estate/hero-stone-mobile.avif"
             />
-            <source media="(max-width: 700px)" type="image/webp" srcSet="/images/real-estate/hero-dusk-mobile.webp" />
-            <source media="(max-width: 700px)" srcSet="/images/real-estate/hero-dusk-mobile.jpg" />
-            <source type="image/avif" srcSet="/images/real-estate/hero-dusk.avif" />
-            <source type="image/webp" srcSet="/images/real-estate/hero-dusk.webp" />
+            <source media="(max-width: 700px)" type="image/webp" srcSet="/images/real-estate/hero-stone-mobile.webp" />
+            <source media="(max-width: 700px)" srcSet="/images/real-estate/hero-stone-mobile.jpg" />
+            <source type="image/avif" srcSet="/images/real-estate/hero-stone.avif" />
+            <source type="image/webp" srcSet="/images/real-estate/hero-stone.webp" />
             <img
               className="re-hero-photo"
-              src="/images/real-estate/hero-dusk.jpg"
+              src="/images/real-estate/hero-stone.jpg"
               width={2800}
-              height={1624}
-              alt="Illustrative photograph of a brick home at dusk. Not a current listing."
+              height={1894}
+              alt="Illustrative photograph of a stone home at sunset. Not a current listing."
               sizes="100vw"
               fetchPriority="high"
               decoding="sync"
@@ -315,20 +308,20 @@ export function PageView() {
           <h2 className="re-h2">Media credits</h2>
           <ul className="re-credit-list">
             <li>
-              Hero: Carlos de Miguel, <em>Red brick house at dusk</em>,{" "}
+              Hero: Eli Chamoun, <em>A luxurious stone house at sunset</em>,{" "}
               <a className="re-link" href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">
                 Unsplash License
               </a>
               ,{" "}
               <a
                 className="re-link"
-                href="https://unsplash.com/photos/red-brick-house-at-dusk-VoghxilbfEI"
+                href="https://unsplash.com/photos/a-luxurious-stone-house-at-sunset-wJWIkGd0Jjw"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 source
               </a>
-              ; cropped/resized.
+              ; cropped/resized. Illustrative only; not a Metro Detroit listing.
             </li>
             <li>
               Gallery — tree-lined neighborhood: Sergej, <em>Suburban houses with trees and overcast sky</em>,{" "}
@@ -345,22 +338,6 @@ export function PageView() {
                 source
               </a>
               ; resized.
-            </li>
-            <li>
-              Gallery — evening exterior: Eli Chamoun, <em>A luxurious stone house at sunset</em>,{" "}
-              <a className="re-link" href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">
-                Unsplash License
-              </a>
-              ,{" "}
-              <a
-                className="re-link"
-                href="https://unsplash.com/photos/a-luxurious-stone-house-at-sunset-wJWIkGd0Jjw"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                source
-              </a>
-              ; resized. (Ottawa; illustrative only.)
             </li>
             <li>
               Gallery — brick residence: Tanya Barrow, <em>Grand brick manor house with lush gardens and trees</em>,{" "}

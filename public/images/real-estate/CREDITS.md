@@ -1,19 +1,18 @@
 # Real estate page image credits
 
-Retrieved: 2026-11-14. Hosted locally under `/public/images/real-estate/`. No hotlinking. No MLS, Getty, iStock, municipal gallery, Unsplash+, or AI-generated images.
+Retrieved: 2026-11-14 (hero swap 2026-11-15). Hosted locally under `/public/images/real-estate/`. No hotlinking. No MLS, Getty, iStock, municipal gallery, Unsplash+, or AI-generated images.
 
 ## Hero
 
 | File | Work | Author | License | Source | Notes |
 | --- | --- | --- | --- | --- | --- |
-| `hero-dusk.*`, `hero-dusk-mobile.*` | Red brick house at dusk | Carlos de Miguel | [Unsplash License](https://unsplash.com/license) | https://unsplash.com/photos/red-brick-house-at-dusk-VoghxilbfEI | Cropped slightly vertically; resized. Mobile art-directed center crop. Full-res QA: no readable house/mailbox numbers. |
+| `hero-stone.*`, `hero-stone-mobile.*` | A luxurious stone house at sunset | Eli Chamoun | [Unsplash License](https://unsplash.com/license) | https://unsplash.com/photos/a-luxurious-stone-house-at-sunset-wJWIkGd0Jjw | Cropped/resized (~2800px desktop; mobile art-directed crop). Full-res QA 2026-11-15: no readable house/mailbox numbers. Ottawa home; illustrative only — never captioned as Metro Detroit or as a listing. |
 
 ## Gallery
 
 | File | Work | Author | License | Source | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `gallery-suburban.*` | Suburban houses with trees and overcast sky | Sergej (@skstrannik) | [Unsplash License](https://unsplash.com/license) | https://unsplash.com/photos/suburban-houses-with-trees-and-overcast-sky-2OAfQvzGacI | Resized. Full-res QA: no mailbox/house numbers. |
-| `gallery-stone-dusk.*` | A luxurious stone house at sunset | Eli Chamoun | [Unsplash License](https://unsplash.com/license) | https://unsplash.com/photos/a-luxurious-stone-house-at-sunset-wJWIkGd0Jjw | Resized. Ottawa home; captioned as mood only, never as Metro Detroit. Full-res QA: no readable numbers. |
 | `gallery-brick-manor.*` | Grand brick manor house with lush gardens and trees | Tanya Barrow (@tanyabarrow) | [Unsplash License](https://unsplash.com/license) (page confirmed free / not Unsplash+) | https://unsplash.com/photos/grand-brick-manor-house-with-lush-gardens-and-trees-f9tjpqwrUgQ | Resized. Full-res QA: no readable numbers. |
 | `gallery-columns.*` | A large house with columns and pillars on the front of it | Roger Starnes Sr | [Unsplash License](https://unsplash.com/license) | https://unsplash.com/photos/a-large-house-with-columns-and-pillars-on-the-front-of-it-poxP7wHb9iE | Resized. Temperate/overcast setting; used as gallery still. Full-res QA: no readable numbers. |
 
@@ -21,6 +20,7 @@ Retrieved: 2026-11-14. Hosted locally under `/public/images/real-estate/`. No ho
 
 | Work | Reason |
 | --- | --- |
+| Red brick house at dusk (Carlos de Miguel, VoghxilbfEI) | Removed 2026-11-15: rural farmhouse read as abandoned under scrim; not the luxury hero. |
 | Modern house with large windows and lush garden (Aalo Lens, eWOgoFHlE8g) | Tropical/plumeria cues; skipped for Midwestern tone. |
 | A modern two-story home lit at night (Gul Fatima, -qTD1leeLCw) | Palm trees and rendering-like quality; skipped. |
 | Livonia City Hall (WeaponizingArchitecture, CC BY-SA 4.0) | Optional; construction barriers made the frame weak. |
