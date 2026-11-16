@@ -229,6 +229,8 @@ export const THANK_YOU = {
   title: "You're in.",
   partnership:
     "Your setup is paid. Monthly billing of $497 starts next month and runs for 12 months. We'll reach out within 1 business day to book your kickoff.",
+  founder:
+    "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 12 months, then it ends.",
   buildout: "Your 1-month buildout is paid. We'll reach out within 1 business day to book your kickoff.",
   next: "We reach out within 1 business day to book your kickoff.",
 };

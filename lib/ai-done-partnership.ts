@@ -164,6 +164,21 @@ export function billingModelOf(session: {
   return null;
 }
 
+function setupPlanOf(session: {
+  metadata: Stripe.Metadata | null;
+  payment_intent?: CheckoutSessionLike["payment_intent"];
+}): string | null {
+  if (session.metadata?.plan) return session.metadata.plan;
+  const paymentIntent = session.payment_intent;
+  if (paymentIntent && typeof paymentIntent !== "string") return paymentIntent.metadata?.plan ?? null;
+  return null;
+}
+
+/** Founder Payment Links store plan on the PaymentIntent when the session metadata is empty. */
+export function isFounderSetupThankYou(session: CheckoutSessionLike): boolean {
+  return billingModelOf(session) === BILLING_MODEL && setupPlanOf(session) === SETUP_PLAN_FOUNDER;
+}
+
 /**
  * Paid payment-mode checkout for the setup fee.
  * Founder Payment Links do not copy link metadata onto the session.
@@ -321,18 +336,22 @@ export function setupThen12ScheduleCreateParams(input: {
   };
 }
 
+export type ThankYouKind = "founder" | "partnership" | "buildout" | "next";
+
 export function thankYouPlan(input: {
   session: CheckoutSessionLike | null;
   planParam?: string;
   hadSessionId: boolean;
-}): "partnership" | "buildout" | "next" {
+}): ThankYouKind {
   const session = input.session;
   if (session) {
+    if (isFounderSetupThankYou(session)) return "founder";
     if (session.mode === "payment" && billingModelOf(session) === BILLING_MODEL) return "partnership";
     if (isPartnershipCheckout({ mode: session.mode, metadata: session.metadata })) return "partnership";
     if (session.metadata?.program === "ai_done_buildout") return "buildout";
     return "next";
   }
+  if (input.planParam === "founder") return "founder";
   if (input.planParam === "partnership") return "partnership";
   if (input.planParam === "buildout" || !input.hadSessionId) return "buildout";
   return "partnership";

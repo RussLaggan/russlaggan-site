@@ -41,7 +41,14 @@ export default async function ThankYouPage({
   const { plan, session_id: sessionId } = await searchParams;
   const session = sessionId ? await loadThankYouSession(sessionId) : null;
   const kind = thankYouPlan({ session, planParam: plan, hadSessionId: Boolean(sessionId) });
-  const lede = kind === "partnership" ? THANK_YOU.partnership : kind === "buildout" ? THANK_YOU.buildout : THANK_YOU.next;
+  const lede =
+    kind === "founder"
+      ? THANK_YOU.founder
+      : kind === "partnership"
+        ? THANK_YOU.partnership
+        : kind === "buildout"
+          ? THANK_YOU.buildout
+          : THANK_YOU.next;
   return (
     <div className="field">
       <section className="section" style={{ paddingTop: "72px", paddingBottom: "96px" }}>

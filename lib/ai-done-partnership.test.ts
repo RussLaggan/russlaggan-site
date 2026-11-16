@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { CHECKOUT_COPY } from "../app/ai-done/copy.ts";
+import { CHECKOUT_COPY, THANK_YOU } from "../app/ai-done/copy.ts";
 import {
   BILLING_MODEL,
   MONTHLY_PAYMENTS,
@@ -271,7 +271,7 @@ test("thank-you works for a payment-mode session and a founder link with only a 
       },
       hadSessionId: true,
     }),
-    "partnership",
+    "founder",
   );
   assert.equal(
     thankYouPlan({
@@ -284,6 +284,43 @@ test("thank-you works for a payment-mode session and a founder link with only a 
   assert.equal(thankYouPlan({ session: null, planParam: "partnership", hadSessionId: false }), "partnership");
   assert.equal(thankYouPlan({ session: null, hadSessionId: false }), "buildout");
   assert.equal(thankYouPlan({ session: null, hadSessionId: true }), "partnership");
+});
+
+test("thank-you uses founder copy for a founder session, standard copy otherwise, and plan=founder when Stripe cannot be loaded", () => {
+  assert.equal(
+    thankYouPlan({
+      session: {
+        mode: "payment",
+        payment_status: "paid",
+        metadata: { billing_model: "setup_then_12", plan: "founder" },
+      },
+      hadSessionId: true,
+    }),
+    "founder",
+  );
+  assert.equal(
+    thankYouPlan({
+      session: {
+        mode: "payment",
+        payment_status: "paid",
+        metadata: { billing_model: "setup_then_12", plan: "standard" },
+      },
+      planParam: "founder",
+      hadSessionId: true,
+    }),
+    "partnership",
+  );
+  assert.equal(thankYouPlan({ session: null, planParam: "founder", hadSessionId: true }), "founder");
+  assert.equal(
+    THANK_YOU.founder,
+    "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 12 months, then it ends.",
+  );
+  assert.equal(
+    THANK_YOU.partnership,
+    "Your setup is paid. Monthly billing of $497 starts next month and runs for 12 months. We'll reach out within 1 business day to book your kickoff.",
+  );
+  assert.equal(THANK_YOU.founder.includes("$1,500"), false);
+  assert.equal(/\$1,500 off/i.test(THANK_YOU.founder), false);
 });
 
 test("setup price ids default to live prices and can be overridden", () => {
