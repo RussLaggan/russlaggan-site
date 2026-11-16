@@ -11,7 +11,7 @@ export const SUBTITLE =
 export const PAGE = {
   title: "AI Done: 12-Month Partnership",
   description:
-    "AI Done: 12-Month Partnership is $2,500 today for month 1, then $497 a month for months 2 through 12. Or choose the 1-month buildout for $4,500, paid once.",
+    "AI Done: 12-Month Partnership is a $2,500 setup today, then $497 a month for 12 months starting next month. Or choose the 1-month buildout for $4,500, paid once.",
 };
 
 export const HERO = {
@@ -21,7 +21,7 @@ export const HERO = {
   solve: "We solve that.",
   primaryCta: "Start the 12-month partnership",
   secondaryCta: "See both options",
-  note: "$2,500 today for month 1, then $497 a month for months 2 through 12. A 12-month commitment. It ends after month 12.",
+  note: "$2,500 setup today, then $497 a month for 12 months starting next month.",
 };
 
 export const OPTIONS = {
@@ -40,11 +40,11 @@ export const PARTNERSHIP = {
   monthOneLabel: "Month 1, the full systems buildout",
   ongoingLabel: "Months 2 through 12",
   price: "$2,500",
-  priceCaption: "today",
+  priceCaption: "setup today",
   thenPrice: "then $497 a month",
-  thenCaption: "for months 2 through 12",
+  thenCaption: "for 12 months starting next month",
   terms:
-    "12-month commitment. $2,500 today covers month 1. Then $497 a month for 11 more months. The plan ends after month 12. Continuing after that is optional, month to month, at $497.",
+    "$2,500 setup today, then $497 a month for 12 months starting next month. Monthly billing ends after those 12 payments. Continuing after that is optional, month to month, at $497.",
   cta: "Start the 12-month partnership",
 };
 
@@ -91,7 +91,7 @@ export const STEPS = {
     {
       when: "Today",
       title: "Choose a plan and check out",
-      body: "The 12-month partnership is $2,500 today. The 1-month buildout is $4,500 once. Stripe sends your receipt.",
+      body: "The 12-month partnership is a $2,500 setup today, then $497 a month for 12 months starting next month. The 1-month buildout is $4,500 once. Stripe sends your receipt.",
     },
     {
       when: "Within 1 business day",
@@ -106,7 +106,7 @@ export const STEPS = {
     {
       when: "Months 2 through 12",
       title: "We stay with the partnership",
-      body: "On the 12-month partnership, $497 a month covers ongoing maintenance, additional training, updates, and troubleshooting. The 1-month buildout ends when the month ends.",
+      body: "On the 12-month partnership, $497 a month for 12 months, starting next month, covers ongoing maintenance, additional training, updates, and troubleshooting. The 1-month buildout ends when the month ends.",
     },
     {
       when: "After month 12",
@@ -187,7 +187,7 @@ export const faq = [
   },
   {
     q: "How do I pay for the 12-month partnership?",
-    a: "You pay $2,500 today. That is month 1, consulting and the full systems buildout. Then you pay $497 a month for months 2 through 12. It is a 12-month commitment. It ends after month 12. Checkout is Stripe.",
+    a: "You pay a $2,500 setup fee today. Then $497 a month for 12 months, starting next month. Monthly billing ends after those 12 payments. Nothing else is charged unless you choose to continue month to month at $497. Checkout is Stripe.",
   },
   {
     q: "How do I pay for the 1-month buildout?",
@@ -216,10 +216,8 @@ export const CLOSER = {
 
 export const CHECKOUT_COPY = {
   partnership: {
-    description:
-      "AI Done: 12-Month Partnership. $2,500 month 1, then $497/month for months 2-12. Ends after month 12.",
-    submit:
-      "12-month commitment: $2,500 today (month 1), then $497/month for 11 months. Ends after month 12 unless you choose to continue month-to-month at $497.",
+    description: "AI Done Partnership setup fee",
+    submit: "$2,500 setup today, then $497/month for 12 months starting next month.",
   },
   buildout: {
     submit:
@@ -230,7 +228,7 @@ export const CHECKOUT_COPY = {
 export const THANK_YOU = {
   title: "You're in.",
   partnership:
-    "Your 12-month partnership is paid. $2,500 covers month 1. Then $497 a month for months 2 through 12. The plan ends after month 12 unless you choose to continue month to month at $497.",
+    "Your setup is paid. Monthly billing of $497 starts next month and runs for 12 months. We'll reach out within 1 business day to book your kickoff.",
   buildout: "Your 1-month buildout is paid. We'll reach out within 1 business day to book your kickoff.",
   next: "We reach out within 1 business day to book your kickoff.",
 };

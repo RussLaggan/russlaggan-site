@@ -31,7 +31,7 @@ export default function Image() {
             business.
           </div>
           <div style={{ display: "flex", marginTop: 28, fontSize: 30, opacity: 0.88 }}>
-            $2,500 today, then $497 a month through month 12.
+            $2,500 setup today, then $497 a month for 12 months.
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 28 }}>

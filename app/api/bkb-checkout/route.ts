@@ -2,19 +2,22 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { CHECKOUT_COPY } from "@/app/ai-done/copy";
 import {
-  PARTNERSHIP_MONTHLY_PRICE,
-  PARTNERSHIP_OFFER,
-  PARTNERSHIP_SETUP_PRICE,
-  PARTNERSHIP_TERM_MONTHS,
+  BILLING_MODEL,
+  MONTHLY_PRICE,
+  SETUP_OFFER,
+  SETUP_PLAN_STANDARD,
+  SETUP_PRICE_STANDARD,
   parseAiDonePlan,
 } from "@/lib/ai-done-partnership";
 
 export const runtime = "nodejs";
 
 // AI Done checkout. Prices live in Stripe (Laggan Holdings LLC, acct_1ULkwBKFIl1mC1gN).
-// partnership: $2,500 on invoice 1 ($497 recurring + $2,003 once), then $497 for months 2-12.
+// partnership: $2,500 setup today, then the webhook starts 12 charges of $497 one calendar month later.
+// AI_DONE_SETUP_PRICE_STANDARD and AI_DONE_MONTHLY_PRICE override those live price IDs.
 // buildout: one payment of $4,500. STRIPE_PRICE_AI_DONE overrides the buildout price.
 // plan=monthly (cancel anytime) is retired and is not sold.
+// Payment methods stay Dashboard-managed.
 const BUILDOUT_PRICE = process.env.STRIPE_PRICE_AI_DONE || "price_1UXtntKFIl1mC1gNx9QJKWUy";
 const PAGE = "/ai-done";
 
@@ -54,28 +57,26 @@ export async function POST(request: Request) {
   const stripe = new Stripe(secret);
   try {
     if (plan === "partnership") {
-      const monthly = await activePrice(stripe, PARTNERSHIP_MONTHLY_PRICE, true);
-      const setup = await activePrice(stripe, PARTNERSHIP_SETUP_PRICE, false);
-      if (!monthly || !setup) {
+      const setup = await activePrice(stripe, SETUP_PRICE_STANDARD, false);
+      const monthly = await activePrice(stripe, MONTHLY_PRICE, true);
+      if (!setup || !monthly) {
         console.error("ai-done partnership price is not active or has the wrong type");
         return back(origin, "unavailable", "partnership");
       }
 
       const session = await stripe.checkout.sessions.create({
-        mode: "subscription",
-        line_items: [
-          { price: monthly.id, quantity: 1 },
-          { price: setup.id, quantity: 1 },
-        ],
-        subscription_data: {
+        mode: "payment",
+        line_items: [{ price: setup.id, quantity: 1 }],
+        customer_creation: "always",
+        payment_intent_data: {
+          setup_future_usage: "off_session",
           description: CHECKOUT_COPY.partnership.description,
-          metadata: { offer: PARTNERSHIP_OFFER, term_months: PARTNERSHIP_TERM_MONTHS },
+          metadata: { offer: SETUP_OFFER, plan: SETUP_PLAN_STANDARD, billing_model: BILLING_MODEL },
         },
-        metadata: { offer: PARTNERSHIP_OFFER, term_months: PARTNERSHIP_TERM_MONTHS, plan: "partnership" },
+        metadata: { offer: SETUP_OFFER, plan: SETUP_PLAN_STANDARD, billing_model: BILLING_MODEL },
         billing_address_collection: "auto",
         phone_number_collection: { enabled: true },
-        // FOUNDER code: $1,500 off first invoice, partnership only
-        allow_promotion_codes: true,
+        allow_promotion_codes: false,
         custom_text: { submit: { message: CHECKOUT_COPY.partnership.submit } },
         success_url: `${origin}${PAGE}/thank-you?plan=partnership&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}${PAGE}?checkout=cancelled#partnership`,

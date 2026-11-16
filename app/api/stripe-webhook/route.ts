@@ -37,6 +37,7 @@ export async function POST(request: Request) {
 
   if (
     event.type === "checkout.session.completed" ||
+    event.type === "checkout.session.async_payment_succeeded" ||
     event.type === "invoice.paid" ||
     event.type === "invoice.payment_failed"
   ) {

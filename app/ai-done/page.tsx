@@ -33,7 +33,7 @@ const offerSchema = {
       priceCurrency: "USD",
       url,
       description:
-        "$2,500 today for month 1, then $497 a month for months 2 through 12. 12-month commitment. Ends after month 12.",
+        "$2,500 setup today, then $497 a month for 12 months starting next month.",
     },
     {
       "@type": "Offer",
