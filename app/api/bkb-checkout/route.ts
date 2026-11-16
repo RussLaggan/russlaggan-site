@@ -74,7 +74,8 @@ export async function POST(request: Request) {
         metadata: { offer: PARTNERSHIP_OFFER, term_months: PARTNERSHIP_TERM_MONTHS, plan: "partnership" },
         billing_address_collection: "auto",
         phone_number_collection: { enabled: true },
-        allow_promotion_codes: false,
+        // FOUNDER code: $1,500 off first invoice, partnership only
+        allow_promotion_codes: true,
         custom_text: { submit: { message: CHECKOUT_COPY.partnership.submit } },
         success_url: `${origin}${PAGE}/thank-you?plan=partnership&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}${PAGE}?checkout=cancelled#partnership`,
