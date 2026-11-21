@@ -99,7 +99,7 @@ test("shared copy has one subtitle, no em dash, and no retired monthly offer", (
   assert.equal(/cancel anytime/i.test(copy), false);
   assert.equal(copy.includes("plan=monthly"), false);
   assert.equal((copy.match(/export const SUBTITLE/g) || []).length, 1);
-  assert.equal(copy.includes("AI Done: 12-Month Partnership"), true);
+  assert.equal(copy.includes("AI Done: 6-Month Partnership"), true);
   assert.equal(copy.includes("AI Done: 1-Month Buildout"), true);
   assert.equal(copy.includes("$4,500"), true);
   assert.equal(copy.includes("$2,500"), true);
@@ -110,7 +110,7 @@ test("shared copy has one subtitle, no em dash, and no retired monthly offer", (
   assert.equal(/discount/i.test(copy), false);
   assert.equal(
     CHECKOUT_COPY.partnership.submit,
-    "$2,500 setup today, then $497/month for 12 months starting next month.",
+    "$2,500 setup today, then $497/month for 6 months starting next month.",
   );
   assert.equal(CHECKOUT_COPY.partnership.description, "AI Done Partnership setup fee");
 });
@@ -121,17 +121,17 @@ function utc(iso: string): number {
   return Date.parse(iso) / 1000;
 }
 
-test("setup then 12 bills exactly 12 full invoices starting one calendar month later", () => {
+test("setup then 6 bills exactly 6 full invoices starting one calendar month later", () => {
   const setup = utc("2026-03-15T16:30:00.000Z");
   const invoices = setupThen12InvoiceTimes(setup);
   const start = setupThen12BillingStart(setup);
   const end = setupThen12PhaseEnd(setup);
   assert.equal(invoices.length, MONTHLY_PAYMENTS);
-  assert.equal(invoices.length, 12);
+  assert.equal(invoices.length, 6);
   assert.equal(start, utc("2026-04-15T16:30:00.000Z"));
   assert.equal(invoices[0], start);
-  assert.equal(invoices[11], utc("2027-03-15T16:30:00.000Z"));
-  assert.equal(end, utc("2027-04-15T16:30:00.000Z"));
+  assert.equal(invoices[5], utc("2026-09-15T16:30:00.000Z"));
+  assert.equal(end, utc("2026-10-15T16:30:00.000Z"));
   assert.equal(invoices.includes(end), false);
   assert.equal(invoices[0] - setup >= 28 * DAY && invoices[0] - setup <= 31 * DAY, true);
   for (let index = 1; index < invoices.length; index += 1) {
@@ -140,18 +140,18 @@ test("setup then 12 bills exactly 12 full invoices starting one calendar month l
   }
 });
 
-test("a January 31 setup clamps the first invoice to February and still bills 12 times", () => {
+test("a January 31 setup clamps the first invoice to February and still bills 6 times", () => {
   const setup = utc("2026-01-31T00:00:00.000Z");
   const invoices = setupThen12InvoiceTimes(setup);
   assert.equal(invoices[0], utc("2026-02-28T00:00:00.000Z"));
   assert.equal(invoices[1], utc("2026-03-28T00:00:00.000Z"));
-  assert.equal(invoices.length, 12);
-  assert.equal(setupThen12PhaseEnd(setup), utc("2027-02-28T00:00:00.000Z"));
+  assert.equal(invoices.length, 6);
+  assert.equal(setupThen12PhaseEnd(setup), utc("2026-08-28T00:00:00.000Z"));
   const leap = utc("2024-01-31T00:00:00.000Z");
   assert.equal(setupThen12BillingStart(leap), utc("2024-02-29T00:00:00.000Z"));
 });
 
-test("a saved card schedules charge_automatically for 12 full months", () => {
+test("a saved card schedules charge_automatically for 6 full months", () => {
   assert.equal(setupCollectionFor({ paymentMethodType: "card", savedForOffSession: true }), "charge_automatically");
   assert.equal(setupCollectionFor({ paymentMethodType: "link", savedForOffSession: true }), "charge_automatically");
   assert.equal(
@@ -177,7 +177,7 @@ test("a saved card schedules charge_automatically for 12 full months", () => {
   assert.equal(phase?.collection_method, "charge_automatically");
   assert.equal(phase?.default_payment_method, "pm_card");
   assert.equal(phase?.invoice_settings, undefined);
-  assert.deepEqual(phase?.duration, { interval: "month", interval_count: 12 });
+  assert.deepEqual(phase?.duration, { interval: "month", interval_count: 6 });
   assert.deepEqual(phase?.items, [{ price: MONTHLY_PRICE, quantity: 1 }]);
   assert.equal(phase?.proration_behavior, "none");
   assert.equal(phase?.billing_cycle_anchor, "phase_start");
@@ -215,12 +215,12 @@ test("Klarna, Cash App that cannot be saved, and a missing method use emailed in
   assert.equal(phase?.collection_method, "send_invoice");
   assert.equal(phase?.default_payment_method, undefined);
   assert.equal(phase?.invoice_settings?.days_until_due, 7);
-  assert.deepEqual(phase?.duration, { interval: "month", interval_count: 12 });
+  assert.deepEqual(phase?.duration, { interval: "month", interval_count: 6 });
   assert.equal(phase?.items?.[0]?.price, MONTHLY_PRICE);
   assert.equal(params.metadata?.collection_fallback, "send_invoice");
   assert.equal(params.metadata?.plan, "founder");
-  assert.equal(params.metadata?.offer, "ai_done_setup_12");
-  assert.equal(params.metadata?.billing_model, "setup_then_12");
+  assert.equal(params.metadata?.offer, "ai_done_setup_6");
+  assert.equal(params.metadata?.billing_model, "setup_then_6");
   assert.equal(JSON.stringify(params).includes("trial"), false);
   assert.throws(() =>
     setupThen12ScheduleCreateParams({
@@ -313,11 +313,11 @@ test("thank-you uses founder copy for a founder session, standard copy otherwise
   assert.equal(thankYouPlan({ session: null, planParam: "founder", hadSessionId: true }), "founder");
   assert.equal(
     THANK_YOU.founder,
-    "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 12 months, then it ends.",
+    "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 6 months, then it ends.",
   );
   assert.equal(
     THANK_YOU.partnership,
-    "Your setup is paid. Monthly billing of $497 starts next month and runs for 12 months. We'll reach out within 1 business day to book your kickoff.",
+    "Your setup is paid. Monthly billing of $497 starts next month and runs for 6 months. We'll reach out within 1 business day to book your kickoff.",
   );
   assert.equal(THANK_YOU.founder.includes("$1,500"), false);
   assert.equal(/\$1,500 off/i.test(THANK_YOU.founder), false);

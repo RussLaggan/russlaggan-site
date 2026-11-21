@@ -46,7 +46,7 @@ test("founder notices are fixed strings", () => {
   assert.equal(FOUNDER_COPY.headline, "Founder rate");
   assert.equal(
     FOUNDER_COPY.body,
-    "Founder rate: $1,000 setup today, then $497/month for 12 months starting next month. Limited to the collaboration group.",
+    "Founder rate: $1,000 setup today, then $497/month for 6 months starting next month. Limited to the collaboration group.",
   );
   assert.equal(FOUNDER_COPY.field, "Secret word");
   assert.equal(FOUNDER_COPY.button, "Unlock founder checkout");
