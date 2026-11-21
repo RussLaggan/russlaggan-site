@@ -13,10 +13,10 @@ export const FOUNDER_RATE_MAX = 5;
 
 export const FOUNDER_COPY = {
   headline: "Founder rate",
-  body: "Founder rate: $1,000 setup today, then $497/month for 12 months starting next month. Limited to the collaboration group.",
+  body: "Founder rate: $1,000 setup today, then $497/month for 6 months starting next month. Limited to the collaboration group.",
   field: "Secret word",
   button: "Unlock founder checkout",
-  submit: "Founder rate: $1,000 setup today, then $497/month for 12 months starting next month.",
+  submit: "Founder rate: $1,000 setup today, then $497/month for 6 months starting next month.",
   mismatch: "That word doesn't match.",
   full: "Founder spots are full.",
   limited: "Try again in a moment.",

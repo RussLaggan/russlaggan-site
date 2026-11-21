@@ -31,9 +31,9 @@ async function loadSchedule(
 }
 
 /**
- * Attach a 12-month canceling schedule once.
+ * Attach a canceling schedule once.
  * A schedule that already ends the partnership is left alone.
- * A schedule created on an earlier attempt that never received the 12-month update is completed.
+ * A schedule created on an earlier attempt that never received the term update is completed.
  */
 export async function ensurePartnershipSchedule(stripe: Stripe, subscriptionId: string): Promise<void> {
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);

@@ -8,7 +8,7 @@ export const PARTNERSHIP_TERM_MONTHS = "12";
 export const PARTNERSHIP_TERM_COUNT = 12;
 
 /**
- * Setup fee today, then 12 monthly charges starting one calendar month later.
+ * Setup fee today, then 6 monthly charges starting one calendar month later.
  * Live price IDs are the defaults. A Vercel Preview with test keys sets
  * AI_DONE_SETUP_PRICE_STANDARD, AI_DONE_SETUP_PRICE_FOUNDER, and AI_DONE_MONTHLY_PRICE.
  * Legacy ai_done_12mo prices above stay fixed so existing subscribers are unchanged.
@@ -30,9 +30,11 @@ export const MONTHLY_PRICE = priceIdFromEnv(
   process.env.AI_DONE_MONTHLY_PRICE,
   "price_1Ubn9NKFIl1mC1gN2MjMJYND",
 );
-export const SETUP_OFFER = "ai_done_setup_12";
-export const BILLING_MODEL = "setup_then_12";
-export const MONTHLY_PAYMENTS = 12;
+export const LEGACY_SETUP_OFFER = "ai_done_setup_12";
+export const LEGACY_BILLING_MODEL = "setup_then_12";
+export const SETUP_OFFER = "ai_done_setup_6";
+export const BILLING_MODEL = "setup_then_6";
+export const MONTHLY_PAYMENTS = 6;
 export const SETUP_PLAN_STANDARD = "standard";
 export const SETUP_PLAN_FOUNDER = "founder";
 
@@ -96,7 +98,7 @@ export function scheduleEndsPartnership(schedule: {
 
 /**
  * SDK 18 / API 2025-08-27.basil supports phase duration and marks iterations as deprecated.
- * Twelve months from the phase start. The $2,003 setup price is not a phase item.
+ * Six months from the phase start. The $2,003 setup price is not a phase item.
  */
 export function partnershipScheduleUpdate(startDate: number): Stripe.SubscriptionScheduleUpdateParams {
   return {
@@ -119,8 +121,8 @@ export function partnershipScheduleUpdate(startDate: number): Stripe.Subscriptio
 }
 
 /**
- * Legacy ai_done_12mo only. The setup_then_12 schedule already ends after 12
- * paid invoices, so this guard must not cancel those subscriptions early.
+ * Legacy ai_done_12mo only. The setup_then_6 (and leftover setup_then_12) schedule
+ * already ends after the paid invoices, so this guard must not cancel those subscriptions early.
  */
 export function shouldCancelPartnership(input: {
   offer: string | null | undefined;
@@ -175,8 +177,12 @@ function setupPlanOf(session: {
 }
 
 /** Founder Payment Links store plan on the PaymentIntent when the session metadata is empty. */
+export function isKnownSetupBillingModel(model: string | null): boolean {
+  return model === BILLING_MODEL || model === LEGACY_BILLING_MODEL;
+}
+
 export function isFounderSetupThankYou(session: CheckoutSessionLike): boolean {
-  return billingModelOf(session) === BILLING_MODEL && setupPlanOf(session) === SETUP_PLAN_FOUNDER;
+  return isKnownSetupBillingModel(billingModelOf(session)) && setupPlanOf(session) === SETUP_PLAN_FOUNDER;
 }
 
 /**
@@ -185,7 +191,7 @@ export function isFounderSetupThankYou(session: CheckoutSessionLike): boolean {
  * payment_intent_data.metadata is on the PaymentIntent, so that counts too.
  */
 export function isSetupThen12Checkout(session: CheckoutSessionLike): boolean {
-  return session.mode === "payment" && session.payment_status === "paid" && billingModelOf(session) === BILLING_MODEL;
+  return session.mode === "payment" && session.payment_status === "paid" && isKnownSetupBillingModel(billingModelOf(session));
 }
 
 export function setupPlanFromMetadata(
@@ -242,7 +248,7 @@ export function setupThen12InvoiceTimes(setupUnix: number): number[] {
   return Array.from({ length: MONTHLY_PAYMENTS }, (_, index) => addCalendarMonths(start, index));
 }
 
-/** End of the 12th prepaid month. The phase stops here, so invoice 13 is never opened. */
+/** End of the 6th prepaid month. The phase stops here, so invoice 7 is never opened. */
 export function setupThen12PhaseEnd(setupUnix: number): number {
   return addCalendarMonths(setupThen12BillingStart(setupUnix), MONTHLY_PAYMENTS);
 }
@@ -262,10 +268,10 @@ export function setupThen12Metadata(input: {
 }
 
 /**
- * Twelve $497 invoices, the first one calendar month after the setup payment.
+ * Six $497 invoices, the first one calendar month after the setup payment.
  *
  * Choice: a subscription schedule with start_date = setup time + 1 calendar month,
- * one phase, items [{ price: MONTHLY_PRICE }], duration 12 months,
+ * one phase, items [{ price: MONTHLY_PRICE }], duration 6 months,
  * billing_cycle_anchor phase_start, proration_behavior none, end_behavior cancel.
  * No trial period is used.
  *
@@ -305,13 +311,13 @@ export function setupThen12ScheduleCreateParams(input: {
     ? {
         collection_method: "send_invoice",
         billing_cycle_anchor: "phase_start",
-        description: "AI Done: 12-Month Partnership",
+        description: "AI Done: 6-Month Partnership",
         invoice_settings: { days_until_due: 7 },
       }
     : {
         collection_method: "charge_automatically",
         billing_cycle_anchor: "phase_start",
-        description: "AI Done: 12-Month Partnership",
+        description: "AI Done: 6-Month Partnership",
         default_payment_method: input.paymentMethodId || undefined,
       };
   const phase: Stripe.SubscriptionScheduleCreateParams.Phase = {
@@ -346,7 +352,7 @@ export function thankYouPlan(input: {
   const session = input.session;
   if (session) {
     if (isFounderSetupThankYou(session)) return "founder";
-    if (session.mode === "payment" && billingModelOf(session) === BILLING_MODEL) return "partnership";
+    if (session.mode === "payment" && isKnownSetupBillingModel(billingModelOf(session))) return "partnership";
     if (isPartnershipCheckout({ mode: session.mode, metadata: session.metadata })) return "partnership";
     if (session.metadata?.program === "ai_done_buildout") return "buildout";
     return "next";

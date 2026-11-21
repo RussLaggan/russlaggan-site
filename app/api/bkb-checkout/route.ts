@@ -13,7 +13,7 @@ import {
 export const runtime = "nodejs";
 
 // AI Done checkout. Prices live in Stripe (Laggan Holdings LLC, acct_1ULkwBKFIl1mC1gN).
-// partnership: $2,500 setup today, then the webhook starts 12 charges of $497 one calendar month later.
+// partnership: $2,500 setup today, then the webhook starts 6 charges of $497 one calendar month later.
 // AI_DONE_SETUP_PRICE_STANDARD and AI_DONE_MONTHLY_PRICE override those live price IDs.
 // buildout: one payment of $4,500. STRIPE_PRICE_AI_DONE overrides the buildout price.
 // plan=monthly (cancel anytime) is retired and is not sold.
