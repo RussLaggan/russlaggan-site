@@ -9,43 +9,43 @@ export const SUBTITLE =
   "You still don't have a full system that's integrated, fully functional, and saving you time. It feels like you keep beating your head against a brick wall.";
 
 export const PAGE = {
-  title: "AI Done: 12-Month Partnership",
+  title: "AI Done: 6-Month Partnership",
   description:
-    "AI Done: 12-Month Partnership is a $2,500 setup today, then $497 a month for 12 months starting next month. Or choose the 1-month buildout for $4,500, paid once.",
+    "AI Done: 6-Month Partnership is a $2,500 setup today, then $497 a month for 6 months starting next month. Or choose the 1-month buildout for $4,500, paid once.",
 };
 
 export const HERO = {
-  label: "AI Done · 12-Month Partnership",
+  label: "AI Done · 6-Month Partnership",
   titleLead: "Started with AI but keep getting ",
   titleEm: "stuck?",
   solve: "We solve that.",
-  primaryCta: "Start the 12-month partnership",
+  primaryCta: "Start the 6-month partnership",
   secondaryCta: "See both options",
-  note: "$2,500 setup today, then $497 a month for 12 months starting next month.",
+  note: "$2,500 setup today, then $497 a month for 6 months starting next month.",
 };
 
 export const OPTIONS = {
   label: "Two ways to start",
-  title: "A year together, or one month.",
+  title: "Six months together, or one month.",
   intro:
-    "We start with the AI you already use and get it set up right, then add the Grok and Claude workflows we use in our own business. Both options include consulting and a systems buildout. The 12-month partnership is the one we recommend. The 1-month buildout is a single payment if you want the setup only.",
+    "We start with the AI you already use and get it set up right, then add the Grok and Claude workflows we use in our own business. Both options include consulting and a systems buildout. The 6-month partnership is the one we recommend. The 1-month buildout is a single payment if you want the setup only.",
 };
 
 export const PARTNERSHIP = {
   id: "partnership",
   badge: "Recommended",
-  name: "AI Done: 12-Month Partnership",
+  name: "AI Done: 6-Month Partnership",
   summary:
-    "Month 1 is consulting and the full systems buildout. We then stay on for maintenance, additional training, updates, and troubleshooting through month 12.",
+    "Month 1 is consulting and the full systems buildout. We then stay on for maintenance, additional training, updates, and troubleshooting through the 6 monthly payments.",
   monthOneLabel: "Month 1, the full systems buildout",
-  ongoingLabel: "Months 2 through 12",
+  ongoingLabel: "Then 6 monthly payments, starting next month",
   price: "$2,500",
   priceCaption: "setup today",
   thenPrice: "then $497 a month",
-  thenCaption: "for 12 months starting next month",
+  thenCaption: "for 6 months starting next month",
   terms:
-    "$2,500 setup today, then $497 a month for 12 months starting next month. Monthly billing ends after those 12 payments. Continuing after that is optional, month to month, at $497.",
-  cta: "Start the 12-month partnership",
+    "$2,500 setup today, then $497 a month for 6 months starting next month. Monthly billing ends after those 6 payments. Continuing after that is optional, month to month, at $497.",
+  cta: "Start the 6-month partnership",
 };
 
 export const BUILDOUT = {
@@ -84,14 +84,14 @@ export const PROVIDE = [
 
 export const STEPS = {
   label: "How it works",
-  title: "From checkout to a year, or to the end of the month.",
+  title: "From checkout to six months, or to the end of the month.",
   intro:
     "We work with whatever AI you already use and optimize it. Then we build in Claude and Grok workflows to serve you and save you time.",
   items: [
     {
       when: "Today",
       title: "Choose a plan and check out",
-      body: "The 12-month partnership is a $2,500 setup today, then $497 a month for 12 months starting next month. The 1-month buildout is $4,500 once. Stripe sends your receipt.",
+      body: "The 6-month partnership is a $2,500 setup today, then $497 a month for 6 months starting next month. The 1-month buildout is $4,500 once. Stripe sends your receipt.",
     },
     {
       when: "Within 1 business day",
@@ -104,14 +104,14 @@ export const STEPS = {
       body: "Consulting and the full systems buildout: your sessions, your AI setup, the website working sessions, and your HighLevel setup.",
     },
     {
-      when: "Months 2 through 12",
+      when: "The 6 monthly payments",
       title: "We stay with the partnership",
-      body: "On the 12-month partnership, $497 a month for 12 months, starting next month, covers ongoing maintenance, additional training, updates, and troubleshooting. The 1-month buildout ends when the month ends.",
+      body: "On the 6-month partnership, $497 a month for 6 months, starting next month, covers ongoing maintenance, additional training, updates, and troubleshooting. The 1-month buildout ends when the month ends.",
     },
     {
-      when: "After month 12",
+      when: "After the 6 payments",
       title: "The partnership ends",
-      body: "The 12-month commitment is complete. Continue month to month at $497 only if you choose to.",
+      body: "The 6-month commitment is complete. Continue month to month at $497 only if you choose to.",
     },
   ],
 };
@@ -158,7 +158,7 @@ export const VIDEOS = {
 export const MARKET = {
   label: "Your market",
   title: "Is your market open?",
-  body: "The market check applies to the 12-month partnership.",
+  body: "The market check applies to the 6-month partnership.",
   cta: "Is your market open?",
   href: "https://www.bestknownbrand.com/start/",
 };
@@ -186,8 +186,8 @@ export const faq = [
     a: "Real estate agents and teams, mortgage lenders and brokers, and personal brands who want to put your AI to work in their business.",
   },
   {
-    q: "How do I pay for the 12-month partnership?",
-    a: "You pay a $2,500 setup fee today. Then $497 a month for 12 months, starting next month. Monthly billing ends after those 12 payments. Nothing else is charged unless you choose to continue month to month at $497. Checkout is Stripe.",
+    q: "How do I pay for the 6-month partnership?",
+    a: "You pay a $2,500 setup fee today. Then $497 a month for 6 months, starting next month. Monthly billing ends after those 6 payments. Nothing else is charged unless you choose to continue month to month at $497. Checkout is Stripe.",
   },
   {
     q: "How do I pay for the 1-month buildout?",
@@ -198,26 +198,26 @@ export const faq = [
     a: "You get a Stripe receipt by email, and we reach out within 1 business day to book your kickoff.",
   },
   {
-    q: "What happens after month 12?",
-    a: "The 12-month partnership ends. Nothing else is charged unless you choose to continue month to month at $497.",
+    q: "What happens after the 6 monthly payments?",
+    a: "The 6-month partnership ends. Nothing else is charged unless you choose to continue month to month at $497.",
   },
   {
-    q: "What does the rest of the year include?",
-    a: "After month 1, the 12-month partnership includes ongoing maintenance, additional training, updates, and troubleshooting.",
+    q: "What does the rest of the partnership include?",
+    a: "After month 1, the 6-month partnership includes ongoing maintenance, additional training, updates, and troubleshooting.",
   },
 ];
 
 export const CLOSER = {
   label: "When you are ready",
   title: "Get AI done in your business.",
-  primaryCta: "Start the 12-month partnership",
+  primaryCta: "Start the 6-month partnership",
   secondaryCta: "Ask a question",
 };
 
 export const CHECKOUT_COPY = {
   partnership: {
     description: "AI Done Partnership setup fee",
-    submit: "$2,500 setup today, then $497/month for 12 months starting next month.",
+    submit: "$2,500 setup today, then $497/month for 6 months starting next month.",
   },
   buildout: {
     submit:
@@ -228,9 +228,9 @@ export const CHECKOUT_COPY = {
 export const THANK_YOU = {
   title: "You're in.",
   partnership:
-    "Your setup is paid. Monthly billing of $497 starts next month and runs for 12 months. We'll reach out within 1 business day to book your kickoff.",
+    "Your setup is paid. Monthly billing of $497 starts next month and runs for 6 months. We'll reach out within 1 business day to book your kickoff.",
   founder:
-    "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 12 months, then it ends.",
+    "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 6 months, then it ends.",
   buildout: "Your 1-month buildout is paid. We'll reach out within 1 business day to book your kickoff.",
   next: "We reach out within 1 business day to book your kickoff.",
 };

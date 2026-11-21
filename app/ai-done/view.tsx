@@ -144,7 +144,7 @@ export function PageView() {
                 <Items items={PROVIDE} />
               </div>
               <div className="offer-pay">
-                <p style={{ color: "#71717a" }}>12-month commitment</p>
+                <p style={{ color: "#71717a" }}>6-month commitment</p>
                 <p className="big">{PARTNERSHIP.price}</p>
                 <p>{PARTNERSHIP.priceCaption}</p>
                 <p style={{ marginTop: "8px" }}>{PARTNERSHIP.thenPrice}</p>

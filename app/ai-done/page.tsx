@@ -28,12 +28,12 @@ const offerSchema = {
   offers: [
     {
       "@type": "Offer",
-      name: "AI Done: 12-Month Partnership",
+      name: "AI Done: 6-Month Partnership",
       price: "2500",
       priceCurrency: "USD",
       url,
       description:
-        "$2,500 setup today, then $497 a month for 12 months starting next month.",
+        "$2,500 setup today, then $497 a month for 6 months starting next month.",
     },
     {
       "@type": "Offer",
