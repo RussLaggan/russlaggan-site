@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "start": "next start"
+    "start": "next start",
+    "test": "node --test lib/ai-done-partnership.test.ts lib/ai-done-founder.test.ts"
   },
   "dependencies": {
     "next": "^16.1.6",
