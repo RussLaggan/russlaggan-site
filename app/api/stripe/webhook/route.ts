@@ -6,7 +6,8 @@ export const runtime = "nodejs";
 
 /**
  * AI Done webhook. Register this URL in Stripe for
- * checkout.session.completed, invoice.paid, and invoice.payment_failed.
+ * checkout.session.completed, checkout.session.async_payment_succeeded,
+ * invoice.paid, and invoice.payment_failed.
  * Signature uses STRIPE_WEBHOOK_SECRET. A missing secret refuses the event
  * and does not affect checkout or the build.
  */

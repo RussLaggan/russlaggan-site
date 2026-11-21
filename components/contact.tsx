@@ -27,7 +27,7 @@ const CHOICES = [
   {
     name: "AI Done",
     blurb:
-      "The 1-month buildout is $4,500, paid once. Or choose the 12-month partnership: $2,500 today, then $497 a month for months 2 through 12.",
+      "The 1-month buildout is $4,500, paid once. Or choose the 12-month partnership: $2,500 setup today, then $497 a month for 12 months starting next month.",
   },
 ];
 
