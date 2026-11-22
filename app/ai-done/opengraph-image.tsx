@@ -21,7 +21,7 @@ export default function Image() {
         }}
       >
         <div style={{ display: "flex", fontSize: 26, letterSpacing: 4, textTransform: "uppercase", opacity: 0.85 }}>
-          AI Done · 6-Month Partnership
+          AI Done · 1-Month Buildout
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 72, fontWeight: 700, lineHeight: 1.02, letterSpacing: -2 }}>
@@ -31,13 +31,13 @@ export default function Image() {
             business.
           </div>
           <div style={{ display: "flex", marginTop: 28, fontSize: 30, opacity: 0.88 }}>
-            $2,500 setup today, then $497 a month for 6 months.
+            1-Month Buildout. $4,500 one time.
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 28 }}>
           <div style={{ display: "flex" }}>russlaggan.com/ai-done</div>
           <div style={{ display: "flex", padding: "12px 24px", borderRadius: 10, background: "#ef5d17", fontWeight: 700 }}>
-            $2,500 today
+            $4,500 one time
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 /**
  * Shared AI Done page copy.
- * Keep this file byte-identical on russlaggan.com and brettkmoore.com.
  * Voice is "we". No em dashes.
  * SUBTITLE is the only subtitle. Names, photos, and biographies stay in the site file that renders this copy.
  */
@@ -9,43 +8,25 @@ export const SUBTITLE =
   "You still don't have a full system that's integrated, fully functional, and saving you time. It feels like you keep beating your head against a brick wall.";
 
 export const PAGE = {
-  title: "AI Done: 6-Month Partnership",
+  title: "AI Done: 1-Month Buildout",
   description:
-    "AI Done: 6-Month Partnership is a $2,500 setup today, then $497 a month for 6 months starting next month. Or choose the 1-month buildout for $4,500, paid once.",
+    "AI Done: 1-Month Buildout is $4,500, paid once, for about 30 days of consulting and systems buildout. No subscription and nothing renews. After the month, AI Done Track is an optional $497 a month, month to month.",
 };
 
 export const HERO = {
-  label: "AI Done · 6-Month Partnership",
+  label: "AI Done · 1-Month Buildout",
   titleLead: "Started with AI but keep getting ",
   titleEm: "stuck?",
   solve: "We solve that.",
-  primaryCta: "Start the 6-month partnership",
-  secondaryCta: "See both options",
-  note: "$2,500 setup today, then $497 a month for 6 months starting next month.",
+  primaryCta: "Start AI Done",
+  note: "$4,500 one time. About 30 days of consulting and systems buildout. No subscription and nothing renews.",
 };
 
 export const OPTIONS = {
-  label: "Two ways to start",
-  title: "Six months together, or one month.",
+  label: "How you start",
+  title: "One month to set it up right.",
   intro:
-    "We start with the AI you already use and get it set up right, then add the Grok and Claude workflows we use in our own business. Both options include consulting and a systems buildout. The 6-month partnership is the one we recommend. The 1-month buildout is a single payment if you want the setup only.",
-};
-
-export const PARTNERSHIP = {
-  id: "partnership",
-  badge: "Recommended",
-  name: "AI Done: 6-Month Partnership",
-  summary:
-    "Month 1 is consulting and the full systems buildout. We then stay on for maintenance, additional training, updates, and troubleshooting through the 6 monthly payments.",
-  monthOneLabel: "Month 1, the full systems buildout",
-  ongoingLabel: "Then 6 monthly payments, starting next month",
-  price: "$2,500",
-  priceCaption: "setup today",
-  thenPrice: "then $497 a month",
-  thenCaption: "for 6 months starting next month",
-  terms:
-    "$2,500 setup today, then $497 a month for 6 months starting next month. Monthly billing ends after those 6 payments. Continuing after that is optional, month to month, at $497.",
-  cta: "Start the 6-month partnership",
+    "We start with the AI you already use and get it set up right, then add the Grok and Claude workflows we use in our own business. The month includes consulting and a systems buildout. One payment. Nothing renews.",
 };
 
 export const BUILDOUT = {
@@ -59,6 +40,14 @@ export const BUILDOUT = {
   cta: "Start the 1-month buildout",
 };
 
+export const TRACK = {
+  label: "After the month",
+  name: "AI Done Track",
+  body: "Optional. $497 a month, month to month. Cancel anytime. Ongoing maintenance, additional training, updates, and troubleshooting.",
+  cta: "Ask about AI Done Track",
+  href: "#contact",
+};
+
 export const INCLUDED = [
   "Four 45-minute one-on-one training sessions",
   "Your AI assistant (Claude, Grok, or whatever you already use) set up and optimized, plus Grok and Claude workflows (including Claude Cowork and Claude Code where useful)",
@@ -69,13 +58,6 @@ export const INCLUDED = [
   "Training on researching social media content with your AI",
 ];
 
-export const ONGOING = [
-  "Ongoing maintenance",
-  "Additional training",
-  "Updates as the tools change",
-  "Troubleshooting",
-];
-
 export const PROVIDE = [
   "Your domain or website access",
   "Your business details, social logins, and a computer for your AI assistant",
@@ -84,14 +66,14 @@ export const PROVIDE = [
 
 export const STEPS = {
   label: "How it works",
-  title: "From checkout to six months, or to the end of the month.",
+  title: "From checkout to the end of the month.",
   intro:
     "We work with whatever AI you already use and optimize it. Then we build in Claude and Grok workflows to serve you and save you time.",
   items: [
     {
       when: "Today",
-      title: "Choose a plan and check out",
-      body: "The 6-month partnership is a $2,500 setup today, then $497 a month for 6 months starting next month. The 1-month buildout is $4,500 once. Stripe sends your receipt.",
+      title: "Check out",
+      body: "The 1-month buildout is $4,500 once. Stripe sends your receipt.",
     },
     {
       when: "Within 1 business day",
@@ -104,14 +86,9 @@ export const STEPS = {
       body: "Consulting and the full systems buildout: your sessions, your AI setup, the website working sessions, and your HighLevel setup.",
     },
     {
-      when: "The 6 monthly payments",
-      title: "We stay with the partnership",
-      body: "On the 6-month partnership, $497 a month for 6 months, starting next month, covers ongoing maintenance, additional training, updates, and troubleshooting. The 1-month buildout ends when the month ends.",
-    },
-    {
-      when: "After the 6 payments",
-      title: "The partnership ends",
-      body: "The 6-month commitment is complete. Continue month to month at $497 only if you choose to.",
+      when: "After the month",
+      title: "Optional AI Done Track",
+      body: "AI Done Track is $497 a month, month to month. Cancel anytime. It covers ongoing maintenance, additional training, updates, and troubleshooting.",
     },
   ],
 };
@@ -155,14 +132,6 @@ export const VIDEOS = {
   ],
 };
 
-export const MARKET = {
-  label: "Your market",
-  title: "Is your market open?",
-  body: "The market check applies to the 6-month partnership.",
-  cta: "Is your market open?",
-  href: "https://www.bestknownbrand.com/start/",
-};
-
 export const QUESTIONS = {
   label: "Questions",
   title: "What people are asking.",
@@ -186,10 +155,6 @@ export const faq = [
     a: "Real estate agents and teams, mortgage lenders and brokers, and personal brands who want to put your AI to work in their business.",
   },
   {
-    q: "How do I pay for the 6-month partnership?",
-    a: "You pay a $2,500 setup fee today. Then $497 a month for 6 months, starting next month. Monthly billing ends after those 6 payments. Nothing else is charged unless you choose to continue month to month at $497. Checkout is Stripe.",
-  },
-  {
     q: "How do I pay for the 1-month buildout?",
     a: "One payment of $4,500 through Stripe. About 30 days of consulting and systems setup. There is no subscription and nothing renews.",
   },
@@ -198,27 +163,19 @@ export const faq = [
     a: "You get a Stripe receipt by email, and we reach out within 1 business day to book your kickoff.",
   },
   {
-    q: "What happens after the 6 monthly payments?",
-    a: "The 6-month partnership ends. Nothing else is charged unless you choose to continue month to month at $497.",
-  },
-  {
-    q: "What does the rest of the partnership include?",
-    a: "After month 1, the 6-month partnership includes ongoing maintenance, additional training, updates, and troubleshooting.",
+    q: "What happens after the month?",
+    a: "The buildout ends. Nothing else is charged. If you want ongoing maintenance, additional training, updates, and troubleshooting, AI Done Track is $497 a month, month to month. Cancel anytime.",
   },
 ];
 
 export const CLOSER = {
   label: "When you are ready",
   title: "Get AI done in your business.",
-  primaryCta: "Start the 6-month partnership",
+  primaryCta: "Start AI Done",
   secondaryCta: "Ask a question",
 };
 
 export const CHECKOUT_COPY = {
-  partnership: {
-    description: "AI Done Partnership setup fee",
-    submit: "$2,500 setup today, then $497/month for 6 months starting next month.",
-  },
   buildout: {
     submit:
       "One payment for AI Done: 1-Month Buildout. We'll reach out within 1 business day to book your kickoff.",
@@ -228,7 +185,7 @@ export const CHECKOUT_COPY = {
 export const THANK_YOU = {
   title: "You're in.",
   partnership:
-    "Your setup is paid. Monthly billing of $497 starts next month and runs for 6 months. We'll reach out within 1 business day to book your kickoff.",
+    "Your setup is paid. We'll reach out within 1 business day to book your kickoff.",
   founder:
     "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 6 months, then it ends.",
   buildout: "Your 1-month buildout is paid. We'll reach out within 1 business day to book your kickoff.",

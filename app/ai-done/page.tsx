@@ -25,25 +25,14 @@ const offerSchema = {
   provider: { "@id": "https://bestknownbrand.com/#organization" },
   url,
   description,
-  offers: [
-    {
-      "@type": "Offer",
-      name: "AI Done: 6-Month Partnership",
-      price: "2500",
-      priceCurrency: "USD",
-      url,
-      description:
-        "$2,500 setup today, then $497 a month for 6 months starting next month.",
-    },
-    {
-      "@type": "Offer",
-      name: "AI Done: 1-Month Buildout",
-      price: "4500",
-      priceCurrency: "USD",
-      url,
-      description: "One payment of $4,500 for about 30 days of consulting and systems setup.",
-    },
-  ],
+  offers: {
+    "@type": "Offer",
+    name: "AI Done: 1-Month Buildout",
+    price: "4500",
+    priceCurrency: "USD",
+    url,
+    description: "One payment of $4,500 for about 30 days of consulting and systems setup.",
+  },
 };
 
 export default function Page() {
