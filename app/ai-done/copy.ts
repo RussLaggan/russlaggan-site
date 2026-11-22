@@ -176,6 +176,10 @@ export const CLOSER = {
 };
 
 export const CHECKOUT_COPY = {
+  partnership: {
+    description: "AI Done Partnership setup fee",
+    submit: "$2,500 setup today, then $497/month for 6 months starting next month.",
+  },
   buildout: {
     submit:
       "One payment for AI Done: 1-Month Buildout. We'll reach out within 1 business day to book your kickoff.",
