@@ -76,7 +76,7 @@ export async function POST(request: Request) {
         metadata: { offer: LEGACY_SETUP_OFFER, plan: SETUP_PLAN_STANDARD, billing_model: LEGACY_BILLING_MODEL },
         billing_address_collection: "auto",
         phone_number_collection: { enabled: true },
-        allow_promotion_codes: false,
+        allow_promotion_codes: true,
         custom_text: { submit: { message: CHECKOUT_COPY.partnership.submit } },
         success_url: `${origin}${PAGE}/thank-you?plan=partnership&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}${PAGE}?checkout=cancelled#partnership`,

@@ -357,6 +357,8 @@ test("standard partnership checkout is setup then 12 payments at the standard pr
   assert.equal(params.metadata?.offer, "ai_done_setup_12");
   assert.equal(params.metadata?.plan, "standard");
   assert.equal(params.default_settings?.description, "AI Done: 12-Month Partnership");
+  assert.deepEqual(params.phases?.[0]?.items, [{ price: MONTHLY_PRICE, quantity: 1 }]);
+  assert.equal(params.phases?.[0]?.discounts, "");
   assert.equal(JSON.stringify(params).includes("$1,500"), false);
 });
 
@@ -364,8 +366,11 @@ test("checkout route sells the setup fee and leaves the buildout payment alone",
   const route = readFileSync(new URL("../app/api/bkb-checkout/route.ts", import.meta.url), "utf8");
   assert.equal(route.includes('mode: "subscription"'), false);
   assert.equal(route.includes("payment_method_types"), false);
-  assert.equal(route.includes("allow_promotion_codes: false"), true);
-  assert.equal(route.includes("allow_promotion_codes: true"), false);
+  const partnership = route.slice(route.indexOf('if (plan === "partnership")'), route.indexOf("} else {"));
+  const buildout = route.slice(route.indexOf("} else {"));
+  assert.equal(partnership.includes("allow_promotion_codes: true"), true);
+  assert.equal(partnership.includes("allow_promotion_codes: false"), false);
+  assert.equal(buildout.includes("allow_promotion_codes"), false);
   assert.equal(route.includes("$1,500"), false);
   assert.equal(route.includes('customer_creation: "always"'), true);
   assert.equal(route.includes('setup_future_usage: "off_session"'), true);
