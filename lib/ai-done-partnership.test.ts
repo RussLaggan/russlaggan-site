@@ -314,7 +314,7 @@ test("thank-you uses founder copy for a founder session, standard copy otherwise
   assert.equal(thankYouPlan({ session: null, planParam: "founder", hadSessionId: true }), "founder");
   assert.equal(
     THANK_YOU.founder,
-    "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 6 months, then it ends.",
+    "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 12 months, then it ends.",
   );
   assert.equal(
     THANK_YOU.partnership,
