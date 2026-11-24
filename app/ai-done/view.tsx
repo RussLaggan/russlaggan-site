@@ -3,6 +3,7 @@ import { BuyButton, CheckoutNotice } from "./checkout";
 import {
   AUDIENCE,
   BUILDOUT,
+  BUILDOUT_PROVIDE,
   CLOSER,
   HERO,
   INCLUDED,
@@ -162,7 +163,7 @@ export function PageView() {
                 <h3 style={{ marginTop: "28px" }}>{BUILDOUT.includedLabel}</h3>
                 <Items items={INCLUDED} />
                 <h3 style={{ marginTop: "28px" }}>What you provide</h3>
-                <Items items={PROVIDE} />
+                <Items items={BUILDOUT_PROVIDE} />
               </div>
               <div className="offer-pay">
                 <p style={{ color: "#71717a" }}>One month, paid once</p>

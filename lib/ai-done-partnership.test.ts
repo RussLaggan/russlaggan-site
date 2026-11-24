@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { BUILDOUT, CHECKOUT_COPY, THANK_YOU } from "../app/ai-done/copy.ts";
+import { BUILDOUT, BUILDOUT_PROVIDE, CHECKOUT_COPY, PROVIDE, THANK_YOU } from "../app/ai-done/copy.ts";
 import {
   BILLING_MODEL,
   MONTHLY_PAYMENTS,
@@ -121,6 +121,11 @@ test("shared copy has one subtitle, no em dash, and no retired monthly offer", (
     BUILDOUT.trackOption,
     "Add AI Done Track: $497/month starting next month. Month to month, cancel anytime.",
   );
+  assert.deepEqual(BUILDOUT_PROVIDE, [
+    ...PROVIDE,
+    "Optional AI Done Track ($497/month, month to month): monthly AI updates and extra training to keep you current, help learning more and troubleshooting issues, and done-for-you system updates so it always runs on the newest improvements.",
+  ]);
+  assert.equal(PROVIDE.some((item) => item.includes("AI Done Track")), false);
   assert.equal(copy.includes("Ask about AI Done Track"), false);
   assert.equal(copy.includes("$1,500 off"), false);
   assert.equal(CHECKOUT_COPY.buildout.trackSubmit.includes("$1,500"), false);
@@ -514,6 +519,8 @@ test("checkout route sells the setup fee and leaves the buildout payment alone",
   assert.equal(view.includes("Ask about AI Done Track"), false);
   assert.equal(view.includes("trackOption"), true);
   assert.equal(view.includes('plan="partnership"'), true);
+  assert.equal(view.includes("<Items items={BUILDOUT_PROVIDE} />"), true);
+  assert.equal((view.match(/<Items items=\{PROVIDE\} \/>/g) || []).length, 1);
   const coaching = readFileSync(new URL("../app/api/stripe-webhook/route.ts", import.meta.url), "utf8");
   assert.equal(coaching.includes("checkout.session.async_payment_succeeded"), true);
   assert.equal(coaching.includes("customer.subscription.created"), true);
