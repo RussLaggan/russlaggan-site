@@ -2,6 +2,37 @@
 .bkb [id] { scroll-margin-top: 88px; }
 .bkb .bkb-buy { display: inline-flex; margin: 0; }
 .bkb .bkb-buy .btn { cursor: pointer; font-family: inherit; }
+.bkb .bkb-buy.has-addon {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+.bkb-track-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #3f3f46;
+  cursor: pointer;
+}
+.bkb-track-opt span { min-width: 0; }
+.bkb-track-opt input {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  flex: none;
+  accent-color: #0c3b78;
+}
 .bkb .hero-actions .btn { min-height: 44px; }
 .bkb .coach-hero .btn.ghost {
   color: #fff;

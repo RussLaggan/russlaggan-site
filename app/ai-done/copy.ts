@@ -53,16 +53,9 @@ export const BUILDOUT = {
   includedLabel: "What the month includes",
   price: "$4,500",
   priceCaption: "one time",
-  terms: "About 30 days. One payment of $4,500. No subscription and nothing renews.",
+  terms: "About 30 days. One payment of $4,500. No subscription and nothing renews unless you add Track below.",
   cta: "Start the 1-month buildout",
-};
-
-export const TRACK = {
-  label: "After the month",
-  name: "AI Done Track",
-  body: "Optional. $497 a month, month to month. Cancel anytime. Ongoing maintenance, additional training, updates, and troubleshooting.",
-  cta: "Ask about AI Done Track",
-  href: "#contact",
+  trackOption: "Add AI Done Track: $497/month starting next month. Month to month, cancel anytime.",
 };
 
 export const INCLUDED = [
@@ -117,7 +110,7 @@ export const STEPS = {
     {
       when: "After the month",
       title: "Optional AI Done Track",
-      body: "AI Done Track is $497 a month, month to month. Cancel anytime. It covers ongoing maintenance, additional training, updates, and troubleshooting.",
+      body: "Add AI Done Track on the buildout checkout if you want it: $497/month starting next month. Month to month, cancel anytime. It covers ongoing maintenance, additional training, updates, and troubleshooting. If you leave it off, the buildout ends and nothing else is charged.",
     },
     {
       when: "After month 12",
@@ -194,7 +187,7 @@ export const faq = [
   },
   {
     q: "How do I pay for the 1-month buildout?",
-    a: "One payment of $4,500 through Stripe. About 30 days of consulting and systems setup. There is no subscription and nothing renews.",
+    a: "One payment of $4,500 through Stripe. About 30 days of consulting and systems setup. You can add AI Done Track at checkout: $497/month starting next month. Month to month, cancel anytime. If you leave it off, nothing renews.",
   },
   {
     q: "What happens after I pay?",
@@ -202,7 +195,7 @@ export const faq = [
   },
   {
     q: "What happens after the month?",
-    a: "The buildout ends. Nothing else is charged. If you want ongoing maintenance, additional training, updates, and troubleshooting, AI Done Track is $497 a month, month to month. Cancel anytime.",
+    a: "If you added AI Done Track, $497/month starts next month. Month to month, cancel anytime. If you left it off, the buildout ends and nothing else is charged.",
   },
   {
     q: "What happens after month 12?",
@@ -229,6 +222,8 @@ export const CHECKOUT_COPY = {
   buildout: {
     submit:
       "One payment for AI Done: 1-Month Buildout. We'll reach out within 1 business day to book your kickoff.",
+    trackSubmit:
+      "One payment of $4,500 today. AI Done Track is $497/month starting next month. Month to month, cancel anytime.",
   },
 };
 
@@ -239,6 +234,8 @@ export const THANK_YOU = {
   founder:
     "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 12 months, then it ends.",
   buildout: "Your 1-month buildout is paid. We'll reach out within 1 business day to book your kickoff.",
+  buildoutTrack:
+    "Your 1-month buildout is paid. AI Done Track is $497/month starting next month. Month to month, cancel anytime. We'll reach out within 1 business day to book your kickoff.",
   next: "We reach out within 1 business day to book your kickoff.",
 };
 

@@ -1,20 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { NOTICES } from "./copy";
+import { BUILDOUT, NOTICES } from "./copy";
 
 export function BuyButton({
   label = "Start the 12-month partnership",
   plan = "partnership",
   variant = "solid",
+  trackOption = false,
 }: {
   label?: string;
   plan?: "partnership" | "buildout";
   variant?: "solid" | "ghost";
+  trackOption?: boolean;
 }) {
   return (
-    <form action="/api/bkb-checkout" method="post" className="bkb-buy">
+    <form action="/api/bkb-checkout" method="post" className={trackOption ? "bkb-buy has-addon" : "bkb-buy"}>
       <input type="hidden" name="plan" value={plan} />
+      {trackOption ? (
+        <label className="bkb-track-opt">
+          <input type="checkbox" name="addon" value="track" />
+          <span>{BUILDOUT.trackOption}</span>
+        </label>
+      ) : null}
       <button className={variant === "ghost" ? "btn ghost" : "btn"} type="submit">
         {label}
       </button>

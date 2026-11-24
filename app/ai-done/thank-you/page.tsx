@@ -46,9 +46,11 @@ export default async function ThankYouPage({
       ? THANK_YOU.founder
       : kind === "partnership"
         ? THANK_YOU.partnership
-        : kind === "buildout"
-          ? THANK_YOU.buildout
-          : THANK_YOU.next;
+        : kind === "buildout-track"
+          ? THANK_YOU.buildoutTrack
+          : kind === "buildout"
+            ? THANK_YOU.buildout
+            : THANK_YOU.next;
   return (
     <div className="field">
       <section className="section" style={{ paddingTop: "72px", paddingBottom: "96px" }}>
