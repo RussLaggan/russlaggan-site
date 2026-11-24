@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import {
-  BILLING_MODEL,
   PARTNERSHIP_OFFER,
   isPartnershipCheckout,
   isSetupThen12Checkout,
   partnershipScheduleUpdate,
   scheduleEndsPartnership,
-  standardSetupTerm,
+  setupCheckoutDisposition,
   paymentMethodSupportsOffSession,
   setupCollectionFor,
   setupPlanFromMetadata,
@@ -211,11 +210,8 @@ async function handleSetupThen12Checkout(
   if (session.payment_status !== "paid") {
     return NextResponse.json({ received: true, skipped: true });
   }
-  const standardTerm = standardSetupTerm(session.metadata);
-  if (session.metadata?.program === "ai_done_buildout" && session.metadata.billing_model !== BILLING_MODEL) {
-    return NextResponse.json({ received: true, skipped: true });
-  }
-  if (session.metadata?.billing_model && session.metadata.billing_model !== BILLING_MODEL && !standardTerm) {
+  const disposition = setupCheckoutDisposition(session.metadata);
+  if (disposition.action === "skip") {
     return NextResponse.json({ received: true, skipped: true });
   }
 
@@ -269,14 +265,17 @@ async function handleSetupThen12Checkout(
         customerId,
         setupUnix,
         sessionId: session.id,
-        plan: setupPlanFromMetadata(session.metadata, paymentIntent?.metadata),
+        plan:
+          disposition.action === "twelve"
+            ? disposition.plan
+            : setupPlanFromMetadata(session.metadata, paymentIntent?.metadata),
         collection,
         paymentMethodId: resolved.saved ? resolved.id : null,
-        ...(standardTerm
+        ...(disposition.action === "twelve"
           ? {
-              payments: standardTerm.payments,
-              offer: standardTerm.offer,
-              billingModel: standardTerm.billingModel,
+              payments: disposition.payments,
+              offer: disposition.offer,
+              billingModel: disposition.billingModel,
             }
           : {}),
       }),

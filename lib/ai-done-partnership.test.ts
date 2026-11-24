@@ -23,7 +23,7 @@ import {
   setupThen12PhaseEnd,
   setupThen12ScheduleCreateParams,
   shouldCancelPartnership,
-  standardSetupTerm,
+  setupCheckoutDisposition,
   isPartnershipCheckout,
   isSetupThen12Checkout,
   thankYouPlan,
@@ -334,32 +334,53 @@ test("setup price ids default to live prices and can be overridden", () => {
   assert.equal(PARTNERSHIP_MONTHLY_PRICE, "price_1Ubn9NKFIl1mC1gN2MjMJYND");
 });
 
-test("standard partnership checkout is setup then 12 payments at the standard price", () => {
-  assert.equal(standardSetupTerm({ billing_model: "setup_then_12", plan: "standard" })?.payments, 12);
-  assert.equal(standardSetupTerm({ billing_model: "setup_then_12", plan: "standard" })?.billingModel, "setup_then_12");
-  assert.equal(standardSetupTerm({ billing_model: "setup_then_12", plan: "standard" })?.offer, "ai_done_setup_12");
-  assert.equal(standardSetupTerm({ billing_model: "setup_then_12", plan: "founder" }), null);
-  assert.equal(standardSetupTerm({ billing_model: "setup_then_6", plan: "standard" }), null);
+function twelveSchedule(plan: "standard" | "founder", sessionId: string) {
+  const decision = setupCheckoutDisposition({
+    billing_model: "setup_then_12",
+    plan,
+    offer: "ai_done_setup_12",
+  });
+  assert.equal(decision.action, "twelve");
+  if (decision.action !== "twelve") return null;
   const setup = utc("2026-03-15T16:30:00.000Z");
   const params = setupThen12ScheduleCreateParams({
-    customerId: "cus_standard",
+    customerId: "cus_setup",
     setupUnix: setup,
-    sessionId: "cs_test_standard",
-    plan: "standard",
+    sessionId,
+    plan: decision.plan,
     collection: "charge_automatically",
     paymentMethodId: "pm_card",
-    payments: 12,
-    offer: "ai_done_setup_12",
-    billingModel: "setup_then_12",
+    payments: decision.payments,
+    offer: decision.offer,
+    billingModel: decision.billingModel,
   });
+  assert.equal(params.start_date, setupThen12BillingStart(setup));
+  assert.equal(params.end_behavior, "cancel");
   assert.deepEqual(params.phases?.[0]?.duration, { interval: "month", interval_count: 12 });
-  assert.equal(params.metadata?.billing_model, "setup_then_12");
-  assert.equal(params.metadata?.offer, "ai_done_setup_12");
-  assert.equal(params.metadata?.plan, "standard");
-  assert.equal(params.default_settings?.description, "AI Done: 12-Month Partnership");
   assert.deepEqual(params.phases?.[0]?.items, [{ price: MONTHLY_PRICE, quantity: 1 }]);
   assert.equal(params.phases?.[0]?.discounts, "");
+  assert.equal(params.metadata?.billing_model, "setup_then_12");
+  assert.equal(params.metadata?.offer, "ai_done_setup_12");
+  assert.equal(params.metadata?.plan, plan);
   assert.equal(JSON.stringify(params).includes("$1,500"), false);
+  return params;
+}
+
+test("a standard setup_then_12 session schedules 12 payments", () => {
+  twelveSchedule("standard", "cs_test_standard");
+  assert.equal(setupCheckoutDisposition({ billing_model: "setup_then_6", plan: "standard" }).action, "six");
+});
+
+test("a founder setup_then_12 session schedules 12 payments and keeps plan founder", () => {
+  twelveSchedule("founder", "cs_test_founder");
+});
+
+test("a buildout payment is still skipped", () => {
+  assert.equal(setupCheckoutDisposition({ program: "ai_done_buildout" }).action, "skip");
+  assert.equal(
+    setupCheckoutDisposition({ program: "ai_done_buildout", billing_model: "setup_then_12", plan: "standard" }).action,
+    "skip",
+  );
 });
 
 test("checkout route sells the setup fee and leaves the buildout payment alone", () => {

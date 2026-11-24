@@ -253,15 +253,42 @@ export function setupThen12PhaseEnd(setupUnix: number): number {
   return addCalendarMonths(setupThen12BillingStart(setupUnix), MONTHLY_PAYMENTS);
 }
 
-/** Standard partnership checkout: $2,500 setup, then 12 monthly charges. Other models stay on MONTHLY_PAYMENTS. */
-export function standardSetupTerm(metadata: {
+export type SetupCheckoutDisposition =
+  | { action: "skip" }
+  | { action: "six" }
+  | {
+      action: "twelve";
+      payments: 12;
+      billingModel: typeof LEGACY_BILLING_MODEL;
+      offer: typeof LEGACY_SETUP_OFFER;
+      plan: SetupPlan;
+    };
+
+/**
+ * setup_then_12, standard or founder, is 12 full monthly charges.
+ * setup_then_6 stays on MONTHLY_PAYMENTS. A buildout payment is not a setup.
+ */
+export function setupCheckoutDisposition(metadata: {
   billing_model?: string | null;
   plan?: string | null;
-} | null | undefined): { payments: number; billingModel: string; offer: string } | null {
-  if (metadata?.billing_model === LEGACY_BILLING_MODEL && metadata.plan === SETUP_PLAN_STANDARD) {
-    return { payments: 12, billingModel: LEGACY_BILLING_MODEL, offer: LEGACY_SETUP_OFFER };
+  program?: string | null;
+} | null | undefined): SetupCheckoutDisposition {
+  const model = metadata?.billing_model;
+  if (metadata?.program === "ai_done_buildout" && model !== BILLING_MODEL) return { action: "skip" };
+  if (
+    model === LEGACY_BILLING_MODEL &&
+    (metadata?.plan === SETUP_PLAN_STANDARD || metadata?.plan === SETUP_PLAN_FOUNDER)
+  ) {
+    return {
+      action: "twelve",
+      payments: 12,
+      billingModel: LEGACY_BILLING_MODEL,
+      offer: LEGACY_SETUP_OFFER,
+      plan: metadata.plan === SETUP_PLAN_FOUNDER ? SETUP_PLAN_FOUNDER : SETUP_PLAN_STANDARD,
+    };
   }
-  return null;
+  if (model && model !== BILLING_MODEL) return { action: "skip" };
+  return { action: "six" };
 }
 
 export function setupThen12Metadata(input: {
