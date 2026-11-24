@@ -6,7 +6,9 @@ import {
   CLOSER,
   HERO,
   INCLUDED,
+  ONGOING,
   OPTIONS,
+  PARTNERSHIP,
   PROVIDE,
   QUESTIONS,
   STEPS,
@@ -124,6 +126,34 @@ export function PageView() {
           </p>
           <CheckoutNotice />
           <div className="bkb-plans">
+            <article className="bkb-plan is-primary" id={PARTNERSHIP.id} aria-label={PARTNERSHIP.name}>
+              <div className="offer-card">
+                <p className="bkb-recommend">{PARTNERSHIP.badge}</p>
+                <h2 className="offer-title" style={{ fontSize: "32px", margin: "0" }}>
+                  {PARTNERSHIP.name}
+                </h2>
+                <p>{PARTNERSHIP.summary}</p>
+                <h3 style={{ marginTop: "28px" }}>{PARTNERSHIP.monthOneLabel}</h3>
+                <Items items={INCLUDED} />
+                <h3 style={{ marginTop: "28px" }}>{PARTNERSHIP.ongoingLabel}</h3>
+                <Items items={ONGOING} />
+                <h3 style={{ marginTop: "28px" }}>What you provide</h3>
+                <Items items={PROVIDE} />
+              </div>
+              <div className="offer-pay">
+                <p style={{ color: "#71717a" }}>12-month commitment</p>
+                <p className="big">{PARTNERSHIP.price}</p>
+                <p>{PARTNERSHIP.priceCaption}</p>
+                <p style={{ marginTop: "8px" }}>{PARTNERSHIP.thenPrice}</p>
+                <p style={{ color: "#71717a" }}>{PARTNERSHIP.thenCaption}</p>
+                <p className="bkb-terms">{PARTNERSHIP.terms}</p>
+                <div style={{ marginTop: "22px" }}>
+                  <BuyButton plan="partnership" label={PARTNERSHIP.cta} />
+                </div>
+                <p style={{ marginTop: "14px", color: "#71717a", fontSize: "14px" }}>Secure checkout by Stripe.</p>
+              </div>
+            </article>
+
             <article className="bkb-plan" id={BUILDOUT.id} aria-label={BUILDOUT.name}>
               <div className="offer-card">
                 <h2 className="offer-title" style={{ fontSize: "32px", margin: "0" }}>

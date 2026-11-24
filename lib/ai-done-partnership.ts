@@ -253,15 +253,55 @@ export function setupThen12PhaseEnd(setupUnix: number): number {
   return addCalendarMonths(setupThen12BillingStart(setupUnix), MONTHLY_PAYMENTS);
 }
 
+export type SetupCheckoutDisposition =
+  | { action: "skip" }
+  | { action: "six" }
+  | {
+      action: "twelve";
+      payments: 12;
+      billingModel: typeof LEGACY_BILLING_MODEL;
+      offer: typeof LEGACY_SETUP_OFFER;
+      plan: SetupPlan;
+    };
+
+/**
+ * setup_then_12, standard or founder, is 12 full monthly charges.
+ * setup_then_6 stays on MONTHLY_PAYMENTS. A buildout payment is not a setup.
+ */
+export function setupCheckoutDisposition(metadata: {
+  billing_model?: string | null;
+  plan?: string | null;
+  program?: string | null;
+} | null | undefined): SetupCheckoutDisposition {
+  const model = metadata?.billing_model;
+  if (metadata?.program === "ai_done_buildout" && model !== BILLING_MODEL) return { action: "skip" };
+  if (
+    model === LEGACY_BILLING_MODEL &&
+    (metadata?.plan === SETUP_PLAN_STANDARD || metadata?.plan === SETUP_PLAN_FOUNDER)
+  ) {
+    return {
+      action: "twelve",
+      payments: 12,
+      billingModel: LEGACY_BILLING_MODEL,
+      offer: LEGACY_SETUP_OFFER,
+      plan: metadata.plan === SETUP_PLAN_FOUNDER ? SETUP_PLAN_FOUNDER : SETUP_PLAN_STANDARD,
+    };
+  }
+  if (model && model !== BILLING_MODEL) return { action: "skip" };
+  return { action: "six" };
+}
+
 export function setupThen12Metadata(input: {
   sessionId: string;
   plan: SetupPlan;
   collection: SetupCollection;
+  offer?: string;
+  billingModel?: string;
 }): Stripe.MetadataParam {
   return {
-    offer: SETUP_OFFER,
+    offer: input.offer || SETUP_OFFER,
     plan: input.plan,
-    billing_model: BILLING_MODEL,
+    billing_model: input.billingModel || BILLING_MODEL,
     checkout_session: input.sessionId,
     ...(input.collection === "send_invoice" ? { collection_fallback: "send_invoice" } : {}),
   };
@@ -300,10 +340,15 @@ export function setupThen12ScheduleCreateParams(input: {
   collection: SetupCollection;
   paymentMethodId?: string | null;
   priceId?: string;
+  payments?: number;
+  offer?: string;
+  billingModel?: string;
 }): Stripe.SubscriptionScheduleCreateParams {
   if (input.collection === "charge_automatically" && !input.paymentMethodId) {
     throw new Error("AI Done setup_then_12 charge_automatically requires a saved payment method");
   }
+  const payments = input.payments ?? MONTHLY_PAYMENTS;
+  const description = payments === 12 ? "AI Done: 12-Month Partnership" : "AI Done: 6-Month Partnership";
   const metadata = setupThen12Metadata(input);
   const price = input.priceId || MONTHLY_PRICE;
   const sendInvoice = input.collection === "send_invoice";
@@ -311,18 +356,18 @@ export function setupThen12ScheduleCreateParams(input: {
     ? {
         collection_method: "send_invoice",
         billing_cycle_anchor: "phase_start",
-        description: "AI Done: 6-Month Partnership",
+        description,
         invoice_settings: { days_until_due: 7 },
       }
     : {
         collection_method: "charge_automatically",
         billing_cycle_anchor: "phase_start",
-        description: "AI Done: 6-Month Partnership",
+        description,
         default_payment_method: input.paymentMethodId || undefined,
       };
   const phase: Stripe.SubscriptionScheduleCreateParams.Phase = {
     items: [{ price, quantity: 1 }],
-    duration: { interval: "month", interval_count: MONTHLY_PAYMENTS },
+    duration: { interval: "month", interval_count: payments },
     billing_cycle_anchor: "phase_start",
     proration_behavior: "none",
     discounts: "",

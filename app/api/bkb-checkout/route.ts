@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { CHECKOUT_COPY } from "@/app/ai-done/copy";
 import {
-  BILLING_MODEL,
+  LEGACY_BILLING_MODEL,
+  LEGACY_SETUP_OFFER,
   MONTHLY_PRICE,
-  SETUP_OFFER,
   SETUP_PLAN_STANDARD,
   SETUP_PRICE_STANDARD,
   parseAiDonePlan,
@@ -13,7 +13,7 @@ import {
 export const runtime = "nodejs";
 
 // AI Done checkout. Prices live in Stripe (Laggan Holdings LLC, acct_1ULkwBKFIl1mC1gN).
-// partnership: $2,500 setup today, then the webhook starts 6 charges of $497 one calendar month later.
+// partnership: $2,500 setup today, then the webhook starts 12 charges of $497 one calendar month later.
 // AI_DONE_SETUP_PRICE_STANDARD and AI_DONE_MONTHLY_PRICE override those live price IDs.
 // buildout: one payment of $4,500. STRIPE_PRICE_AI_DONE overrides the buildout price.
 // plan=monthly (cancel anytime) is retired and is not sold.
@@ -71,12 +71,12 @@ export async function POST(request: Request) {
         payment_intent_data: {
           setup_future_usage: "off_session",
           description: CHECKOUT_COPY.partnership.description,
-          metadata: { offer: SETUP_OFFER, plan: SETUP_PLAN_STANDARD, billing_model: BILLING_MODEL },
+          metadata: { offer: LEGACY_SETUP_OFFER, plan: SETUP_PLAN_STANDARD, billing_model: LEGACY_BILLING_MODEL },
         },
-        metadata: { offer: SETUP_OFFER, plan: SETUP_PLAN_STANDARD, billing_model: BILLING_MODEL },
+        metadata: { offer: LEGACY_SETUP_OFFER, plan: SETUP_PLAN_STANDARD, billing_model: LEGACY_BILLING_MODEL },
         billing_address_collection: "auto",
         phone_number_collection: { enabled: true },
-        allow_promotion_codes: false,
+        allow_promotion_codes: true,
         custom_text: { submit: { message: CHECKOUT_COPY.partnership.submit } },
         success_url: `${origin}${PAGE}/thank-you?plan=partnership&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}${PAGE}?checkout=cancelled#partnership`,
