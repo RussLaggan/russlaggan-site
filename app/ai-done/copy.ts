@@ -81,6 +81,12 @@ export const PROVIDE = [
   "Time for the kickoff and the sessions",
 ];
 
+/** Buildout card only. The partnership card keeps PROVIDE. */
+export const BUILDOUT_PROVIDE = [
+  ...PROVIDE,
+  "Optional AI Done Track ($497/month, month to month): monthly AI updates and extra training to keep you current, help learning more and troubleshooting issues, and done-for-you system updates so it always runs on the newest improvements.",
+];
+
 export const STEPS = {
   label: "How it works",
   title: "From checkout to a year, or to the end of the month.",
