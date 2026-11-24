@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { BILLING_MODEL, SETUP_OFFER, SETUP_PLAN_FOUNDER, SETUP_PRICE_FOUNDER } from "./ai-done-partnership.ts";
+import { SETUP_PLAN_FOUNDER, SETUP_PRICE_FOUNDER } from "./ai-done-partnership.ts";
 import {
   FOUNDER_COPY,
   FOUNDER_PAYMENT_SEARCH,
@@ -200,13 +200,11 @@ test("founder checkout session is a one-time setup with off-session reuse and fo
   assert.equal(params.customer_creation, "always");
   assert.equal(params.payment_intent_data?.setup_future_usage, "off_session");
   assert.deepEqual(params.metadata, {
-    offer: SETUP_OFFER,
+    offer: "ai_done_setup_12",
     plan: SETUP_PLAN_FOUNDER,
-    billing_model: BILLING_MODEL,
+    billing_model: "setup_then_12",
   });
-  assert.equal(SETUP_OFFER, "ai_done_setup_12");
   assert.equal(SETUP_PLAN_FOUNDER, "founder");
-  assert.equal(BILLING_MODEL, "setup_then_12");
   assert.deepEqual(params.payment_intent_data?.metadata, params.metadata);
   assert.deepEqual(params.line_items, [{ price: SETUP_PRICE_FOUNDER, quantity: 1 }]);
   assert.equal(

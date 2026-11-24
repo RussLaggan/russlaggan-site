@@ -7,6 +7,7 @@ import {
   isSetupThen12Checkout,
   partnershipScheduleUpdate,
   scheduleEndsPartnership,
+  standardSetupTerm,
   paymentMethodSupportsOffSession,
   setupCollectionFor,
   setupPlanFromMetadata,
@@ -210,10 +211,11 @@ async function handleSetupThen12Checkout(
   if (session.payment_status !== "paid") {
     return NextResponse.json({ received: true, skipped: true });
   }
+  const standardTerm = standardSetupTerm(session.metadata);
   if (session.metadata?.program === "ai_done_buildout" && session.metadata.billing_model !== BILLING_MODEL) {
     return NextResponse.json({ received: true, skipped: true });
   }
-  if (session.metadata?.billing_model && session.metadata.billing_model !== BILLING_MODEL) {
+  if (session.metadata?.billing_model && session.metadata.billing_model !== BILLING_MODEL && !standardTerm) {
     return NextResponse.json({ received: true, skipped: true });
   }
 
@@ -270,6 +272,13 @@ async function handleSetupThen12Checkout(
         plan: setupPlanFromMetadata(session.metadata, paymentIntent?.metadata),
         collection,
         paymentMethodId: resolved.saved ? resolved.id : null,
+        ...(standardTerm
+          ? {
+              payments: standardTerm.payments,
+              offer: standardTerm.offer,
+              billingModel: standardTerm.billingModel,
+            }
+          : {}),
       }),
       { idempotencyKey: setupThen12IdempotencyKey(session.id) },
     );

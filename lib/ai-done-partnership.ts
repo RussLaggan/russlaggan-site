@@ -253,15 +253,28 @@ export function setupThen12PhaseEnd(setupUnix: number): number {
   return addCalendarMonths(setupThen12BillingStart(setupUnix), MONTHLY_PAYMENTS);
 }
 
+/** Standard partnership checkout: $2,500 setup, then 12 monthly charges. Other models stay on MONTHLY_PAYMENTS. */
+export function standardSetupTerm(metadata: {
+  billing_model?: string | null;
+  plan?: string | null;
+} | null | undefined): { payments: number; billingModel: string; offer: string } | null {
+  if (metadata?.billing_model === LEGACY_BILLING_MODEL && metadata.plan === SETUP_PLAN_STANDARD) {
+    return { payments: 12, billingModel: LEGACY_BILLING_MODEL, offer: LEGACY_SETUP_OFFER };
+  }
+  return null;
+}
+
 export function setupThen12Metadata(input: {
   sessionId: string;
   plan: SetupPlan;
   collection: SetupCollection;
+  offer?: string;
+  billingModel?: string;
 }): Stripe.MetadataParam {
   return {
-    offer: SETUP_OFFER,
+    offer: input.offer || SETUP_OFFER,
     plan: input.plan,
-    billing_model: BILLING_MODEL,
+    billing_model: input.billingModel || BILLING_MODEL,
     checkout_session: input.sessionId,
     ...(input.collection === "send_invoice" ? { collection_fallback: "send_invoice" } : {}),
   };
@@ -300,10 +313,15 @@ export function setupThen12ScheduleCreateParams(input: {
   collection: SetupCollection;
   paymentMethodId?: string | null;
   priceId?: string;
+  payments?: number;
+  offer?: string;
+  billingModel?: string;
 }): Stripe.SubscriptionScheduleCreateParams {
   if (input.collection === "charge_automatically" && !input.paymentMethodId) {
     throw new Error("AI Done setup_then_12 charge_automatically requires a saved payment method");
   }
+  const payments = input.payments ?? MONTHLY_PAYMENTS;
+  const description = payments === 12 ? "AI Done: 12-Month Partnership" : "AI Done: 6-Month Partnership";
   const metadata = setupThen12Metadata(input);
   const price = input.priceId || MONTHLY_PRICE;
   const sendInvoice = input.collection === "send_invoice";
@@ -311,18 +329,18 @@ export function setupThen12ScheduleCreateParams(input: {
     ? {
         collection_method: "send_invoice",
         billing_cycle_anchor: "phase_start",
-        description: "AI Done: 6-Month Partnership",
+        description,
         invoice_settings: { days_until_due: 7 },
       }
     : {
         collection_method: "charge_automatically",
         billing_cycle_anchor: "phase_start",
-        description: "AI Done: 6-Month Partnership",
+        description,
         default_payment_method: input.paymentMethodId || undefined,
       };
   const phase: Stripe.SubscriptionScheduleCreateParams.Phase = {
     items: [{ price, quantity: 1 }],
-    duration: { interval: "month", interval_count: MONTHLY_PAYMENTS },
+    duration: { interval: "month", interval_count: payments },
     billing_cycle_anchor: "phase_start",
     proration_behavior: "none",
     discounts: "",

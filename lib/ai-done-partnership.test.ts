@@ -23,6 +23,7 @@ import {
   setupThen12PhaseEnd,
   setupThen12ScheduleCreateParams,
   shouldCancelPartnership,
+  standardSetupTerm,
   isPartnershipCheckout,
   isSetupThen12Checkout,
   thankYouPlan,
@@ -96,10 +97,10 @@ test("shared copy has one subtitle, no em dash, and no retired monthly offer", (
   assert.equal(copy.includes("—"), false);
   assert.equal(copy.includes("–"), false);
   assert.equal(copy.includes("Co-founder & CRO"), false);
-  assert.equal(/cancel anytime/i.test(copy), false);
   assert.equal(copy.includes("plan=monthly"), false);
   assert.equal((copy.match(/export const SUBTITLE/g) || []).length, 1);
-  assert.equal(copy.includes("AI Done: 6-Month Partnership"), true);
+  assert.equal(copy.includes("AI Done: 12-Month Partnership"), true);
+  assert.equal(copy.includes("AI Done: 6-Month Partnership"), false);
   assert.equal(copy.includes("AI Done: 1-Month Buildout"), true);
   assert.equal(copy.includes("$4,500"), true);
   assert.equal(copy.includes("$2,500"), true);
@@ -110,7 +111,7 @@ test("shared copy has one subtitle, no em dash, and no retired monthly offer", (
   assert.equal(/discount/i.test(copy), false);
   assert.equal(
     CHECKOUT_COPY.partnership.submit,
-    "$2,500 setup today, then $497/month for 6 months starting next month.",
+    "$2,500 setup today, then $497/month for 12 months starting next month.",
   );
   assert.equal(CHECKOUT_COPY.partnership.description, "AI Done Partnership setup fee");
 });
@@ -317,7 +318,7 @@ test("thank-you uses founder copy for a founder session, standard copy otherwise
   );
   assert.equal(
     THANK_YOU.partnership,
-    "Your setup is paid. Monthly billing of $497 starts next month and runs for 6 months. We'll reach out within 1 business day to book your kickoff.",
+    "Your setup is paid. Monthly billing of $497 starts next month and runs for 12 months. We'll reach out within 1 business day to book your kickoff.",
   );
   assert.equal(THANK_YOU.founder.includes("$1,500"), false);
   assert.equal(/\$1,500 off/i.test(THANK_YOU.founder), false);
@@ -333,6 +334,32 @@ test("setup price ids default to live prices and can be overridden", () => {
   assert.equal(PARTNERSHIP_MONTHLY_PRICE, "price_1Ubn9NKFIl1mC1gN2MjMJYND");
 });
 
+test("standard partnership checkout is setup then 12 payments at the standard price", () => {
+  assert.equal(standardSetupTerm({ billing_model: "setup_then_12", plan: "standard" })?.payments, 12);
+  assert.equal(standardSetupTerm({ billing_model: "setup_then_12", plan: "standard" })?.billingModel, "setup_then_12");
+  assert.equal(standardSetupTerm({ billing_model: "setup_then_12", plan: "standard" })?.offer, "ai_done_setup_12");
+  assert.equal(standardSetupTerm({ billing_model: "setup_then_12", plan: "founder" }), null);
+  assert.equal(standardSetupTerm({ billing_model: "setup_then_6", plan: "standard" }), null);
+  const setup = utc("2026-03-15T16:30:00.000Z");
+  const params = setupThen12ScheduleCreateParams({
+    customerId: "cus_standard",
+    setupUnix: setup,
+    sessionId: "cs_test_standard",
+    plan: "standard",
+    collection: "charge_automatically",
+    paymentMethodId: "pm_card",
+    payments: 12,
+    offer: "ai_done_setup_12",
+    billingModel: "setup_then_12",
+  });
+  assert.deepEqual(params.phases?.[0]?.duration, { interval: "month", interval_count: 12 });
+  assert.equal(params.metadata?.billing_model, "setup_then_12");
+  assert.equal(params.metadata?.offer, "ai_done_setup_12");
+  assert.equal(params.metadata?.plan, "standard");
+  assert.equal(params.default_settings?.description, "AI Done: 12-Month Partnership");
+  assert.equal(JSON.stringify(params).includes("$1,500"), false);
+});
+
 test("checkout route sells the setup fee and leaves the buildout payment alone", () => {
   const route = readFileSync(new URL("../app/api/bkb-checkout/route.ts", import.meta.url), "utf8");
   assert.equal(route.includes('mode: "subscription"'), false);
@@ -343,6 +370,9 @@ test("checkout route sells the setup fee and leaves the buildout payment alone",
   assert.equal(route.includes('customer_creation: "always"'), true);
   assert.equal(route.includes('setup_future_usage: "off_session"'), true);
   assert.equal(route.includes("SETUP_PRICE_STANDARD"), true);
+  assert.equal(route.includes("billing_model: LEGACY_BILLING_MODEL"), true);
+  assert.equal(route.includes("offer: LEGACY_SETUP_OFFER"), true);
+  assert.equal(route.includes("billing_model: BILLING_MODEL"), false);
   assert.equal(route.includes("price_1UXtntKFIl1mC1gNx9QJKWUy"), true);
   assert.equal(route.includes('program: "ai_done_buildout"'), true);
   const webhook = readFileSync(new URL("./ai-done-webhook.ts", import.meta.url), "utf8");
