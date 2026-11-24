@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { CHECKOUT_COPY, THANK_YOU } from "../app/ai-done/copy.ts";
+import { BUILDOUT, CHECKOUT_COPY, THANK_YOU } from "../app/ai-done/copy.ts";
 import {
   BILLING_MODEL,
   MONTHLY_PAYMENTS,
@@ -11,6 +11,9 @@ import {
   SETUP_OFFER,
   SETUP_PRICE_FOUNDER,
   SETUP_PRICE_STANDARD,
+  TRACK_PRICE,
+  buildoutTrackIdempotencyKey,
+  buildoutTrackScheduleCreateParams,
   parseAiDonePlan,
   partnershipScheduleUpdate,
   phaseIsTwelveMonthly,
@@ -114,6 +117,14 @@ test("shared copy has one subtitle, no em dash, and no retired monthly offer", (
     "$2,500 setup today, then $497/month for 12 months starting next month.",
   );
   assert.equal(CHECKOUT_COPY.partnership.description, "AI Done Partnership setup fee");
+  assert.equal(
+    BUILDOUT.trackOption,
+    "Add AI Done Track: $497/month starting next month. Month to month, cancel anytime.",
+  );
+  assert.equal(copy.includes("Ask about AI Done Track"), false);
+  assert.equal(copy.includes("$1,500 off"), false);
+  assert.equal(CHECKOUT_COPY.buildout.trackSubmit.includes("$1,500"), false);
+  assert.equal(THANK_YOU.buildoutTrack.includes("cancel anytime"), true);
 });
 
 const DAY = 24 * 60 * 60;
@@ -282,6 +293,19 @@ test("thank-you works for a payment-mode session and a founder link with only a 
     }),
     "buildout",
   );
+  assert.equal(
+    thankYouPlan({
+      session: {
+        mode: "payment",
+        metadata: { program: "ai_done_buildout", addon: "track" },
+        payment_status: "paid",
+      },
+      planParam: "buildout",
+      hadSessionId: true,
+    }),
+    "buildout-track",
+  );
+  assert.equal(thankYouPlan({ session: null, planParam: "buildout-track", hadSessionId: true }), "buildout-track");
   assert.equal(thankYouPlan({ session: null, planParam: "partnership", hadSessionId: false }), "partnership");
   assert.equal(thankYouPlan({ session: null, hadSessionId: false }), "buildout");
   assert.equal(thankYouPlan({ session: null, hadSessionId: true }), "partnership");
@@ -381,6 +405,81 @@ test("a buildout payment is still skipped", () => {
     setupCheckoutDisposition({ program: "ai_done_buildout", billing_model: "setup_then_12", plan: "standard" }).action,
     "skip",
   );
+  assert.equal(
+    setupCheckoutDisposition({
+      program: "ai_done_buildout",
+      billing_model: "setup_then_12",
+      plan: "standard",
+      addon: "track",
+    }).action,
+    "skip",
+  );
+  assert.equal(setupCheckoutDisposition({ program: "ai_done_buildout", addon: "monthly" }).action, "skip");
+});
+
+test("a buildout with the track add-on is month to month and starts next month", () => {
+  assert.equal(setupCheckoutDisposition({ program: "ai_done_buildout", addon: "track" }).action, "track");
+  assert.equal(
+    TRACK_PRICE,
+    priceIdFromEnv(process.env.STRIPE_PRICE_AI_DONE_MONTHLY, "price_1UXu3BKFIl1mC1gNgB4W6s3P"),
+  );
+  const source = readFileSync(new URL("./ai-done-partnership.ts", import.meta.url), "utf8");
+  assert.equal(source.includes("price_1UXu3BKFIl1mC1gNgB4W6s3P"), true);
+  const setup = utc("2026-03-15T16:30:00.000Z");
+  const params = buildoutTrackScheduleCreateParams({
+    customerId: "cus_track",
+    setupUnix: setup,
+    sessionId: "cs_test_track",
+    collection: "charge_automatically",
+    paymentMethodId: "pm_card",
+  });
+  const phase = params.phases?.[0];
+  assert.equal(params.start_date, setupThen12BillingStart(setup));
+  assert.equal(params.start_date, utc("2026-04-15T16:30:00.000Z"));
+  assert.equal(params.end_behavior, "release");
+  assert.equal(phase?.duration, undefined);
+  assert.equal(phase?.end_date, undefined);
+  assert.deepEqual(phase?.items, [{ price: TRACK_PRICE, quantity: 1 }]);
+  assert.notEqual(phase?.items?.[0]?.price, PARTNERSHIP_SETUP_PRICE);
+  assert.equal(phase?.billing_cycle_anchor, "phase_start");
+  assert.equal(phase?.proration_behavior, "none");
+  assert.equal(phase?.discounts, "");
+  assert.equal(phase?.collection_method, "charge_automatically");
+  assert.equal(phase?.default_payment_method, "pm_card");
+  assert.equal(params.default_settings?.collection_method, "charge_automatically");
+  assert.equal(params.default_settings?.default_payment_method, "pm_card");
+  assert.equal(params.default_settings?.description, "AI Done Track");
+  assert.equal(params.metadata?.offer, "ai_done_track");
+  assert.equal(params.metadata?.addon, "track");
+  assert.equal(params.metadata?.program, "ai_done_buildout");
+  assert.equal(params.metadata?.checkout_session, "cs_test_track");
+  assert.equal(params.metadata?.billing_model, undefined);
+  assert.equal(JSON.stringify(params).includes("trial"), false);
+  assert.equal(JSON.stringify(params).includes("$1,500"), false);
+  assert.equal(JSON.stringify(params).includes("setup_then_12"), false);
+  assert.equal(buildoutTrackIdempotencyKey("cs_test_track"), "buildout-track-cs_test_track");
+
+  const emailed = buildoutTrackScheduleCreateParams({
+    customerId: "cus_klarna",
+    setupUnix: setup,
+    sessionId: "cs_test_track_invoice",
+    collection: "send_invoice",
+  });
+  assert.equal(emailed.end_behavior, "release");
+  assert.equal(emailed.phases?.[0]?.duration, undefined);
+  assert.equal(emailed.default_settings?.collection_method, "send_invoice");
+  assert.equal(emailed.default_settings?.invoice_settings?.days_until_due, 7);
+  assert.equal(emailed.phases?.[0]?.invoice_settings?.days_until_due, 7);
+  assert.equal(emailed.metadata?.collection_fallback, "send_invoice");
+  assert.equal(emailed.phases?.[0]?.items?.[0]?.price, TRACK_PRICE);
+  assert.throws(() =>
+    buildoutTrackScheduleCreateParams({
+      customerId: "cus_card",
+      setupUnix: setup,
+      sessionId: "cs_test_track",
+      collection: "charge_automatically",
+    }),
+  );
 });
 
 test("checkout route sells the setup fee and leaves the buildout payment alone", () => {
@@ -392,6 +491,11 @@ test("checkout route sells the setup fee and leaves the buildout payment alone",
   assert.equal(partnership.includes("allow_promotion_codes: true"), true);
   assert.equal(partnership.includes("allow_promotion_codes: false"), false);
   assert.equal(buildout.includes("allow_promotion_codes"), false);
+  assert.equal(buildout.includes('addon: "track"'), true);
+  assert.equal(buildout.includes('if (withTrack) paymentIntentData.setup_future_usage = "off_session"'), true);
+  assert.equal(buildout.includes("TRACK_PRICE"), true);
+  assert.equal(buildout.includes('mode: "subscription"'), false);
+  assert.equal(buildout.includes('customer_creation: "always"'), true);
   assert.equal(route.includes("$1,500"), false);
   assert.equal(route.includes('customer_creation: "always"'), true);
   assert.equal(route.includes('setup_future_usage: "off_session"'), true);
@@ -404,7 +508,12 @@ test("checkout route sells the setup fee and leaves the buildout payment alone",
   const webhook = readFileSync(new URL("./ai-done-webhook.ts", import.meta.url), "utf8");
   assert.equal(webhook.includes("checkout.session.async_payment_succeeded"), true);
   assert.equal(webhook.includes("setupThen12IdempotencyKey"), true);
+  assert.equal(webhook.includes("buildoutTrackIdempotencyKey"), true);
   assert.equal(webhook.includes("collection_fallback=send_invoice"), true);
+  const view = readFileSync(new URL("../app/ai-done/view.tsx", import.meta.url), "utf8");
+  assert.equal(view.includes("Ask about AI Done Track"), false);
+  assert.equal(view.includes("trackOption"), true);
+  assert.equal(view.includes('plan="partnership"'), true);
   const coaching = readFileSync(new URL("../app/api/stripe-webhook/route.ts", import.meta.url), "utf8");
   assert.equal(coaching.includes("checkout.session.async_payment_succeeded"), true);
   assert.equal(coaching.includes("customer.subscription.created"), true);

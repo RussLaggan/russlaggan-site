@@ -7,6 +7,8 @@ import {
   MONTHLY_PRICE,
   SETUP_PLAN_STANDARD,
   SETUP_PRICE_STANDARD,
+  TRACK_ADDON,
+  TRACK_PRICE,
   parseAiDonePlan,
 } from "@/lib/ai-done-partnership";
 
@@ -16,7 +18,9 @@ export const runtime = "nodejs";
 // partnership: $2,500 setup today, then the webhook starts 12 charges of $497 one calendar month later.
 // AI_DONE_SETUP_PRICE_STANDARD and AI_DONE_MONTHLY_PRICE override those live price IDs.
 // buildout: one payment of $4,500. STRIPE_PRICE_AI_DONE overrides the buildout price.
-// plan=monthly (cancel anytime) is retired and is not sold.
+// addon=track keeps that one-time payment, saves the customer and payment method,
+// and marks the session. The webhook starts AI Done Track on TRACK_PRICE one month later.
+// plan=monthly (cancel anytime) is retired and is not sold on its own.
 // Payment methods stay Dashboard-managed.
 const BUILDOUT_PRICE = process.env.STRIPE_PRICE_AI_DONE || "price_1UXtntKFIl1mC1gNx9QJKWUy";
 const PAGE = "/ai-done";
@@ -35,9 +39,11 @@ async function activePrice(stripe: Stripe, priceId: string, recurring: boolean) 
 export async function POST(request: Request) {
   const origin = new URL(request.url).origin;
   let requested = "buildout";
+  let addon = "";
   try {
     const form = await request.formData();
     requested = String(form.get("plan") || "buildout");
+    addon = String(form.get("addon") || "");
   } catch {
     // No form body: treat as the buildout.
   }
@@ -90,18 +96,34 @@ export async function POST(request: Request) {
         return back(origin, "unavailable", "buildout");
       }
 
+      const withTrack = addon === TRACK_ADDON;
+      if (withTrack) {
+        const track = await activePrice(stripe, TRACK_PRICE, true);
+        if (!track) {
+          console.error("ai-done track price is not active or has the wrong type");
+          return back(origin, "unavailable", "buildout");
+        }
+      }
+
+      const metadata: Stripe.MetadataParam = withTrack
+        ? { program: "ai_done_buildout", addon: "track" }
+        : { program: "ai_done_buildout" };
+      const paymentIntentData: Stripe.Checkout.SessionCreateParams.PaymentIntentData = { metadata };
+      if (withTrack) paymentIntentData.setup_future_usage = "off_session";
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
         line_items: [{ price: price.id, quantity: 1 }],
-        success_url: `${origin}${PAGE}/thank-you?plan=buildout&session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${origin}${PAGE}/thank-you?plan=${withTrack ? "buildout-track" : "buildout"}&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}${PAGE}?checkout=cancelled#buildout`,
         billing_address_collection: "required",
         phone_number_collection: { enabled: true },
-        metadata: { program: "ai_done_buildout" },
-        custom_text: { submit: { message: CHECKOUT_COPY.buildout.submit } },
+        metadata,
+        custom_text: {
+          submit: { message: withTrack ? CHECKOUT_COPY.buildout.trackSubmit : CHECKOUT_COPY.buildout.submit },
+        },
         customer_creation: "always",
         invoice_creation: { enabled: true },
-        payment_intent_data: { metadata: { program: "ai_done_buildout" } },
+        payment_intent_data: paymentIntentData,
       });
 
       if (session.url) return NextResponse.redirect(session.url, 303);

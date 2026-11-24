@@ -13,7 +13,6 @@ import {
   QUESTIONS,
   STEPS,
   SUBTITLE,
-  TRACK,
   VIDEOS,
   faq,
 } from "./copy";
@@ -171,7 +170,7 @@ export function PageView() {
                 <p>{BUILDOUT.priceCaption}</p>
                 <p className="bkb-terms">{BUILDOUT.terms}</p>
                 <div style={{ marginTop: "22px" }}>
-                  <BuyButton plan="buildout" label={BUILDOUT.cta} variant="ghost" />
+                  <BuyButton plan="buildout" label={BUILDOUT.cta} variant="ghost" trackOption />
                 </div>
                 <p style={{ marginTop: "14px", color: "#71717a", fontSize: "14px" }}>
                   The system is yours. Secure checkout by Stripe.
@@ -179,16 +178,6 @@ export function PageView() {
               </div>
             </article>
           </div>
-          <article className="lattice-card" style={{ marginTop: "22px" }}>
-            <p className="label">{TRACK.label}</p>
-            <h3 style={{ marginTop: "8px" }}>{TRACK.name}</h3>
-            <p>{TRACK.body}</p>
-            <p style={{ marginTop: "16px" }}>
-              <a className="btn ghost" href={TRACK.href}>
-                {TRACK.cta}
-              </a>
-            </p>
-          </article>
         </div>
       </section>
 

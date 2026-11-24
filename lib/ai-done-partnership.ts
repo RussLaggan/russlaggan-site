@@ -30,6 +30,17 @@ export const MONTHLY_PRICE = priceIdFromEnv(
   process.env.AI_DONE_MONTHLY_PRICE,
   "price_1Ubn9NKFIl1mC1gN2MjMJYND",
 );
+/**
+ * Month-to-month AI Done Track. This is the live $497 price the retired
+ * standalone monthly checkout used (product "Ai Done Monthly").
+ * STRIPE_PRICE_AI_DONE_MONTHLY overrides it. Do not create a new Stripe price.
+ */
+export const TRACK_PRICE = priceIdFromEnv(
+  process.env.STRIPE_PRICE_AI_DONE_MONTHLY,
+  "price_1UXu3BKFIl1mC1gNgB4W6s3P",
+);
+export const TRACK_OFFER = "ai_done_track";
+export const TRACK_ADDON = "track";
 export const LEGACY_SETUP_OFFER = "ai_done_setup_12";
 export const LEGACY_BILLING_MODEL = "setup_then_12";
 export const SETUP_OFFER = "ai_done_setup_6";
@@ -256,6 +267,7 @@ export function setupThen12PhaseEnd(setupUnix: number): number {
 export type SetupCheckoutDisposition =
   | { action: "skip" }
   | { action: "six" }
+  | { action: "track" }
   | {
       action: "twelve";
       payments: 12;
@@ -266,15 +278,23 @@ export type SetupCheckoutDisposition =
 
 /**
  * setup_then_12, standard or founder, is 12 full monthly charges.
- * setup_then_6 stays on MONTHLY_PAYMENTS. A buildout payment is not a setup.
+ * setup_then_6 stays on MONTHLY_PAYMENTS.
+ * A plain buildout payment is not a setup.
+ * A buildout with addon=track starts month-to-month Track billing next month.
+ * A buildout that also carries a setup billing model stays skipped.
  */
 export function setupCheckoutDisposition(metadata: {
   billing_model?: string | null;
   plan?: string | null;
   program?: string | null;
+  addon?: string | null;
 } | null | undefined): SetupCheckoutDisposition {
   const model = metadata?.billing_model;
-  if (metadata?.program === "ai_done_buildout" && model !== BILLING_MODEL) return { action: "skip" };
+  const buildout = metadata?.program === "ai_done_buildout";
+  if (buildout && metadata?.addon === TRACK_ADDON && !isKnownSetupBillingModel(model ?? null)) {
+    return { action: "track" };
+  }
+  if (buildout && model !== BILLING_MODEL) return { action: "skip" };
   if (
     model === LEGACY_BILLING_MODEL &&
     (metadata?.plan === SETUP_PLAN_STANDARD || metadata?.plan === SETUP_PLAN_FOUNDER)
@@ -387,7 +407,83 @@ export function setupThen12ScheduleCreateParams(input: {
   };
 }
 
-export type ThankYouKind = "founder" | "partnership" | "buildout" | "next";
+export function buildoutTrackIdempotencyKey(sessionId: string): string {
+  return `buildout-track-${sessionId}`;
+}
+
+export function buildoutTrackMetadata(input: {
+  sessionId: string;
+  collection: SetupCollection;
+}): Stripe.MetadataParam {
+  return {
+    offer: TRACK_OFFER,
+    addon: TRACK_ADDON,
+    program: "ai_done_buildout",
+    checkout_session: input.sessionId,
+    ...(input.collection === "send_invoice" ? { collection_fallback: "send_invoice" } : {}),
+  };
+}
+
+/**
+ * Month-to-month Track, first invoice one calendar month after the $4,500 payment.
+ *
+ * Same future schedule start as setup_then_12: start_date is one calendar month
+ * out, billing_cycle_anchor is phase_start, proration_behavior is none, and
+ * discounts is an empty string so a coupon already on the customer is not applied.
+ * The phase has no duration, so billing continues until the customer cancels.
+ * end_behavior release keeps the subscription if the schedule is ever released.
+ * No trial period is used.
+ */
+export function buildoutTrackScheduleCreateParams(input: {
+  customerId: string;
+  setupUnix: number;
+  sessionId: string;
+  collection: SetupCollection;
+  paymentMethodId?: string | null;
+  priceId?: string;
+}): Stripe.SubscriptionScheduleCreateParams {
+  if (input.collection === "charge_automatically" && !input.paymentMethodId) {
+    throw new Error("AI Done buildout track charge_automatically requires a saved payment method");
+  }
+  const metadata = buildoutTrackMetadata(input);
+  const price = input.priceId || TRACK_PRICE;
+  const sendInvoice = input.collection === "send_invoice";
+  const description = "AI Done Track";
+  const billing: Stripe.SubscriptionScheduleCreateParams.DefaultSettings = sendInvoice
+    ? {
+        collection_method: "send_invoice",
+        billing_cycle_anchor: "phase_start",
+        description,
+        invoice_settings: { days_until_due: 7 },
+      }
+    : {
+        collection_method: "charge_automatically",
+        billing_cycle_anchor: "phase_start",
+        description,
+        default_payment_method: input.paymentMethodId || undefined,
+      };
+  const phase: Stripe.SubscriptionScheduleCreateParams.Phase = {
+    items: [{ price, quantity: 1 }],
+    billing_cycle_anchor: "phase_start",
+    proration_behavior: "none",
+    discounts: "",
+    metadata,
+    collection_method: input.collection,
+    ...(sendInvoice
+      ? { invoice_settings: { days_until_due: 7 } }
+      : { default_payment_method: input.paymentMethodId || undefined }),
+  };
+  return {
+    customer: input.customerId,
+    start_date: setupThen12BillingStart(input.setupUnix),
+    end_behavior: "release",
+    metadata,
+    default_settings: billing,
+    phases: [phase],
+  };
+}
+
+export type ThankYouKind = "founder" | "partnership" | "buildout" | "buildout-track" | "next";
 
 export function thankYouPlan(input: {
   session: CheckoutSessionLike | null;
@@ -399,11 +495,14 @@ export function thankYouPlan(input: {
     if (isFounderSetupThankYou(session)) return "founder";
     if (session.mode === "payment" && isKnownSetupBillingModel(billingModelOf(session))) return "partnership";
     if (isPartnershipCheckout({ mode: session.mode, metadata: session.metadata })) return "partnership";
-    if (session.metadata?.program === "ai_done_buildout") return "buildout";
+    if (session.metadata?.program === "ai_done_buildout") {
+      return session.metadata.addon === TRACK_ADDON ? "buildout-track" : "buildout";
+    }
     return "next";
   }
   if (input.planParam === "founder") return "founder";
   if (input.planParam === "partnership") return "partnership";
+  if (input.planParam === "buildout-track") return "buildout-track";
   if (input.planParam === "buildout" || !input.hadSessionId) return "buildout";
   return "partnership";
 }

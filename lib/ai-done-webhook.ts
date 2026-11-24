@@ -7,6 +7,8 @@ import {
   partnershipScheduleUpdate,
   scheduleEndsPartnership,
   setupCheckoutDisposition,
+  buildoutTrackIdempotencyKey,
+  buildoutTrackScheduleCreateParams,
   paymentMethodSupportsOffSession,
   setupCollectionFor,
   setupPlanFromMetadata,
@@ -203,6 +205,61 @@ function paymentMethodIdOf(paymentIntent: Stripe.PaymentIntent | null): string |
   return typeof paymentMethod === "string" ? paymentMethod : paymentMethod.id;
 }
 
+async function handleBuildoutTrackCheckout(
+  stripe: Stripe,
+  session: Stripe.Checkout.Session,
+): Promise<NextResponse> {
+  try {
+    const paymentIntent = await loadSetupPaymentIntent(stripe, session);
+    const customerId = subscriptionIdFrom(session.customer);
+    if (!customerId) {
+      console.error(
+        `AI Done buildout track missing customer session=${session.id}. No subscription created. Stripe will not be asked to retry.`,
+      );
+      return NextResponse.json({ received: true, skipped: true, reason: "missing_customer" });
+    }
+    if (await setupThen12AlreadyScheduled(stripe, customerId, session.id)) {
+      return NextResponse.json({ received: true, skipped: true, reason: "already_scheduled" });
+    }
+
+    const resolved = await resolveOffSessionPaymentMethod(stripe, customerId, paymentIntent);
+    const collection = setupCollectionFor({
+      paymentMethodType: resolved.type ?? paymentMethodTypeOf(paymentIntent),
+      savedForOffSession: resolved.saved,
+    });
+    if (collection === "send_invoice") {
+      console.error(
+        `AI Done buildout track payment method missing or not reusable for off_session session=${session.id} customer=${customerId} payment_method=${resolved.id ?? paymentMethodIdOf(paymentIntent) ?? "missing"} type=${resolved.type ?? paymentMethodTypeOf(paymentIntent) ?? "none"}. collection_fallback=send_invoice days_until_due=7`,
+      );
+    }
+
+    const setupUnix = await setupPaidUnix(stripe, session, paymentIntent);
+    const start = setupThen12BillingStart(setupUnix);
+    const now = Math.floor(Date.now() / 1000);
+    if (start <= now) {
+      console.error(
+        `AI Done buildout track billing start ${start} is not in the future session=${session.id} customer=${customerId}. Not creating a backdated subscription.`,
+      );
+      return NextResponse.json({ received: true, skipped: true, reason: "start_in_past" });
+    }
+
+    await stripe.subscriptionSchedules.create(
+      buildoutTrackScheduleCreateParams({
+        customerId,
+        setupUnix,
+        sessionId: session.id,
+        collection,
+        paymentMethodId: resolved.saved ? resolved.id : null,
+      }),
+      { idempotencyKey: buildoutTrackIdempotencyKey(session.id) },
+    );
+    return NextResponse.json({ received: true, collection, addon: "track" });
+  } catch (error) {
+    console.error("AI Done buildout track failed", error instanceof Error ? error.message : "error");
+    return NextResponse.json({ error: "schedule failed" }, { status: 500 });
+  }
+}
+
 async function handleSetupThen12Checkout(
   stripe: Stripe,
   session: Stripe.Checkout.Session,
@@ -211,6 +268,9 @@ async function handleSetupThen12Checkout(
     return NextResponse.json({ received: true, skipped: true });
   }
   const disposition = setupCheckoutDisposition(session.metadata);
+  if (disposition.action === "track") {
+    return handleBuildoutTrackCheckout(stripe, session);
+  }
   if (disposition.action === "skip") {
     return NextResponse.json({ received: true, skipped: true });
   }
