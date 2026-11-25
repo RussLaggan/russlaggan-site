@@ -1,0 +1,188 @@
+/* Sale landing page. Dark field, acid yellow, Anton headings. */
+.bf {
+  background:
+    radial-gradient(46% 38% at 0% 0%, rgba(212, 255, 0, 0.16), transparent 68%),
+    #090909;
+  color: #f4f4f5;
+  color-scheme: dark;
+  overflow-x: hidden;
+}
+.bf .wrap { min-width: 0; }
+.bf-hero { padding: 72px 0 56px; }
+.bf-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 48px;
+  align-items: center;
+}
+.bf-copy { min-width: 0; }
+.bf-tag {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #d4ff00;
+  color: #111;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.bf h1 {
+  margin: 0;
+  color: #d4ff00;
+  font-size: clamp(64px, 12vw, 128px);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+}
+.bf h1 span {
+  display: block;
+  margin-top: 14px;
+  color: #fff;
+  font-size: clamp(28px, 4.4vw, 48px);
+  line-height: 1;
+}
+.bf-intro {
+  margin: 26px 0 0;
+  max-width: 34rem;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 19px;
+  line-height: 1.55;
+}
+.bf-card {
+  min-width: 0;
+  padding: 32px;
+  border: 2px solid #d4ff00;
+  border-radius: 18px;
+  background: #111;
+  box-shadow: 0 30px 70px -30px rgba(212, 255, 0, 0.35);
+}
+.bf-card p { margin: 0; }
+.bf-label {
+  color: #d4ff00;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.bf .bf-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 8px;
+}
+.bf-price s {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 30px;
+  font-weight: 600;
+  text-decoration-thickness: 3px;
+  text-decoration-color: #ef5d17;
+}
+.bf-price strong {
+  color: #d4ff00;
+  font-size: 84px;
+  font-weight: 400;
+  line-height: 1;
+}
+.bf .bf-code {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px dashed rgba(212, 255, 0, 0.6);
+  border-radius: 10px;
+  color: #f4f4f5;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.bf .bf-then {
+  margin-top: 18px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+}
+.bf-muted { color: rgba(255, 255, 255, 0.66); font-size: 15px; line-height: 1.5; }
+.bf .bf-buy { margin-top: 22px; }
+.bf .bf-buy .bkb-buy,
+.bf .bf-buy .bf-btn { display: flex; width: 100%; }
+.bf .bf-btn {
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 10px;
+  background: #d4ff00;
+  color: #111;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 14px 34px -12px rgba(212, 255, 0, 0.6);
+}
+.bf .bf-btn:hover { background: #e4ff4d; }
+.bf .bf-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.bf .bf-small {
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.bf-small a { color: #d4ff00; text-decoration: underline; text-underline-offset: 3px; }
+.bf .bkb-notice {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border: 1px solid rgba(212, 255, 0, 0.55);
+  border-radius: 10px;
+  background: transparent;
+  color: #d4ff00;
+  font-size: 15px;
+}
+.bf-section { padding: 24px 0 96px; }
+.bf-narrow { max-width: 760px; }
+.bf h2 {
+  margin: 0;
+  color: #d4ff00;
+  font-size: clamp(40px, 7vw, 64px);
+  font-weight: 400;
+  line-height: 0.95;
+}
+.bf h3 {
+  margin: 32px 0 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+.bf-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.bf-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 17px;
+  line-height: 1.5;
+}
+.bf-list li span { min-width: 0; }
+.bf-list svg { flex: none; margin-top: 3px; color: #d4ff00; }
+.bf-close {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+.bf-terms { margin: 0; color: rgba(255, 255, 255, 0.78); font-size: 16px; line-height: 1.55; }
+.bf-close .bf-buy { max-width: 420px; }
+
+@media (max-width: 860px) {
+  .bf-hero { padding: 48px 0 40px; }
+  .bf-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .bf-card { padding: 24px; }
+  .bf-price strong { font-size: 72px; }
+  .bf-intro { font-size: 17px; }
+}
