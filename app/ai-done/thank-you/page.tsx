@@ -5,7 +5,7 @@ import { PAGE, THANK_YOU } from "../copy";
 
 export const metadata: Metadata = {
   title: `You're in | ${PAGE.title}`,
-  description: "Your payment went through. We'll reach out within 1 business day to book your kickoff.",
+  description: "Your payment went through. We'll reach out the next business day to book your kickoff.",
   robots: { index: false, follow: false },
 };
 
