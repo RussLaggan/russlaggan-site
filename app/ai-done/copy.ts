@@ -99,9 +99,9 @@ export const STEPS = {
       body: "The 12-month partnership is a $2,500 setup today, then $497 a month for 12 months starting next month. The 1-month buildout is $4,500 once. Stripe sends your receipt.",
     },
     {
-      when: "Within 1 business day",
+      when: "Next business day",
       title: "Book your kickoff",
-      body: "We reach out within 1 business day to book your kickoff.",
+      body: "We reach out the next business day to book your kickoff.",
     },
     {
       when: "Month 1",
@@ -197,7 +197,7 @@ export const faq = [
   },
   {
     q: "What happens after I pay?",
-    a: "You get a Stripe receipt by email, and we reach out within 1 business day to book your kickoff.",
+    a: "You get a Stripe receipt by email, and we reach out the next business day to book your kickoff.",
   },
   {
     q: "What happens after the month?",
@@ -227,7 +227,7 @@ export const CHECKOUT_COPY = {
   },
   buildout: {
     submit:
-      "One payment for AI Done: 1-Month Buildout. We'll reach out within 1 business day to book your kickoff.",
+      "One payment for AI Done: 1-Month Buildout. We'll reach out the next business day to book your kickoff.",
     trackSubmit:
       "One payment of $4,500 today. AI Done Track is $497/month starting next month. Month to month, cancel anytime.",
   },
@@ -236,13 +236,13 @@ export const CHECKOUT_COPY = {
 export const THANK_YOU = {
   title: "You're in.",
   partnership:
-    "Your setup is paid. Monthly billing of $497 starts next month and runs for 12 months. We'll reach out within 1 business day to book your kickoff.",
+    "Your setup is paid. Monthly billing of $497 starts next month and runs for 12 months. We'll reach out the next business day to book your kickoff.",
   founder:
     "You're in at the founder rate. Your $1,000 setup is paid. Monthly billing of $497 starts next month and runs for 12 months, then it ends.",
-  buildout: "Your 1-month buildout is paid. We'll reach out within 1 business day to book your kickoff.",
+  buildout: "Your 1-month buildout is paid. We'll reach out the next business day to book your kickoff.",
   buildoutTrack:
-    "Your 1-month buildout is paid. AI Done Track is $497/month starting next month. Month to month, cancel anytime. We'll reach out within 1 business day to book your kickoff.",
-  next: "We reach out within 1 business day to book your kickoff.",
+    "Your 1-month buildout is paid. AI Done Track is $497/month starting next month. Month to month, cancel anytime. We'll reach out the next business day to book your kickoff.",
+  next: "We reach out the next business day to book your kickoff.",
 };
 
 export const NOTICES = {

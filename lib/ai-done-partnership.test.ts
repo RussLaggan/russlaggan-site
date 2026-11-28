@@ -128,6 +128,9 @@ test("shared copy has one subtitle, no em dash, and no retired monthly offer", (
   assert.equal(PROVIDE.some((item) => item.includes("AI Done Track")), false);
   assert.equal(copy.includes("Ask about AI Done Track"), false);
   assert.equal(copy.includes("$1,500 off"), false);
+  assert.equal(copy.includes("within 1 business day"), false);
+  assert.equal(copy.includes("Within 1 business day"), false);
+  assert.equal(copy.includes("the next business day"), true);
   assert.equal(CHECKOUT_COPY.buildout.trackSubmit.includes("$1,500"), false);
   assert.equal(THANK_YOU.buildoutTrack.includes("cancel anytime"), true);
 });
@@ -347,7 +350,7 @@ test("thank-you uses founder copy for a founder session, standard copy otherwise
   );
   assert.equal(
     THANK_YOU.partnership,
-    "Your setup is paid. Monthly billing of $497 starts next month and runs for 12 months. We'll reach out within 1 business day to book your kickoff.",
+    "Your setup is paid. Monthly billing of $497 starts next month and runs for 12 months. We'll reach out the next business day to book your kickoff.",
   );
   assert.equal(THANK_YOU.founder.includes("$1,500"), false);
   assert.equal(/\$1,500 off/i.test(THANK_YOU.founder), false);

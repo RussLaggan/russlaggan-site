@@ -6,7 +6,7 @@ export function PageView() {
           <p className="label">Payment received</p>
           <h1>You're in.</h1>
           <p className="lede">
-            Your payment went through. Russ will be in touch within one business day to schedule your first session.
+            Your payment went through. Russ will be in touch the next business day to schedule your first session.
           </p>
           <p style={{ marginTop: "28px" }}>
             <a className="btn" href="/">
